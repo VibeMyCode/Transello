@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "说一口流利的“互联网语”。粘贴、划选或整页翻译，一键完成，在本机私密运行，也可接入你的 GPT 或 Claude。"
+  "message": "说一口流利的“互联网语”。文本、选中内容或整个网页，一键翻译，本机私密运行，或接入 AI：GPT、Claude、DeepSeek、OpenRouter。"
  },
  "cmdTranslateSelection": {
   "message": "翻译所选内容（迷你弹窗）"

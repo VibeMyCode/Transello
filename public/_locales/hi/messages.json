@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "इंटरनेट की भाषा फर्राटे से बोलें। पेस्ट करें, चुनें या पूरा पेज एक क्लिक में अनुवाद करें, डिवाइस पर निजी रूप से या GPT, Claude से।"
+  "message": "इंटरनेट की भाषा फर्राटे से बोलें। टेक्स्ट, चयन या पूरा पेज एक क्लिक में, निजी रूप से या AI से: GPT, Claude, DeepSeek, OpenRouter।"
  },
  "cmdTranslateSelection": {
   "message": "चयनित टेक्स्ट का अनुवाद करें (मिनी पॉपअप)"

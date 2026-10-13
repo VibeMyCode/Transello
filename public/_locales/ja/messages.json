@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "インターネット語がペラペラに。貼り付け、選択、ページ全体の翻訳をワンクリックで。端末内でプライベートに、またはGPTやClaudeで。"
+  "message": "インターネット語がペラペラに。テキスト、選択範囲、ページ全体をワンクリックで。端末内でプライベートに、またはAIで：GPT、Claude、DeepSeek、OpenRouter。"
  },
  "cmdTranslateSelection": {
   "message": "選択範囲を翻訳（ミニポップアップ）"

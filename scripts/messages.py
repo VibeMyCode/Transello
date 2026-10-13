@@ -3,7 +3,7 @@
 import json, pathlib
 M = {
  "extName": ("Transello", "Transello"),
- "extDescription": ("Speak fluent internet. Paste, highlight or translate whole pages in a click, privately on-device, or with your GPT or Claude.", "Говорите на языке интернета. Вставьте, выделите или переведите всю страницу в клик, приватно на устройстве или через GPT и Claude."),
+ "extDescription": ("Speak fluent internet. Text, selection, whole page in one click, privately or with AI: GPT, Claude, DeepSeek, OpenRouter.", "Говорите на языке интернета. Текст, выделение, страница в один клик, приватно или через ИИ: GPT, Claude, DeepSeek, OpenRouter."),
  "cmdTranslateSelection": ("Translate selection (mini popup)", "Перевести выделение (мини-попап)"),
  "menuTranslateSelection": ("Translate in Transello", "Перевести в Transello"),
  "menuTranslatePage": ("Translate page with Transello", "Перевести страницу с Transello"),

@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "Parlez Internet couramment. Collez, surlignez ou traduisez une page entière en un clic, en privé sur l'appareil ou via GPT, Claude."
+  "message": "Parlez Internet couramment. Texte, sélection ou page entière en un clic, en privé ou avec l'IA : GPT, Claude, DeepSeek, OpenRouter."
  },
  "cmdTranslateSelection": {
   "message": "Traduire la sélection (mini-popup)"

@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "Speak fluent internet. Paste, highlight or translate whole pages in a click, privately on-device, or with your GPT or Claude."
+  "message": "Speak fluent internet. Text, selection, whole page in one click, privately or with AI: GPT, Claude, DeepSeek, OpenRouter."
  },
  "cmdTranslateSelection": {
   "message": "Translate selection (mini popup)"

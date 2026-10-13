@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "ইন্টারনেটের ভাষায় সাবলীল হন। পেস্ট, হাইলাইট বা পুরো পেজ এক ক্লিকে অনুবাদ করুন, ডিভাইসেই গোপনে, বা GPT বা Claude দিয়ে।"
+  "message": "ইন্টারনেটের ভাষায় সাবলীল হন। টেক্সট, নির্বাচন বা পুরো পেজ এক ক্লিকে, গোপনে বা AI দিয়ে: GPT, Claude, DeepSeek, OpenRouter।"
  },
  "cmdTranslateSelection": {
   "message": "নির্বাচিত অংশ অনুবাদ করুন (মিনি পপআপ)"

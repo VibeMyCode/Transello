@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "تحدّث لغة الإنترنت بطلاقة. الصق أو ظلّل أو ترجم صفحات كاملة بنقرة، بخصوصية على جهازك، أو عبر GPT أو Claude الخاص بك."
+  "message": "تحدّث لغة الإنترنت بطلاقة. نص أو تحديد أو صفحة كاملة بنقرة، بخصوصية أو عبر الذكاء الاصطناعي: GPT وClaude وDeepSeek وOpenRouter."
  },
  "cmdTranslateSelection": {
   "message": "ترجمة النص المحدد (نافذة مصغرة)"

@@ -3,7 +3,7 @@
   "message": "Transello"
  },
  "extDescription": {
-  "message": "Habla internet con fluidez. Pega, selecciona o traduce páginas enteras en un clic, en privado en tu equipo, o con tu GPT o Claude."
+  "message": "Habla internet con fluidez. Texto, selección o página entera en un clic, en privado o con IA: GPT, Claude, DeepSeek, OpenRouter."
  },
  "cmdTranslateSelection": {
   "message": "Traducir selección (miniventana)"

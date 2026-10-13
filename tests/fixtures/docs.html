@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Fixture: docs</title>
+<style>body{font:15px/1.5 system-ui;max-width:900px;margin:24px auto;padding:0 16px} table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:4px 8px} nav a{margin-right:12px}</style></head>
+<body>
+<nav><a id="nav1" href="#install">Installation</a><a id="nav2" href="#usage">Usage guide</a></nav>
+<h1 id="h1">Getting started with the library</h1>
+<p id="intro">This guide explains how to install the package and write your first program.</p>
+<h2 id="install">Installation</h2>
+<p>Run the following command in your terminal:</p>
+<pre id="pre">npm install example-package --save</pre>
+<p>Then import the <code id="code">createClient</code> function into your project.</p>
+<table id="table"><tr><th>Option</th><th>Description</th></tr>
+<tr><td><code>timeout</code></td><td id="td1">Maximum waiting time in seconds</td></tr>
+<tr><td><code>retries</code></td><td id="td2">How many times to repeat a failed request</td></tr></table>
+<h2 id="usage">Usage guide</h2>
+<ul><li id="li1">Create a client with your settings.</li><li id="li2">Send a request and wait for the answer.</li></ul>
+<form id="form"><label id="flabel">Email address</label> <input id="email" value="person@example.com"> <button id="submit" type="button">Subscribe now</button></form>
+<p id="brand">Product name: <span translate="no" id="tn">Example Cloud</span></p>
+<script>
+  window.__events = 0;
+  document.getElementById('submit').addEventListener('click', () => window.__events++);
+  document.getElementById('nav1').addEventListener('click', (e) => { e.preventDefault(); window.__events++; });
+</script>
+</body></html>

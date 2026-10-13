@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "インターネット語がペラペラに。貼り付け、選択、ページ全体の翻訳をワンクリックで。端末内でプライベートに、またはGPTやClaudeで。"
+ },
+ "cmdTranslateSelection": {
+  "message": "選択範囲を翻訳（ミニポップアップ）"
+ },
+ "menuTranslateSelection": {
+  "message": "Transello で翻訳"
+ },
+ "menuTranslatePage": {
+  "message": "Transello でページを翻訳"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "設定"
+ },
+ "openWindow": {
+  "message": "別ウィンドウで開く"
+ },
+ "sourceLang": {
+  "message": "翻訳元の言語"
+ },
+ "targetLang": {
+  "message": "翻訳先の言語"
+ },
+ "recentLangs": {
+  "message": "最近使用"
+ },
+ "allLangs": {
+  "message": "すべての言語"
+ },
+ "autoDetect": {
+  "message": "自動検出"
+ },
+ "swap": {
+  "message": "言語を入れ替える"
+ },
+ "inputPlaceholder": {
+  "message": "テキストを貼り付けるか入力…"
+ },
+ "inputLabel": {
+  "message": "翻訳するテキスト"
+ },
+ "resultLabel": {
+  "message": "翻訳"
+ },
+ "translate": {
+  "message": "翻訳"
+ },
+ "copy": {
+  "message": "翻訳をコピー"
+ },
+ "copyShort": {
+  "message": "コピー"
+ },
+ "copied": {
+  "message": "コピーしました"
+ },
+ "clear": {
+  "message": "クリア"
+ },
+ "retry": {
+  "message": "再試行"
+ },
+ "cancel": {
+  "message": "キャンセル"
+ },
+ "close": {
+  "message": "閉じる"
+ },
+ "expand": {
+  "message": "展開"
+ },
+ "translating": {
+  "message": "翻訳中…"
+ },
+ "downloading": {
+  "message": "言語モデルをダウンロード中… $1%"
+ },
+ "downloadingNote": {
+  "message": "Chrome による初回のみのダウンロードです。以降の翻訳はオフラインで動作します。"
+ },
+ "detected": {
+  "message": "検出：$1"
+ },
+ "detectedUncertain": {
+  "message": "$1のようですが、確実ではありません。違う場合は言語を選択してください。"
+ },
+ "sameLanguage": {
+  "message": "テキストはすでに$1です。"
+ },
+ "translateTo": {
+  "message": "$1に翻訳"
+ },
+ "chooseTarget": {
+  "message": "言語を選択"
+ },
+ "truncated": {
+  "message": "最初の $1 文字のみ翻訳されました。残りは別途翻訳してください。"
+ },
+ "emptyHint": {
+  "message": "テキストを貼り付けると、翻訳が自動的に表示されます。"
+ },
+ "original": {
+  "message": "原文"
+ },
+ "selectText": {
+  "message": "先に単語またはフレーズを選択してください。"
+ },
+ "openTransello": {
+  "message": "Transello を開く"
+ },
+ "pageTranslating": {
+  "message": "ページを翻訳中… $1 / $2"
+ },
+ "pageDone": {
+  "message": "$2 個のテキストブロックのうち $1 個を翻訳しました。"
+ },
+ "pageLimited": {
+  "message": "大きなページです。最初の $1 ブロックのみ翻訳されます。"
+ },
+ "pageNothing": {
+  "message": "このページに翻訳できるテキストが見つかりません。"
+ },
+ "showOriginal": {
+  "message": "原文を表示"
+ },
+ "translateAgain": {
+  "message": "再翻訳"
+ },
+ "pageOriginal": {
+  "message": "ページの元のテキストに戻しました。"
+ },
+ "pageCloudConfirm": {
+  "message": "このページの約 $1 文字を $2 に送信しますか？プロバイダーによって料金が発生する場合があります。"
+ },
+ "pageSensitive": {
+  "message": "機密性の高いサイト（銀行、メール、決済）のようです。"
+ },
+ "confirmSend": {
+  "message": "送信して翻訳"
+ },
+ "cloudNotice": {
+  "message": "選択したテキストは翻訳のために $1 に送信され、プロバイダーによって課金される場合があります。"
+ },
+ "restrictedHere": {
+  "message": "Chrome ではこのページで拡張機能を使用できません。代わりに Transello にテキストを貼り付けてください。"
+ },
+ "shortcutHint": {
+  "message": "ショートカット：$1"
+ },
+ "shortcutNotSet": {
+  "message": "未設定"
+ },
+ "err_cancelled": {
+  "message": "キャンセルしました。"
+ },
+ "err_api_missing": {
+  "message": "このブラウザでは組み込み翻訳が無効になっています（Brave は一部のシステムでこうします）。設定でクラウド AI を接続するか、Google Chrome をお使いください。"
+ },
+ "err_local_unavailable_here": {
+  "message": "ここではローカル翻訳を利用できません。Transello のウィンドウを開いてください。"
+ },
+ "err_unsupported_pair": {
+  "message": "この言語の組み合わせはローカル翻訳に対応していません。別の言語を選ぶか、クラウドプロバイダーを接続してください。"
+ },
+ "err_unknown_language": {
+  "message": "言語を検出できませんでした。翻訳元の言語を選択してください。"
+ },
+ "err_download_failed": {
+  "message": "言語モデルをダウンロードできませんでした（オフライン、またはディスク容量不足の可能性があります）。"
+ },
+ "err_download_stalled": {
+  "message": "言語モデルのダウンロードが進んでいません。接続を確認して再試行してください。"
+ },
+ "err_too_long": {
+  "message": "テキストが長すぎて 1 回のリクエストでは処理できません。"
+ },
+ "err_restricted_page": {
+  "message": "Chrome ではこのページで拡張機能を使用できません。"
+ },
+ "err_no_selection": {
+  "message": "先に単語またはフレーズを選択してください。"
+ },
+ "err_offline": {
+  "message": "オフラインです。"
+ },
+ "err_auth": {
+  "message": "キーまたはログインが無効か、期限切れです。設定で確認してください。"
+ },
+ "err_forbidden": {
+  "message": "プロバイダーによりアクセスが拒否されました (403)。キーの権限またはモデルへのアクセス権を確認してください。"
+ },
+ "err_rate_limit": {
+  "message": "リクエストが多すぎます (429)。しばらく待ってから再試行してください。"
+ },
+ "err_quota": {
+  "message": "プロバイダー側のクレジットまたは割り当てが残っていません。"
+ },
+ "err_context_limit": {
+  "message": "このモデルにはテキストが長すぎます。短い部分を翻訳してください。"
+ },
+ "err_server": {
+  "message": "プロバイダー側でサーバーエラーが発生しました。しばらくしてから再試行してください。"
+ },
+ "err_network": {
+  "message": "ネットワークエラーです。"
+ },
+ "err_bad_response": {
+  "message": "プロバイダーから予期しない応答がありました。"
+ },
+ "err_empty_output": {
+  "message": "モデルが空の回答を返しました（推論モデルがトークン上限を使い切った可能性があります）。再試行するか、設定で別のモデルを選択してください。"
+ },
+ "err_no_key": {
+  "message": "先に設定でプロバイダーを接続してください。"
+ },
+ "err_no_permission": {
+  "message": "設定で、Transello がプロバイダーの API にアクセスすることを許可してください。"
+ },
+ "err_consent_required": {
+  "message": "先にクラウドプロバイダーへのテキスト送信を確認してください。"
+ },
+ "err_internal": {
+  "message": "問題が発生しました。"
+ },
+ "pvNotice": {
+  "message": "翻訳したテキストは $1 に送信され、料金はご自身のアカウントに請求されます。Transello にはサーバーがなく、何も保存しません。"
+ },
+ "pvApiKey": {
+  "message": "API キー"
+ },
+ "pvGetKey": {
+  "message": "キーを取得"
+ },
+ "pvSave": {
+  "message": "保存して確認"
+ },
+ "pvChecking": {
+  "message": "確認中…"
+ },
+ "pvConnected": {
+  "message": "接続済み · キー $1"
+ },
+ "pvConnectedOauth": {
+  "message": "OpenRouter のログインで接続済み · キー $1"
+ },
+ "pvAuthorized": {
+  "message": "翻訳リクエストが承認されました。"
+ },
+ "pvUsage": {
+  "message": "キーの上限：$1 · 使用済み：$2"
+ },
+ "pvUnlimited": {
+  "message": "上限なし"
+ },
+ "pvDisconnect": {
+  "message": "接続解除"
+ },
+ "pvDisconnected": {
+  "message": "接続を解除しました。キーはこのデバイスから削除されました。"
+ },
+ "pvKeyStorage": {
+  "message": "キーはこのデバイス (chrome.storage.local) にのみ保存され、同期されず、ウェブページからは見えません。OS のキーチェーンではないため、この Chrome プロファイルにアクセスできる人はキーを読み取れます。"
+ },
+ "pvModel": {
+  "message": "モデル"
+ },
+ "pvChooseModel": {
+  "message": "モデルを選択"
+ },
+ "pvCustomModel": {
+  "message": "カスタムモデル ID"
+ },
+ "pvUseCustom": {
+  "message": "使用"
+ },
+ "pvRefresh": {
+  "message": "リストを更新"
+ },
+ "pvModelsLoaded": {
+  "message": "利用可能なモデル：$1 件"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2（100 万トークンあたり、入力/出力）"
+ },
+ "pvTest": {
+  "message": "翻訳をテスト"
+ },
+ "pvTestNote": {
+  "message": "短いリクエストを 1 件送信します。プロバイダーによって課金される場合があります（通常は 1 セント未満）。"
+ },
+ "pvTestOk": {
+  "message": "モデルの応答：$1"
+ },
+ "pvPermDenied": {
+  "message": "$1 へのアクセスがないと、このプロバイダーは使用できません。"
+ },
+ "pvOauthTitle": {
+  "message": "ログイン (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "OpenRouter でログイン"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter がアカウントに紐付いたキーを作成します。利用料金は OpenRouter の残高から支払われます。"
+ },
+ "pvOauthOpenAI": {
+  "message": "ChatGPT でのログインは利用できません。OpenAI は現在、127.0.0.1 のコールバックを使うローカルアプリにのみ許可しており、ブラウザ拡張機能ではこれを受け取れません。API キーを使用してください。"
+ },
+ "pvOauthClaude": {
+  "message": "サードパーティの拡張機能では OAuth を利用できません。Anthropic は Claude Console の API キーを推奨しています。"
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek は API キーのみ提供しています。"
+ },
+ "optGeneral": {
+  "message": "全般"
+ },
+ "optUiLang": {
+  "message": "表示言語"
+ },
+ "optUiLangAuto": {
+  "message": "Chrome と同じ"
+ },
+ "optTarget": {
+  "message": "翻訳先"
+ },
+ "optTheme": {
+  "message": "テーマ"
+ },
+ "optThemeAuto": {
+  "message": "システム"
+ },
+ "optThemeLight": {
+  "message": "ライト"
+ },
+ "optThemeDark": {
+  "message": "ダーク"
+ },
+ "optShortcut": {
+  "message": "ミニポップアップのキーボードショートカット"
+ },
+ "optShortcutChange": {
+  "message": "chrome://extensions/shortcuts で変更"
+ },
+ "optEngine": {
+  "message": "翻訳エンジン"
+ },
+ "optPrivacy": {
+  "message": "プライバシー"
+ },
+ "optLocalOnly": {
+  "message": "デフォルトでは、すべてお使いのデバイス上でローカルに翻訳されます。どこにも送信されません。"
+ },
+ "optKeepDraft": {
+  "message": "ブラウザを閉じるまでポップアップの下書きを保持する"
+ },
+ "optClear": {
+  "message": "下書きとキャッシュを消去"
+ },
+ "optCleared": {
+  "message": "消去しました"
+ },
+ "optPrivacyPolicy": {
+  "message": "プライバシーポリシー"
+ },
+ "optAbout": {
+  "message": "概要"
+ },
+ "optVersion": {
+  "message": "バージョン $1"
+ },
+ "optSource": {
+  "message": "フィードバック"
+ },
+ "optSupport": {
+  "message": "☕ Transello を応援する"
+ },
+ "optLicenses": {
+  "message": "ライセンス"
+ }
+}

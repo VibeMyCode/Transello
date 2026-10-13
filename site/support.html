@@ -1,0 +1,16 @@
+<h1>☕ Support Transello</h1>
+<p>Transello is free and stays free - no Pro version and no locked features. If it saves you time, you can say thanks with a voluntary donation. Thank you!</p>
+<div class="card">
+  <p><strong>Ethereum (ERC-20)</strong> - ETH, USDT, USDC or another ERC-20 token, <strong>on Ethereum mainnet only</strong>:</p>
+  <p class="addr" id="addr">0x2872A0f24035BE4484c39B9893Bcb449E73583Da</p>
+  <button type="button" id="copy">Copy address</button>
+  <p class="muted">Please double-check the network. Tokens sent on other networks (TRON, BNB Chain, etc.) to this address may be lost. Donations are voluntary, non-refundable and do not unlock anything.</p>
+</div>
+<p class="muted">More ways to donate may be added later. Questions and ideas: <a href="https://github.com/VibeMyCode/transello/issues/new/choose">GitHub</a></p>
+<script>
+  document.getElementById('copy').addEventListener('click', async (e) => {
+    await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
+    e.target.textContent = 'Copied';
+    setTimeout(() => (e.target.textContent = 'Copy address'), 1500);
+  });
+</script>

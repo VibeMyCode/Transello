@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "Fasih bahasa internet. Tempel, sorot, atau terjemahkan seluruh halaman sekali klik, privat di perangkat, atau via GPT atau Claude."
+ },
+ "cmdTranslateSelection": {
+  "message": "Terjemahkan teks terpilih (popup mini)"
+ },
+ "menuTranslateSelection": {
+  "message": "Terjemahkan di Transello"
+ },
+ "menuTranslatePage": {
+  "message": "Terjemahkan halaman dengan Transello"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "Pengaturan"
+ },
+ "openWindow": {
+  "message": "Buka di jendela terpisah"
+ },
+ "sourceLang": {
+  "message": "Bahasa sumber"
+ },
+ "targetLang": {
+  "message": "Bahasa tujuan"
+ },
+ "recentLangs": {
+  "message": "Terbaru"
+ },
+ "allLangs": {
+  "message": "Semua bahasa"
+ },
+ "autoDetect": {
+  "message": "Deteksi otomatis"
+ },
+ "swap": {
+  "message": "Tukar bahasa"
+ },
+ "inputPlaceholder": {
+  "message": "Tempel atau ketik teks…"
+ },
+ "inputLabel": {
+  "message": "Teks yang akan diterjemahkan"
+ },
+ "resultLabel": {
+  "message": "Terjemahan"
+ },
+ "translate": {
+  "message": "Terjemahkan"
+ },
+ "copy": {
+  "message": "Salin terjemahan"
+ },
+ "copyShort": {
+  "message": "Salin"
+ },
+ "copied": {
+  "message": "Tersalin"
+ },
+ "clear": {
+  "message": "Hapus"
+ },
+ "retry": {
+  "message": "Coba lagi"
+ },
+ "cancel": {
+  "message": "Batal"
+ },
+ "close": {
+  "message": "Tutup"
+ },
+ "expand": {
+  "message": "Perluas"
+ },
+ "translating": {
+  "message": "Menerjemahkan…"
+ },
+ "downloading": {
+  "message": "Mengunduh model bahasa… $1%"
+ },
+ "downloadingNote": {
+  "message": "Diunduh sekali oleh Chrome; terjemahan berikutnya berfungsi secara offline."
+ },
+ "detected": {
+  "message": "Terdeteksi: $1"
+ },
+ "detectedUncertain": {
+  "message": "Tampaknya $1, tetapi belum pasti. Pilih bahasanya jika salah."
+ },
+ "sameLanguage": {
+  "message": "Teks sudah dalam bahasa $1."
+ },
+ "translateTo": {
+  "message": "Terjemahkan ke $1"
+ },
+ "chooseTarget": {
+  "message": "Pilih bahasa"
+ },
+ "truncated": {
+  "message": "Hanya $1 karakter pertama yang diterjemahkan. Terjemahkan sisanya secara terpisah."
+ },
+ "emptyHint": {
+  "message": "Tempel teks - terjemahan muncul otomatis."
+ },
+ "original": {
+  "message": "Asli"
+ },
+ "selectText": {
+  "message": "Pilih kata atau frasa terlebih dahulu."
+ },
+ "openTransello": {
+  "message": "Buka Transello"
+ },
+ "pageTranslating": {
+  "message": "Menerjemahkan halaman… $1 / $2"
+ },
+ "pageDone": {
+  "message": "$1 dari $2 blok teks diterjemahkan."
+ },
+ "pageLimited": {
+  "message": "Halaman besar: hanya $1 blok pertama yang diterjemahkan."
+ },
+ "pageNothing": {
+  "message": "Tidak ada teks yang dapat diterjemahkan di halaman ini."
+ },
+ "showOriginal": {
+  "message": "Tampilkan asli"
+ },
+ "translateAgain": {
+  "message": "Terjemahkan lagi"
+ },
+ "pageOriginal": {
+  "message": "Teks asli halaman dipulihkan."
+ },
+ "pageCloudConfirm": {
+  "message": "Kirim sekitar $1 karakter dari halaman ini ke $2? Penyedia dapat mengenakan biaya untuk ini."
+ },
+ "pageSensitive": {
+  "message": "Ini tampaknya situs sensitif (bank, email, pembayaran)."
+ },
+ "confirmSend": {
+  "message": "Kirim dan terjemahkan"
+ },
+ "cloudNotice": {
+  "message": "Teks terpilih dikirim ke $1 untuk diterjemahkan dan dapat ditagih oleh penyedia."
+ },
+ "restrictedHere": {
+  "message": "Chrome tidak mengizinkan ekstensi di halaman ini. Tempel teks ke Transello sebagai gantinya."
+ },
+ "shortcutHint": {
+  "message": "Pintasan: $1"
+ },
+ "shortcutNotSet": {
+  "message": "belum diatur"
+ },
+ "err_cancelled": {
+  "message": "Dibatalkan."
+ },
+ "err_api_missing": {
+  "message": "Terjemahan bawaan dinonaktifkan di browser ini (Brave melakukannya di beberapa sistem). Hubungkan AI cloud di Pengaturan, atau gunakan Google Chrome."
+ },
+ "err_local_unavailable_here": {
+  "message": "Terjemahan lokal tidak tersedia di sini. Buka jendela Transello."
+ },
+ "err_unsupported_pair": {
+  "message": "Pasangan bahasa ini tidak didukung oleh terjemahan lokal. Pilih bahasa lain atau hubungkan penyedia cloud."
+ },
+ "err_unknown_language": {
+  "message": "Bahasa tidak dapat dideteksi. Pilih bahasa sumber."
+ },
+ "err_download_failed": {
+  "message": "Model bahasa tidak dapat diunduh (offline atau ruang disk tidak cukup?)."
+ },
+ "err_download_stalled": {
+  "message": "Unduhan model bahasa tidak berjalan. Periksa koneksi Anda lalu coba lagi."
+ },
+ "err_too_long": {
+  "message": "Teks terlalu panjang untuk satu permintaan."
+ },
+ "err_restricted_page": {
+  "message": "Chrome tidak mengizinkan ekstensi di halaman ini."
+ },
+ "err_no_selection": {
+  "message": "Pilih kata atau frasa terlebih dahulu."
+ },
+ "err_offline": {
+  "message": "Anda sedang offline."
+ },
+ "err_auth": {
+  "message": "Kunci atau login tidak valid atau sudah kedaluwarsa. Periksa di Pengaturan."
+ },
+ "err_forbidden": {
+  "message": "Akses ditolak oleh penyedia (403). Periksa izin kunci atau akses model."
+ },
+ "err_rate_limit": {
+  "message": "Terlalu banyak permintaan (429). Tunggu sebentar lalu coba lagi."
+ },
+ "err_quota": {
+  "message": "Kredit atau kuota di penyedia sudah habis."
+ },
+ "err_context_limit": {
+  "message": "Teks terlalu panjang untuk model ini. Terjemahkan bagian yang lebih pendek."
+ },
+ "err_server": {
+  "message": "Penyedia mengalami kesalahan server. Coba lagi nanti."
+ },
+ "err_network": {
+  "message": "Kesalahan jaringan."
+ },
+ "err_bad_response": {
+  "message": "Respons tak terduga dari penyedia."
+ },
+ "err_empty_output": {
+  "message": "Model mengembalikan jawaban kosong (model penalaran mungkin telah menghabiskan batas tokennya). Coba lagi, atau pilih model lain di Pengaturan."
+ },
+ "err_no_key": {
+  "message": "Hubungkan penyedia di Pengaturan terlebih dahulu."
+ },
+ "err_no_permission": {
+  "message": "Izinkan Transello mengakses API penyedia di Pengaturan."
+ },
+ "err_consent_required": {
+  "message": "Konfirmasi terlebih dahulu pengiriman teks ke penyedia cloud."
+ },
+ "err_internal": {
+  "message": "Terjadi kesalahan."
+ },
+ "pvNotice": {
+  "message": "Teks yang Anda terjemahkan dikirim ke $1 dan ditagihkan ke akun Anda sendiri. Transello tidak memiliki server dan tidak menyimpan apa pun."
+ },
+ "pvApiKey": {
+  "message": "Kunci API"
+ },
+ "pvGetKey": {
+  "message": "Dapatkan kunci"
+ },
+ "pvSave": {
+  "message": "Simpan dan periksa"
+ },
+ "pvChecking": {
+  "message": "Memeriksa…"
+ },
+ "pvConnected": {
+  "message": "Terhubung · kunci $1"
+ },
+ "pvConnectedOauth": {
+  "message": "Terhubung melalui login OpenRouter · kunci $1"
+ },
+ "pvAuthorized": {
+  "message": "Diotorisasi untuk permintaan terjemahan."
+ },
+ "pvUsage": {
+  "message": "Batas kunci: $1 · terpakai: $2"
+ },
+ "pvUnlimited": {
+  "message": "tanpa batas"
+ },
+ "pvDisconnect": {
+  "message": "Putuskan"
+ },
+ "pvDisconnected": {
+  "message": "Terputus. Kunci telah dihapus dari perangkat ini."
+ },
+ "pvKeyStorage": {
+  "message": "Kunci hanya disimpan di perangkat ini (chrome.storage.local), tidak pernah disinkronkan, dan tidak terlihat oleh halaman web. Ini bukan keychain OS: siapa pun yang memiliki akses ke profil Chrome ini dapat membacanya."
+ },
+ "pvModel": {
+  "message": "Model"
+ },
+ "pvChooseModel": {
+  "message": "Pilih model"
+ },
+ "pvCustomModel": {
+  "message": "ID model kustom"
+ },
+ "pvUseCustom": {
+  "message": "Gunakan"
+ },
+ "pvRefresh": {
+  "message": "Segarkan daftar"
+ },
+ "pvModelsLoaded": {
+  "message": "$1 model tersedia"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 per 1M token (masuk/keluar)"
+ },
+ "pvTest": {
+  "message": "Uji terjemahan"
+ },
+ "pvTestNote": {
+  "message": "Mengirim satu permintaan singkat; penyedia dapat menagihnya (biasanya sepersekian sen)."
+ },
+ "pvTestOk": {
+  "message": "Model membalas: $1"
+ },
+ "pvPermDenied": {
+  "message": "Tanpa akses ke $1, penyedia ini tidak dapat digunakan."
+ },
+ "pvOauthTitle": {
+  "message": "Login (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "Masuk dengan OpenRouter"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter membuat kunci yang terkait dengan akun Anda; penggunaan dibayar dari saldo OpenRouter Anda."
+ },
+ "pvOauthOpenAI": {
+  "message": "Masuk dengan ChatGPT tidak tersedia: OpenAI saat ini hanya mengizinkannya untuk aplikasi lokal dengan callback 127.0.0.1, yang tidak dapat diterima oleh ekstensi browser. Gunakan kunci API."
+ },
+ "pvOauthClaude": {
+  "message": "OAuth tidak tersedia untuk ekstensi pihak ketiga. Anthropic merekomendasikan kunci API dari Claude Console."
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek hanya menyediakan kunci API."
+ },
+ "optGeneral": {
+  "message": "Umum"
+ },
+ "optUiLang": {
+  "message": "Bahasa antarmuka"
+ },
+ "optUiLangAuto": {
+  "message": "Sama seperti Chrome"
+ },
+ "optTarget": {
+  "message": "Terjemahkan ke"
+ },
+ "optTheme": {
+  "message": "Tema"
+ },
+ "optThemeAuto": {
+  "message": "Sistem"
+ },
+ "optThemeLight": {
+  "message": "Terang"
+ },
+ "optThemeDark": {
+  "message": "Gelap"
+ },
+ "optShortcut": {
+  "message": "Pintasan keyboard untuk popup mini"
+ },
+ "optShortcutChange": {
+  "message": "Ubah di chrome://extensions/shortcuts"
+ },
+ "optEngine": {
+  "message": "Mesin terjemahan"
+ },
+ "optPrivacy": {
+  "message": "Privasi"
+ },
+ "optLocalOnly": {
+  "message": "Secara default, semuanya diterjemahkan secara lokal di perangkat Anda. Tidak ada yang dikirim ke mana pun."
+ },
+ "optKeepDraft": {
+  "message": "Simpan draf popup sampai browser ditutup"
+ },
+ "optClear": {
+  "message": "Hapus draf dan cache"
+ },
+ "optCleared": {
+  "message": "Dihapus"
+ },
+ "optPrivacyPolicy": {
+  "message": "Kebijakan privasi"
+ },
+ "optAbout": {
+  "message": "Tentang"
+ },
+ "optVersion": {
+  "message": "Versi $1"
+ },
+ "optSource": {
+  "message": "Masukan"
+ },
+ "optSupport": {
+  "message": "☕ Dukung Transello"
+ },
+ "optLicenses": {
+  "message": "Lisensi"
+ }
+}

@@ -1,0 +1,158 @@
+@import '../ui/tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13.5px/1.45 var(--font);
+}
+.app {
+  /* Fixed size: the popup must not jump while text grows (user report); text scrolls inside the fields.
+     No vw/vh here: Chrome sizes a popup from its content, so viewport units collapse it (measured 28 px).
+     At 200% zoom Chrome caps the popup (800×600 device px) and the page scrolls; the window mode fits any zoom. */
+  width: 420px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 14px;
+}
+body.window .app {
+  width: auto;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 15px;
+}
+.spacer {
+  flex: 1;
+}
+.langs {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 6px;
+  align-items: center;
+}
+.langs select {
+  width: 100%;
+  min-width: 0;
+}
+textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  flex: 0 1 150px;
+  min-height: 64px;
+  resize: none;
+  overflow-y: auto;
+}
+body.window textarea {
+  flex-basis: 35vh;
+}
+textarea::placeholder {
+  color: var(--muted);
+}
+.meta {
+  flex: none;
+  min-height: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.meta button {
+  font: inherit;
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 2px 0;
+  min-height: 24px;
+  text-decoration: underline;
+}
+.output {
+  flex: 1 1 0;
+  min-height: 64px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  overflow: auto;
+  position: relative;
+}
+.result {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  outline: none;
+}
+.status {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.status:empty {
+  display: none;
+}
+.status progress {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  accent-color: var(--accent);
+}
+.status.error {
+  color: var(--danger);
+}
+.status.error button {
+  margin-top: 8px;
+}
+.dots::after {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  animation: dots 1.2s steps(4, end) infinite;
+  vertical-align: bottom;
+  overflow: hidden;
+}
+@keyframes dots {
+  from {
+    width: 0;
+  }
+  to {
+    width: 1em;
+  }
+}
+.actions {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.copied {
+  color: var(--ok) !important;
+  border-color: var(--ok) !important;
+}
+.bar,
+.langs {
+  flex: none;
+}

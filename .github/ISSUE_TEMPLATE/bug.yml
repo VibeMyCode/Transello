@@ -1,0 +1,45 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make Transello better!
+        **Never paste API keys, passwords or private text here.** Issues are public.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what did you see instead? The exact error message helps a lot.
+      placeholder: "Selected English text on a news site, chose \"Translate in Transello\" and got: ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      multiple: true
+      options: [Toolbar popup, Context menu (modal), Shortcut (mini popup), Whole page, Settings, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Engine
+      options: [Local (built-in), OpenAI, Claude, DeepSeek, OpenRouter]
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser and system
+      placeholder: "Brave 1.97 on Windows 11"
+    validations:
+      required: true
+  - type: input
+    id: diag
+    attributes:
+      label: Diagnostics line
+      description: "Transello Settings → About, the small grey line starting with \"Chrome\". It contains no personal data."
+      placeholder: "Chrome 155.0 · Translator(en→ru): available · LanguageDetector: ... · CLD: ok"

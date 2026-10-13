@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "Говорите на языке интернета. Вставьте, выделите или переведите всю страницу в клик, приватно на устройстве или через GPT и Claude."
+ },
+ "cmdTranslateSelection": {
+  "message": "Перевести выделение (мини-попап)"
+ },
+ "menuTranslateSelection": {
+  "message": "Перевести в Transello"
+ },
+ "menuTranslatePage": {
+  "message": "Перевести страницу с Transello"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "Настройки"
+ },
+ "openWindow": {
+  "message": "Открыть в отдельном окне"
+ },
+ "sourceLang": {
+  "message": "Исходный язык"
+ },
+ "targetLang": {
+  "message": "Язык перевода"
+ },
+ "recentLangs": {
+  "message": "Недавние"
+ },
+ "allLangs": {
+  "message": "Все языки"
+ },
+ "autoDetect": {
+  "message": "Автоопределение"
+ },
+ "swap": {
+  "message": "Поменять языки"
+ },
+ "inputPlaceholder": {
+  "message": "Вставьте или введите текст…"
+ },
+ "inputLabel": {
+  "message": "Текст для перевода"
+ },
+ "resultLabel": {
+  "message": "Перевод"
+ },
+ "translate": {
+  "message": "Перевести"
+ },
+ "copy": {
+  "message": "Копировать перевод"
+ },
+ "copyShort": {
+  "message": "Копировать"
+ },
+ "copied": {
+  "message": "Скопировано"
+ },
+ "clear": {
+  "message": "Очистить"
+ },
+ "retry": {
+  "message": "Повторить"
+ },
+ "cancel": {
+  "message": "Отмена"
+ },
+ "close": {
+  "message": "Закрыть"
+ },
+ "expand": {
+  "message": "Развернуть"
+ },
+ "translating": {
+  "message": "Переводим…"
+ },
+ "downloading": {
+  "message": "Загружаем языковую модель… $1%"
+ },
+ "downloadingNote": {
+  "message": "Разовая загрузка средствами Chrome; дальше перевод работает офлайн."
+ },
+ "detected": {
+  "message": "Определено: $1"
+ },
+ "detectedUncertain": {
+  "message": "Похоже на $1, но не уверены. Выберите язык, если неверно."
+ },
+ "sameLanguage": {
+  "message": "Текст уже на языке: $1."
+ },
+ "translateTo": {
+  "message": "Перевести на $1"
+ },
+ "chooseTarget": {
+  "message": "Выбрать язык"
+ },
+ "truncated": {
+  "message": "Переведены только первые $1 символов. Остаток переведите отдельно."
+ },
+ "emptyHint": {
+  "message": "Вставьте текст - перевод появится автоматически."
+ },
+ "original": {
+  "message": "Оригинал"
+ },
+ "selectText": {
+  "message": "Выделите слово или фразу."
+ },
+ "openTransello": {
+  "message": "Открыть Transello"
+ },
+ "pageTranslating": {
+  "message": "Переводим страницу… $1 / $2"
+ },
+ "pageDone": {
+  "message": "Переведено блоков: $1 из $2."
+ },
+ "pageLimited": {
+  "message": "Большая страница: переведены только первые $1 блоков."
+ },
+ "pageNothing": {
+  "message": "На странице не найдено текста для перевода."
+ },
+ "showOriginal": {
+  "message": "Показать оригинал"
+ },
+ "translateAgain": {
+  "message": "Перевести заново"
+ },
+ "pageOriginal": {
+  "message": "Восстановлен исходный текст страницы."
+ },
+ "pageCloudConfirm": {
+  "message": "Отправить около $1 символов текста этой страницы в $2? Провайдер может взять за это плату."
+ },
+ "pageSensitive": {
+  "message": "Похоже на чувствительный сайт (банк, почта, платежи)."
+ },
+ "confirmSend": {
+  "message": "Отправить и перевести"
+ },
+ "cloudNotice": {
+  "message": "Выделенный текст отправляется в $1 для перевода и может тарифицироваться провайдером."
+ },
+ "restrictedHere": {
+  "message": "Chrome не разрешает расширениям работать на этой странице. Вставьте текст в окно Transello."
+ },
+ "shortcutHint": {
+  "message": "Горячая клавиша: $1"
+ },
+ "shortcutNotSet": {
+  "message": "не назначена"
+ },
+ "err_cancelled": {
+  "message": "Отменено."
+ },
+ "err_api_missing": {
+  "message": "Встроенный переводчик отключён в этом браузере (Brave делает так на некоторых системах). Подключите облачный AI в настройках или используйте Google Chrome."
+ },
+ "err_local_unavailable_here": {
+  "message": "Здесь локальный перевод недоступен. Откройте окно Transello."
+ },
+ "err_unsupported_pair": {
+  "message": "Эта языковая пара не поддерживается локальным переводом. Выберите другой язык или подключите облачного провайдера."
+ },
+ "err_unknown_language": {
+  "message": "Не удалось определить язык. Выберите исходный язык."
+ },
+ "err_download_failed": {
+  "message": "Не удалось загрузить языковую модель (нет сети или места на диске?)."
+ },
+ "err_download_stalled": {
+  "message": "Загрузка языковой модели не продвигается. Проверьте соединение и повторите."
+ },
+ "err_too_long": {
+  "message": "Текст слишком длинный для одного запроса."
+ },
+ "err_restricted_page": {
+  "message": "Chrome не разрешает расширениям работать на этой странице."
+ },
+ "err_no_selection": {
+  "message": "Выделите слово или фразу."
+ },
+ "err_offline": {
+  "message": "Нет подключения к сети."
+ },
+ "err_auth": {
+  "message": "Ключ или вход недействителен либо истёк. Проверьте в настройках."
+ },
+ "err_forbidden": {
+  "message": "Провайдер отказал в доступе (403). Проверьте права ключа или доступ к модели."
+ },
+ "err_rate_limit": {
+  "message": "Слишком много запросов (429). Подождите и повторите."
+ },
+ "err_quota": {
+  "message": "У провайдера закончились средства или квота."
+ },
+ "err_context_limit": {
+  "message": "Текст слишком длинный для этой модели. Переведите часть короче."
+ },
+ "err_server": {
+  "message": "Ошибка на стороне провайдера. Повторите позже."
+ },
+ "err_network": {
+  "message": "Ошибка сети."
+ },
+ "err_bad_response": {
+  "message": "Неожиданный ответ провайдера."
+ },
+ "err_empty_output": {
+  "message": "Модель вернула пустой ответ (возможно, «рассуждающая» модель исчерпала лимит токенов). Повторите или выберите другую модель в настройках."
+ },
+ "err_no_key": {
+  "message": "Сначала подключите провайдера в настройках."
+ },
+ "err_no_permission": {
+  "message": "Разрешите Transello доступ к API провайдера в настройках."
+ },
+ "err_consent_required": {
+  "message": "Сначала подтвердите отправку текста облачному провайдеру."
+ },
+ "err_internal": {
+  "message": "Что-то пошло не так."
+ },
+ "pvNotice": {
+  "message": "Переводимый текст отправляется в $1 и оплачивается с вашего аккаунта у провайдера. У Transello нет сервера, он ничего не хранит."
+ },
+ "pvApiKey": {
+  "message": "API-ключ"
+ },
+ "pvGetKey": {
+  "message": "Получить ключ"
+ },
+ "pvSave": {
+  "message": "Сохранить и проверить"
+ },
+ "pvChecking": {
+  "message": "Проверяем…"
+ },
+ "pvConnected": {
+  "message": "Подключено · ключ $1"
+ },
+ "pvConnectedOauth": {
+  "message": "Подключено через вход OpenRouter · ключ $1"
+ },
+ "pvAuthorized": {
+  "message": "Авторизовано для запросов перевода."
+ },
+ "pvUsage": {
+  "message": "Лимит ключа: $1 · использовано: $2"
+ },
+ "pvUnlimited": {
+  "message": "без лимита"
+ },
+ "pvDisconnect": {
+  "message": "Отключить"
+ },
+ "pvDisconnected": {
+  "message": "Отключено. Ключ удалён с этого устройства."
+ },
+ "pvKeyStorage": {
+  "message": "Ключ хранится только на этом устройстве (chrome.storage.local), не синхронизируется и недоступен веб-страницам. Это не системное защищённое хранилище: имеющий доступ к профилю Chrome сможет его прочитать."
+ },
+ "pvModel": {
+  "message": "Модель"
+ },
+ "pvChooseModel": {
+  "message": "Выберите модель"
+ },
+ "pvCustomModel": {
+  "message": "Свой ID модели"
+ },
+ "pvUseCustom": {
+  "message": "Использовать"
+ },
+ "pvRefresh": {
+  "message": "Обновить список"
+ },
+ "pvModelsLoaded": {
+  "message": "Доступно моделей: $1"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 за 1M токенов (вход/выход)"
+ },
+ "pvTest": {
+  "message": "Тестовый перевод"
+ },
+ "pvTestNote": {
+  "message": "Отправит один короткий запрос; провайдер может его тарифицировать (обычно доли цента)."
+ },
+ "pvTestOk": {
+  "message": "Ответ модели: $1"
+ },
+ "pvPermDenied": {
+  "message": "Без доступа к $1 этот провайдер использовать нельзя."
+ },
+ "pvOauthTitle": {
+  "message": "Вход (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "Войти через OpenRouter"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter создаст ключ, привязанный к вашему аккаунту; оплата - с вашего баланса OpenRouter."
+ },
+ "pvOauthOpenAI": {
+  "message": "Вход через ChatGPT недоступен: OpenAI сейчас разрешает его только локальным приложениям с адресом 127.0.0.1, который расширение браузера принять не может. Используйте API-ключ."
+ },
+ "pvOauthClaude": {
+  "message": "OAuth недоступен для сторонних расширений. Anthropic рекомендует API-ключ из Claude Console."
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek поддерживает только API-ключи."
+ },
+ "optGeneral": {
+  "message": "Основные"
+ },
+ "optUiLang": {
+  "message": "Язык интерфейса"
+ },
+ "optUiLangAuto": {
+  "message": "Как в Chrome"
+ },
+ "optTarget": {
+  "message": "Переводить на"
+ },
+ "optTheme": {
+  "message": "Тема"
+ },
+ "optThemeAuto": {
+  "message": "Системная"
+ },
+ "optThemeLight": {
+  "message": "Светлая"
+ },
+ "optThemeDark": {
+  "message": "Тёмная"
+ },
+ "optShortcut": {
+  "message": "Горячая клавиша мини-попапа"
+ },
+ "optShortcutChange": {
+  "message": "Изменить в chrome://extensions/shortcuts"
+ },
+ "optEngine": {
+  "message": "Движок перевода"
+ },
+ "optPrivacy": {
+  "message": "Приватность"
+ },
+ "optLocalOnly": {
+  "message": "По умолчанию всё переводится локально на вашем устройстве. Ничего никуда не отправляется."
+ },
+ "optKeepDraft": {
+  "message": "Хранить черновик окна до закрытия браузера"
+ },
+ "optClear": {
+  "message": "Очистить черновики и кэш"
+ },
+ "optCleared": {
+  "message": "Очищено"
+ },
+ "optPrivacyPolicy": {
+  "message": "Политика конфиденциальности"
+ },
+ "optAbout": {
+  "message": "О программе"
+ },
+ "optVersion": {
+  "message": "Версия $1"
+ },
+ "optSource": {
+  "message": "Обратная связь"
+ },
+ "optSupport": {
+  "message": "☕ Поддержать Transello"
+ },
+ "optLicenses": {
+  "message": "Лицензии"
+ }
+}

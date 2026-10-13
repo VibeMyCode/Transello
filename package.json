@@ -1,0 +1,36 @@
+{
+  "name": "transello",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Transello — Translate with your favorite AI. Chrome MV3 extension.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:chrome": "node scripts/build.mjs --e2e && node tests/e2e/run.mjs",
+    "icons": "node scripts/icons.mjs",
+    "package": "npm run build && node scripts/package.mjs",
+    "check": "npm run typecheck && npm run lint && npm test && npm run package"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/chrome": "0.3.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.11.0",
+    "happy-dom": "20.14.5",
+    "prettier": "3.9.9",
+    "puppeteer-core": "25.12.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.1",
+    "vite": "^8.3.1",
+    "vitest": "5.0.2"
+  }
+}

@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "Sprechen Sie fließend Internet. Einfügen, markieren oder ganze Seiten per Klick übersetzen, privat am Gerät oder mit GPT, Claude."
+ },
+ "cmdTranslateSelection": {
+  "message": "Auswahl übersetzen (Mini-Popup)"
+ },
+ "menuTranslateSelection": {
+  "message": "Mit Transello übersetzen"
+ },
+ "menuTranslatePage": {
+  "message": "Seite mit Transello übersetzen"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "Einstellungen"
+ },
+ "openWindow": {
+  "message": "In separatem Fenster öffnen"
+ },
+ "sourceLang": {
+  "message": "Ausgangssprache"
+ },
+ "targetLang": {
+  "message": "Zielsprache"
+ },
+ "recentLangs": {
+  "message": "Zuletzt verwendet"
+ },
+ "allLangs": {
+  "message": "Alle Sprachen"
+ },
+ "autoDetect": {
+  "message": "Automatisch erkennen"
+ },
+ "swap": {
+  "message": "Sprachen tauschen"
+ },
+ "inputPlaceholder": {
+  "message": "Text einfügen oder eingeben …"
+ },
+ "inputLabel": {
+  "message": "Zu übersetzender Text"
+ },
+ "resultLabel": {
+  "message": "Übersetzung"
+ },
+ "translate": {
+  "message": "Übersetzen"
+ },
+ "copy": {
+  "message": "Übersetzung kopieren"
+ },
+ "copyShort": {
+  "message": "Kopieren"
+ },
+ "copied": {
+  "message": "Kopiert"
+ },
+ "clear": {
+  "message": "Löschen"
+ },
+ "retry": {
+  "message": "Erneut versuchen"
+ },
+ "cancel": {
+  "message": "Abbrechen"
+ },
+ "close": {
+  "message": "Schließen"
+ },
+ "expand": {
+  "message": "Erweitern"
+ },
+ "translating": {
+  "message": "Übersetzung läuft …"
+ },
+ "downloading": {
+  "message": "Sprachmodell wird heruntergeladen … $1 %"
+ },
+ "downloadingNote": {
+  "message": "Einmaliger Download durch Chrome; spätere Übersetzungen funktionieren offline."
+ },
+ "detected": {
+  "message": "Erkannt: $1"
+ },
+ "detectedUncertain": {
+  "message": "Sieht nach $1 aus, aber nicht sicher. Wählen Sie die Sprache, falls es nicht stimmt."
+ },
+ "sameLanguage": {
+  "message": "Der Text ist bereits auf $1."
+ },
+ "translateTo": {
+  "message": "Übersetzen nach $1"
+ },
+ "chooseTarget": {
+  "message": "Sprache wählen"
+ },
+ "truncated": {
+  "message": "Nur die ersten $1 Zeichen wurden übersetzt. Übersetzen Sie den Rest separat."
+ },
+ "emptyHint": {
+  "message": "Text einfügen – die Übersetzung erscheint automatisch."
+ },
+ "original": {
+  "message": "Original"
+ },
+ "selectText": {
+  "message": "Wählen Sie zuerst ein Wort oder eine Phrase aus."
+ },
+ "openTransello": {
+  "message": "Transello öffnen"
+ },
+ "pageTranslating": {
+  "message": "Seite wird übersetzt … $1 / $2"
+ },
+ "pageDone": {
+  "message": "$1 von $2 Textblöcken übersetzt."
+ },
+ "pageLimited": {
+  "message": "Große Seite: Nur die ersten $1 Blöcke werden übersetzt."
+ },
+ "pageNothing": {
+  "message": "Auf dieser Seite wurde kein übersetzbarer Text gefunden."
+ },
+ "showOriginal": {
+  "message": "Original anzeigen"
+ },
+ "translateAgain": {
+  "message": "Erneut übersetzen"
+ },
+ "pageOriginal": {
+  "message": "Originaltext der Seite wiederhergestellt."
+ },
+ "pageCloudConfirm": {
+  "message": "Etwa $1 Zeichen dieser Seite an $2 senden? Der Anbieter kann dafür Kosten berechnen."
+ },
+ "pageSensitive": {
+  "message": "Diese Website wirkt sensibel (Bank, E-Mail, Zahlungen)."
+ },
+ "confirmSend": {
+  "message": "Senden und übersetzen"
+ },
+ "cloudNotice": {
+  "message": "Der ausgewählte Text wird zur Übersetzung an $1 gesendet und kann vom Anbieter berechnet werden."
+ },
+ "restrictedHere": {
+  "message": "Chrome erlaubt auf dieser Seite keine Erweiterungen. Fügen Sie den Text stattdessen in Transello ein."
+ },
+ "shortcutHint": {
+  "message": "Tastenkürzel: $1"
+ },
+ "shortcutNotSet": {
+  "message": "nicht festgelegt"
+ },
+ "err_cancelled": {
+  "message": "Abgebrochen."
+ },
+ "err_api_missing": {
+  "message": "Die integrierte Übersetzung ist in diesem Browser deaktiviert (Brave macht das auf manchen Systemen). Verbinden Sie eine Cloud-KI in den Einstellungen oder nutzen Sie Google Chrome."
+ },
+ "err_local_unavailable_here": {
+  "message": "Die lokale Übersetzung ist hier nicht verfügbar. Öffnen Sie das Transello-Fenster."
+ },
+ "err_unsupported_pair": {
+  "message": "Dieses Sprachpaar wird von der lokalen Übersetzung nicht unterstützt. Wählen Sie eine andere Sprache oder verbinden Sie einen Cloud-Anbieter."
+ },
+ "err_unknown_language": {
+  "message": "Die Sprache konnte nicht erkannt werden. Wählen Sie die Ausgangssprache."
+ },
+ "err_download_failed": {
+  "message": "Das Sprachmodell konnte nicht heruntergeladen werden (offline oder zu wenig Speicherplatz?)."
+ },
+ "err_download_stalled": {
+  "message": "Der Download des Sprachmodells kommt nicht voran. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut."
+ },
+ "err_too_long": {
+  "message": "Der Text ist für eine einzelne Anfrage zu lang."
+ },
+ "err_restricted_page": {
+  "message": "Chrome erlaubt auf dieser Seite keine Erweiterungen."
+ },
+ "err_no_selection": {
+  "message": "Wählen Sie zuerst ein Wort oder eine Phrase aus."
+ },
+ "err_offline": {
+  "message": "Sie sind offline."
+ },
+ "err_auth": {
+  "message": "Der Schlüssel oder die Anmeldung ist ungültig oder abgelaufen. Prüfen Sie ihn in den Einstellungen."
+ },
+ "err_forbidden": {
+  "message": "Zugriff vom Anbieter verweigert (403). Prüfen Sie die Berechtigungen des Schlüssels oder den Modellzugriff."
+ },
+ "err_rate_limit": {
+  "message": "Zu viele Anfragen (429). Warten Sie einen Moment und versuchen Sie es erneut."
+ },
+ "err_quota": {
+  "message": "Beim Anbieter sind keine Guthaben oder Kontingente mehr vorhanden."
+ },
+ "err_context_limit": {
+  "message": "Der Text ist für dieses Modell zu lang. Übersetzen Sie einen kürzeren Teil."
+ },
+ "err_server": {
+  "message": "Beim Anbieter ist ein Serverfehler aufgetreten. Versuchen Sie es später erneut."
+ },
+ "err_network": {
+  "message": "Netzwerkfehler."
+ },
+ "err_bad_response": {
+  "message": "Unerwartete Antwort des Anbieters."
+ },
+ "err_empty_output": {
+  "message": "Das Modell hat eine leere Antwort geliefert (möglicherweise hat ein Reasoning-Modell sein Token-Limit aufgebraucht). Versuchen Sie es erneut oder wählen Sie in den Einstellungen ein anderes Modell."
+ },
+ "err_no_key": {
+  "message": "Verbinden Sie zuerst den Anbieter in den Einstellungen."
+ },
+ "err_no_permission": {
+  "message": "Erlauben Sie Transello in den Einstellungen den Zugriff auf die API des Anbieters."
+ },
+ "err_consent_required": {
+  "message": "Bestätigen Sie zuerst das Senden des Textes an den Cloud-Anbieter."
+ },
+ "err_internal": {
+  "message": "Etwas ist schiefgelaufen."
+ },
+ "pvNotice": {
+  "message": "Der Text, den Sie übersetzen, wird an $1 gesendet und Ihrem eigenen Konto belastet. Transello hat keinen Server und speichert nichts."
+ },
+ "pvApiKey": {
+  "message": "API-Schlüssel"
+ },
+ "pvGetKey": {
+  "message": "Schlüssel erhalten"
+ },
+ "pvSave": {
+  "message": "Speichern und prüfen"
+ },
+ "pvChecking": {
+  "message": "Wird geprüft …"
+ },
+ "pvConnected": {
+  "message": "Verbunden · Schlüssel $1"
+ },
+ "pvConnectedOauth": {
+  "message": "Über OpenRouter-Anmeldung verbunden · Schlüssel $1"
+ },
+ "pvAuthorized": {
+  "message": "Für Übersetzungsanfragen autorisiert."
+ },
+ "pvUsage": {
+  "message": "Limit des Schlüssels: $1 · verbraucht: $2"
+ },
+ "pvUnlimited": {
+  "message": "unbegrenzt"
+ },
+ "pvDisconnect": {
+  "message": "Trennen"
+ },
+ "pvDisconnected": {
+  "message": "Getrennt. Der Schlüssel wurde von diesem Gerät gelöscht."
+ },
+ "pvKeyStorage": {
+  "message": "Der Schlüssel wird nur auf diesem Gerät gespeichert (chrome.storage.local), nie synchronisiert und ist für Webseiten nicht sichtbar. Es handelt sich nicht um einen Schlüsselbund des Betriebssystems: Jeder mit Zugriff auf dieses Chrome-Profil könnte ihn lesen."
+ },
+ "pvModel": {
+  "message": "Modell"
+ },
+ "pvChooseModel": {
+  "message": "Modell auswählen"
+ },
+ "pvCustomModel": {
+  "message": "Benutzerdefinierte Modell-ID"
+ },
+ "pvUseCustom": {
+  "message": "Verwenden"
+ },
+ "pvRefresh": {
+  "message": "Liste aktualisieren"
+ },
+ "pvModelsLoaded": {
+  "message": "$1 Modelle verfügbar"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 pro 1 Mio. Tokens (Eingabe/Ausgabe)"
+ },
+ "pvTest": {
+  "message": "Übersetzung testen"
+ },
+ "pvTestNote": {
+  "message": "Sendet eine kurze Anfrage; der Anbieter kann sie berechnen (meist ein Bruchteil eines Cents)."
+ },
+ "pvTestOk": {
+  "message": "Antwort des Modells: $1"
+ },
+ "pvPermDenied": {
+  "message": "Ohne Zugriff auf $1 kann dieser Anbieter nicht verwendet werden."
+ },
+ "pvOauthTitle": {
+  "message": "Anmeldung (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "Mit OpenRouter anmelden"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter erstellt einen an Ihr Konto gebundenen Schlüssel; die Nutzung wird von Ihrem OpenRouter-Guthaben bezahlt."
+ },
+ "pvOauthOpenAI": {
+  "message": "Die Anmeldung mit ChatGPT ist nicht verfügbar: OpenAI erlaubt sie derzeit nur für lokale Apps mit einem Callback auf 127.0.0.1, den eine Browsererweiterung nicht empfangen kann. Verwenden Sie einen API-Schlüssel."
+ },
+ "pvOauthClaude": {
+  "message": "OAuth ist für Erweiterungen von Drittanbietern nicht verfügbar. Anthropic empfiehlt einen API-Schlüssel aus der Claude Console."
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek bietet nur API-Schlüssel an."
+ },
+ "optGeneral": {
+  "message": "Allgemein"
+ },
+ "optUiLang": {
+  "message": "Sprache der Benutzeroberfläche"
+ },
+ "optUiLangAuto": {
+  "message": "Wie Chrome"
+ },
+ "optTarget": {
+  "message": "Übersetzen nach"
+ },
+ "optTheme": {
+  "message": "Design"
+ },
+ "optThemeAuto": {
+  "message": "System"
+ },
+ "optThemeLight": {
+  "message": "Hell"
+ },
+ "optThemeDark": {
+  "message": "Dunkel"
+ },
+ "optShortcut": {
+  "message": "Tastenkürzel für das Mini-Popup"
+ },
+ "optShortcutChange": {
+  "message": "Ändern unter chrome://extensions/shortcuts"
+ },
+ "optEngine": {
+  "message": "Übersetzungs-Engine"
+ },
+ "optPrivacy": {
+  "message": "Datenschutz"
+ },
+ "optLocalOnly": {
+  "message": "Standardmäßig wird alles lokal auf Ihrem Gerät übersetzt. Es wird nichts irgendwohin gesendet."
+ },
+ "optKeepDraft": {
+  "message": "Popup-Entwurf bis zum Schließen des Browsers behalten"
+ },
+ "optClear": {
+  "message": "Entwürfe und Cache löschen"
+ },
+ "optCleared": {
+  "message": "Gelöscht"
+ },
+ "optPrivacyPolicy": {
+  "message": "Datenschutzerklärung"
+ },
+ "optAbout": {
+  "message": "Über"
+ },
+ "optVersion": {
+  "message": "Version $1"
+ },
+ "optSource": {
+  "message": "Feedback"
+ },
+ "optSupport": {
+  "message": "☕ Transello unterstützen"
+ },
+ "optLicenses": {
+  "message": "Lizenzen"
+ }
+}

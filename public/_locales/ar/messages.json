@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "تحدّث لغة الإنترنت بطلاقة. الصق أو ظلّل أو ترجم صفحات كاملة بنقرة، بخصوصية على جهازك، أو عبر GPT أو Claude الخاص بك."
+ },
+ "cmdTranslateSelection": {
+  "message": "ترجمة النص المحدد (نافذة مصغرة)"
+ },
+ "menuTranslateSelection": {
+  "message": "الترجمة في Transello"
+ },
+ "menuTranslatePage": {
+  "message": "ترجمة الصفحة باستخدام Transello"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "الإعدادات"
+ },
+ "openWindow": {
+  "message": "فتح في نافذة منفصلة"
+ },
+ "sourceLang": {
+  "message": "لغة المصدر"
+ },
+ "targetLang": {
+  "message": "لغة الترجمة"
+ },
+ "recentLangs": {
+  "message": "الأحدث"
+ },
+ "allLangs": {
+  "message": "كل اللغات"
+ },
+ "autoDetect": {
+  "message": "اكتشاف تلقائي"
+ },
+ "swap": {
+  "message": "تبديل اللغتين"
+ },
+ "inputPlaceholder": {
+  "message": "الصق النص أو اكتبه…"
+ },
+ "inputLabel": {
+  "message": "النص المراد ترجمته"
+ },
+ "resultLabel": {
+  "message": "الترجمة"
+ },
+ "translate": {
+  "message": "ترجمة"
+ },
+ "copy": {
+  "message": "نسخ الترجمة"
+ },
+ "copyShort": {
+  "message": "نسخ"
+ },
+ "copied": {
+  "message": "تم النسخ"
+ },
+ "clear": {
+  "message": "مسح"
+ },
+ "retry": {
+  "message": "إعادة المحاولة"
+ },
+ "cancel": {
+  "message": "إلغاء"
+ },
+ "close": {
+  "message": "إغلاق"
+ },
+ "expand": {
+  "message": "توسيع"
+ },
+ "translating": {
+  "message": "جارٍ الترجمة…"
+ },
+ "downloading": {
+  "message": "جارٍ تنزيل نموذج اللغة… $1%"
+ },
+ "downloadingNote": {
+  "message": "تنزيل لمرة واحدة بواسطة Chrome؛ وبعدها تعمل الترجمة دون اتصال بالإنترنت."
+ },
+ "detected": {
+  "message": "تم الاكتشاف: $1"
+ },
+ "detectedUncertain": {
+  "message": "يبدو أنها $1، لكن لست متأكدًا. اختر اللغة إن كانت خاطئة."
+ },
+ "sameLanguage": {
+  "message": "النص مكتوب بالفعل بـ$1."
+ },
+ "translateTo": {
+  "message": "ترجمة إلى $1"
+ },
+ "chooseTarget": {
+  "message": "اختر اللغة"
+ },
+ "truncated": {
+  "message": "تمت ترجمة أول $1 حرفًا فقط. ترجم الباقي على حدة."
+ },
+ "emptyHint": {
+  "message": "الصق نصًا - تظهر الترجمة تلقائيًا."
+ },
+ "original": {
+  "message": "الأصل"
+ },
+ "selectText": {
+  "message": "حدّد كلمة أو عبارة أولًا."
+ },
+ "openTransello": {
+  "message": "فتح Transello"
+ },
+ "pageTranslating": {
+  "message": "جارٍ ترجمة الصفحة… $1 / $2"
+ },
+ "pageDone": {
+  "message": "تمت ترجمة $1 من $2 من كتل النص."
+ },
+ "pageLimited": {
+  "message": "صفحة كبيرة: تمت ترجمة أول $1 كتلة فقط."
+ },
+ "pageNothing": {
+  "message": "لم يُعثر على نص قابل للترجمة في هذه الصفحة."
+ },
+ "showOriginal": {
+  "message": "عرض الأصل"
+ },
+ "translateAgain": {
+  "message": "ترجمة مرة أخرى"
+ },
+ "pageOriginal": {
+  "message": "تمت استعادة النص الأصلي للصفحة."
+ },
+ "pageCloudConfirm": {
+  "message": "هل تريد إرسال نحو $1 حرف من هذه الصفحة إلى $2؟ قد يفرض المزوّد رسومًا على ذلك."
+ },
+ "pageSensitive": {
+  "message": "يبدو أن هذا موقع حساس (بنك أو بريد أو مدفوعات)."
+ },
+ "confirmSend": {
+  "message": "إرسال وترجمة"
+ },
+ "cloudNotice": {
+  "message": "يُرسَل النص المحدد إلى $1 للترجمة، وقد يحاسبك المزوّد عليه."
+ },
+ "restrictedHere": {
+  "message": "لا يسمح Chrome بتشغيل الإضافات في هذه الصفحة. الصق النص في Transello بدلًا من ذلك."
+ },
+ "shortcutHint": {
+  "message": "الاختصار: $1"
+ },
+ "shortcutNotSet": {
+  "message": "غير معيّن"
+ },
+ "err_cancelled": {
+  "message": "تم الإلغاء."
+ },
+ "err_api_missing": {
+  "message": "الترجمة المدمجة معطّلة في هذا المتصفح (يفعل Brave ذلك على بعض الأنظمة). اربط ذكاءً اصطناعيًا سحابيًا من الإعدادات أو استخدم Google Chrome."
+ },
+ "err_local_unavailable_here": {
+  "message": "الترجمة المحلية غير متاحة هنا. افتح نافذة Transello."
+ },
+ "err_unsupported_pair": {
+  "message": "هذا الزوج من اللغات غير مدعوم في الترجمة المحلية. اختر لغة أخرى أو اربط مزوّدًا سحابيًا."
+ },
+ "err_unknown_language": {
+  "message": "تعذّر اكتشاف اللغة. اختر لغة المصدر."
+ },
+ "err_download_failed": {
+  "message": "تعذّر تنزيل نموذج اللغة (هل أنت غير متصل أو المساحة على القرص غير كافية؟)."
+ },
+ "err_download_stalled": {
+  "message": "لا يتقدم تنزيل نموذج اللغة. تحقق من اتصالك وأعد المحاولة."
+ },
+ "err_too_long": {
+  "message": "النص أطول من أن يُرسَل في طلب واحد."
+ },
+ "err_restricted_page": {
+  "message": "لا يسمح Chrome بتشغيل الإضافات في هذه الصفحة."
+ },
+ "err_no_selection": {
+  "message": "حدّد كلمة أو عبارة أولًا."
+ },
+ "err_offline": {
+  "message": "أنت غير متصل بالإنترنت."
+ },
+ "err_auth": {
+  "message": "المفتاح أو تسجيل الدخول غير صالح أو منتهي الصلاحية. تحقق منه في الإعدادات."
+ },
+ "err_forbidden": {
+  "message": "رفض المزوّد الوصول (403). تحقق من أذونات المفتاح أو الوصول إلى النموذج."
+ },
+ "err_rate_limit": {
+  "message": "طلبات كثيرة جدًا (429). انتظر قليلًا ثم أعد المحاولة."
+ },
+ "err_quota": {
+  "message": "لا يوجد رصيد أو حصة متبقية لدى المزوّد."
+ },
+ "err_context_limit": {
+  "message": "النص أطول من أن يتحمله هذا النموذج. ترجم جزءًا أقصر."
+ },
+ "err_server": {
+  "message": "حدث خطأ في خادم المزوّد. أعد المحاولة لاحقًا."
+ },
+ "err_network": {
+  "message": "خطأ في الشبكة."
+ },
+ "err_bad_response": {
+  "message": "استجابة غير متوقعة من المزوّد."
+ },
+ "err_empty_output": {
+  "message": "أعاد النموذج إجابة فارغة (ربما استنفد نموذج الاستدلال حدّ الرموز). أعد المحاولة أو اختر نموذجًا آخر في الإعدادات."
+ },
+ "err_no_key": {
+  "message": "اربط المزوّد في الإعدادات أولًا."
+ },
+ "err_no_permission": {
+  "message": "اسمح لـ Transello بالوصول إلى API الخاص بالمزوّد من الإعدادات."
+ },
+ "err_consent_required": {
+  "message": "أكّد أولًا إرسال النص إلى المزوّد السحابي."
+ },
+ "err_internal": {
+  "message": "حدث خطأ ما."
+ },
+ "pvNotice": {
+  "message": "يُرسَل النص الذي تترجمه إلى $1 ويُحاسَب عليه حسابك الخاص. لا يملك Transello خادمًا ولا يخزّن أي شيء."
+ },
+ "pvApiKey": {
+  "message": "مفتاح API"
+ },
+ "pvGetKey": {
+  "message": "الحصول على مفتاح"
+ },
+ "pvSave": {
+  "message": "حفظ وتحقق"
+ },
+ "pvChecking": {
+  "message": "جارٍ التحقق…"
+ },
+ "pvConnected": {
+  "message": "متصل · المفتاح $1"
+ },
+ "pvConnectedOauth": {
+  "message": "متصل عبر تسجيل الدخول إلى OpenRouter · المفتاح $1"
+ },
+ "pvAuthorized": {
+  "message": "مصرّح به لطلبات الترجمة."
+ },
+ "pvUsage": {
+  "message": "حدّ المفتاح: $1 · المستخدم: $2"
+ },
+ "pvUnlimited": {
+  "message": "بلا حد"
+ },
+ "pvDisconnect": {
+  "message": "قطع الاتصال"
+ },
+ "pvDisconnected": {
+  "message": "تم قطع الاتصال. حُذف المفتاح من هذا الجهاز."
+ },
+ "pvKeyStorage": {
+  "message": "يُحفظ المفتاح على هذا الجهاز فقط (chrome.storage.local)، ولا تتم مزامنته ولا يمكن لصفحات الويب رؤيته. وهو ليس سلسلة مفاتيح لنظام التشغيل: يمكن لأي شخص يصل إلى ملف تعريف Chrome هذا قراءته."
+ },
+ "pvModel": {
+  "message": "النموذج"
+ },
+ "pvChooseModel": {
+  "message": "اختر نموذجًا"
+ },
+ "pvCustomModel": {
+  "message": "معرّف نموذج مخصص"
+ },
+ "pvUseCustom": {
+  "message": "استخدام"
+ },
+ "pvRefresh": {
+  "message": "تحديث القائمة"
+ },
+ "pvModelsLoaded": {
+  "message": "$1 نموذجًا متاحًا"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 لكل 1M رمز (إدخال/إخراج)"
+ },
+ "pvTest": {
+  "message": "ترجمة تجريبية"
+ },
+ "pvTestNote": {
+  "message": "يرسل طلبًا قصيرًا واحدًا؛ وقد يحاسب عليه المزوّد (عادةً جزء من سنت)."
+ },
+ "pvTestOk": {
+  "message": "ردّ النموذج: $1"
+ },
+ "pvPermDenied": {
+  "message": "بدون الوصول إلى $1 لا يمكن استخدام هذا المزوّد."
+ },
+ "pvOauthTitle": {
+  "message": "تسجيل الدخول (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "تسجيل الدخول عبر OpenRouter"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "ينشئ OpenRouter مفتاحًا مرتبطًا بحسابك؛ ويُدفع الاستخدام من رصيدك في OpenRouter."
+ },
+ "pvOauthOpenAI": {
+  "message": "تسجيل الدخول عبر ChatGPT غير متاح: تسمح OpenAI به حاليًا للتطبيقات المحلية فقط مع عنوان استدعاء 127.0.0.1، وهو ما لا تستطيع إضافة المتصفح استقباله. استخدم مفتاح API."
+ },
+ "pvOauthClaude": {
+  "message": "OAuth غير متاح للإضافات الخارجية. توصي Anthropic باستخدام مفتاح API من Claude Console."
+ },
+ "pvOauthDeepSeek": {
+  "message": "يوفّر DeepSeek مفاتيح API فقط."
+ },
+ "optGeneral": {
+  "message": "عام"
+ },
+ "optUiLang": {
+  "message": "لغة الواجهة"
+ },
+ "optUiLangAuto": {
+  "message": "مثل Chrome"
+ },
+ "optTarget": {
+  "message": "الترجمة إلى"
+ },
+ "optTheme": {
+  "message": "المظهر"
+ },
+ "optThemeAuto": {
+  "message": "النظام"
+ },
+ "optThemeLight": {
+  "message": "فاتح"
+ },
+ "optThemeDark": {
+  "message": "داكن"
+ },
+ "optShortcut": {
+  "message": "اختصار لوحة المفاتيح للنافذة المصغرة"
+ },
+ "optShortcutChange": {
+  "message": "غيّره في chrome://extensions/shortcuts"
+ },
+ "optEngine": {
+  "message": "محرّك الترجمة"
+ },
+ "optPrivacy": {
+  "message": "الخصوصية"
+ },
+ "optLocalOnly": {
+  "message": "افتراضيًا تتم الترجمة كلها محليًا على جهازك. لا يُرسَل أي شيء إلى أي مكان."
+ },
+ "optKeepDraft": {
+  "message": "الاحتفاظ بمسودة النافذة المنبثقة حتى إغلاق المتصفح"
+ },
+ "optClear": {
+  "message": "مسح المسودات والذاكرة المؤقتة"
+ },
+ "optCleared": {
+  "message": "تم المسح"
+ },
+ "optPrivacyPolicy": {
+  "message": "سياسة الخصوصية"
+ },
+ "optAbout": {
+  "message": "حول"
+ },
+ "optVersion": {
+  "message": "الإصدار $1"
+ },
+ "optSource": {
+  "message": "الملاحظات"
+ },
+ "optSupport": {
+  "message": "☕ ادعم Transello"
+ },
+ "optLicenses": {
+  "message": "التراخيص"
+ }
+}

@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "说一口流利的“互联网语”。粘贴、划选或整页翻译，一键完成，在本机私密运行，也可接入你的 GPT 或 Claude。"
+ },
+ "cmdTranslateSelection": {
+  "message": "翻译所选内容（迷你弹窗）"
+ },
+ "menuTranslateSelection": {
+  "message": "用 Transello 翻译"
+ },
+ "menuTranslatePage": {
+  "message": "用 Transello 翻译此网页"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "设置"
+ },
+ "openWindow": {
+  "message": "在单独窗口中打开"
+ },
+ "sourceLang": {
+  "message": "源语言"
+ },
+ "targetLang": {
+  "message": "目标语言"
+ },
+ "recentLangs": {
+  "message": "最近使用"
+ },
+ "allLangs": {
+  "message": "所有语言"
+ },
+ "autoDetect": {
+  "message": "自动检测"
+ },
+ "swap": {
+  "message": "交换语言"
+ },
+ "inputPlaceholder": {
+  "message": "粘贴或输入文本…"
+ },
+ "inputLabel": {
+  "message": "要翻译的文本"
+ },
+ "resultLabel": {
+  "message": "译文"
+ },
+ "translate": {
+  "message": "翻译"
+ },
+ "copy": {
+  "message": "复制译文"
+ },
+ "copyShort": {
+  "message": "复制"
+ },
+ "copied": {
+  "message": "已复制"
+ },
+ "clear": {
+  "message": "清除"
+ },
+ "retry": {
+  "message": "重试"
+ },
+ "cancel": {
+  "message": "取消"
+ },
+ "close": {
+  "message": "关闭"
+ },
+ "expand": {
+  "message": "展开"
+ },
+ "translating": {
+  "message": "正在翻译…"
+ },
+ "downloading": {
+  "message": "正在下载语言模型… $1%"
+ },
+ "downloadingNote": {
+  "message": "由 Chrome 一次性下载，之后可离线翻译。"
+ },
+ "detected": {
+  "message": "检测到：$1"
+ },
+ "detectedUncertain": {
+  "message": "看起来是$1，但不确定。如有误，请选择语言。"
+ },
+ "sameLanguage": {
+  "message": "文本已经是$1。"
+ },
+ "translateTo": {
+  "message": "翻译成$1"
+ },
+ "chooseTarget": {
+  "message": "选择语言"
+ },
+ "truncated": {
+  "message": "仅翻译了前 $1 个字符。请单独翻译其余部分。"
+ },
+ "emptyHint": {
+  "message": "粘贴文本后，译文会自动显示。"
+ },
+ "original": {
+  "message": "原文"
+ },
+ "selectText": {
+  "message": "请先选中一个词或短语。"
+ },
+ "openTransello": {
+  "message": "打开 Transello"
+ },
+ "pageTranslating": {
+  "message": "正在翻译网页… $1 / $2"
+ },
+ "pageDone": {
+  "message": "已翻译 $2 个文本块中的 $1 个。"
+ },
+ "pageLimited": {
+  "message": "网页较大：仅翻译前 $1 个文本块。"
+ },
+ "pageNothing": {
+  "message": "此网页上未找到可翻译的文本。"
+ },
+ "showOriginal": {
+  "message": "显示原文"
+ },
+ "translateAgain": {
+  "message": "重新翻译"
+ },
+ "pageOriginal": {
+  "message": "已恢复网页原文。"
+ },
+ "pageCloudConfirm": {
+  "message": "要将此网页约 $1 个字符发送到 $2 吗？服务提供商可能会为此收费。"
+ },
+ "pageSensitive": {
+  "message": "这似乎是敏感网站（银行、邮箱、支付）。"
+ },
+ "confirmSend": {
+  "message": "发送并翻译"
+ },
+ "cloudNotice": {
+  "message": "所选文本将发送到 $1 进行翻译，服务提供商可能会为此计费。"
+ },
+ "restrictedHere": {
+  "message": "Chrome 不允许扩展程序在此页面上运行。请改为将文本粘贴到 Transello 中。"
+ },
+ "shortcutHint": {
+  "message": "快捷键：$1"
+ },
+ "shortcutNotSet": {
+  "message": "未设置"
+ },
+ "err_cancelled": {
+  "message": "已取消。"
+ },
+ "err_api_missing": {
+  "message": "此浏览器已关闭内置翻译（Brave 在部分系统上会这样做）。请在设置中连接云端 AI，或使用 Google Chrome。"
+ },
+ "err_local_unavailable_here": {
+  "message": "此处无法使用本地翻译。请打开 Transello 窗口。"
+ },
+ "err_unsupported_pair": {
+  "message": "本地翻译不支持此语言对。请选择其他语言，或连接云端服务提供商。"
+ },
+ "err_unknown_language": {
+  "message": "无法检测语言。请选择源语言。"
+ },
+ "err_download_failed": {
+  "message": "无法下载语言模型（可能已离线或磁盘空间不足）。"
+ },
+ "err_download_stalled": {
+  "message": "语言模型下载没有进展。请检查网络连接后重试。"
+ },
+ "err_too_long": {
+  "message": "文本过长，无法在一次请求中处理。"
+ },
+ "err_restricted_page": {
+  "message": "Chrome 不允许扩展程序在此页面上运行。"
+ },
+ "err_no_selection": {
+  "message": "请先选中一个词或短语。"
+ },
+ "err_offline": {
+  "message": "你已离线。"
+ },
+ "err_auth": {
+  "message": "密钥或登录无效或已过期。请在设置中检查。"
+ },
+ "err_forbidden": {
+  "message": "服务提供商拒绝访问 (403)。请检查密钥权限或模型访问权限。"
+ },
+ "err_rate_limit": {
+  "message": "请求过多 (429)。请稍候再试。"
+ },
+ "err_quota": {
+  "message": "服务提供商处的额度或配额已用完。"
+ },
+ "err_context_limit": {
+  "message": "文本对此模型来说过长。请翻译较短的部分。"
+ },
+ "err_server": {
+  "message": "服务提供商出现服务器错误。请稍后重试。"
+ },
+ "err_network": {
+  "message": "网络错误。"
+ },
+ "err_bad_response": {
+  "message": "服务提供商返回了意外的响应。"
+ },
+ "err_empty_output": {
+  "message": "模型返回了空回答（推理模型可能已用完其 token 上限）。请重试，或在设置中选择其他模型。"
+ },
+ "err_no_key": {
+  "message": "请先在设置中连接服务提供商。"
+ },
+ "err_no_permission": {
+  "message": "请在设置中允许 Transello 访问服务提供商的 API。"
+ },
+ "err_consent_required": {
+  "message": "请先确认将文本发送到云端服务提供商。"
+ },
+ "err_internal": {
+  "message": "出了点问题。"
+ },
+ "pvNotice": {
+  "message": "你翻译的文本会发送到 $1，费用由你自己的账户承担。Transello 没有服务器，也不存储任何内容。"
+ },
+ "pvApiKey": {
+  "message": "API 密钥"
+ },
+ "pvGetKey": {
+  "message": "获取密钥"
+ },
+ "pvSave": {
+  "message": "保存并检查"
+ },
+ "pvChecking": {
+  "message": "正在检查…"
+ },
+ "pvConnected": {
+  "message": "已连接 · 密钥 $1"
+ },
+ "pvConnectedOauth": {
+  "message": "已通过 OpenRouter 登录连接 · 密钥 $1"
+ },
+ "pvAuthorized": {
+  "message": "已授权翻译请求。"
+ },
+ "pvUsage": {
+  "message": "密钥限额：$1 · 已使用：$2"
+ },
+ "pvUnlimited": {
+  "message": "无限制"
+ },
+ "pvDisconnect": {
+  "message": "断开连接"
+ },
+ "pvDisconnected": {
+  "message": "已断开连接。密钥已从此设备删除。"
+ },
+ "pvKeyStorage": {
+  "message": "密钥仅保存在此设备上 (chrome.storage.local)，不会同步，网页也无法看到。它不是操作系统钥匙串：任何能访问此 Chrome 个人资料的人都可以读取它。"
+ },
+ "pvModel": {
+  "message": "模型"
+ },
+ "pvChooseModel": {
+  "message": "选择模型"
+ },
+ "pvCustomModel": {
+  "message": "自定义模型 ID"
+ },
+ "pvUseCustom": {
+  "message": "使用"
+ },
+ "pvRefresh": {
+  "message": "刷新列表"
+ },
+ "pvModelsLoaded": {
+  "message": "可用模型：$1 个"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 每百万 token（输入/输出）"
+ },
+ "pvTest": {
+  "message": "测试翻译"
+ },
+ "pvTestNote": {
+  "message": "将发送一个简短请求；服务提供商可能会为此计费（通常不到一美分）。"
+ },
+ "pvTestOk": {
+  "message": "模型回复：$1"
+ },
+ "pvPermDenied": {
+  "message": "没有 $1 的访问权限，就无法使用此服务提供商。"
+ },
+ "pvOauthTitle": {
+  "message": "登录 (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "使用 OpenRouter 登录"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter 会创建与你的账户绑定的密钥；费用从你的 OpenRouter 余额中支付。"
+ },
+ "pvOauthOpenAI": {
+  "message": "无法使用 ChatGPT 登录：OpenAI 目前仅允许使用 127.0.0.1 回调的本地应用使用该方式，而浏览器扩展程序无法接收此类回调。请使用 API 密钥。"
+ },
+ "pvOauthClaude": {
+  "message": "第三方扩展程序无法使用 OAuth。Anthropic 建议使用来自 Claude Console 的 API 密钥。"
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek 仅提供 API 密钥。"
+ },
+ "optGeneral": {
+  "message": "常规"
+ },
+ "optUiLang": {
+  "message": "界面语言"
+ },
+ "optUiLangAuto": {
+  "message": "与 Chrome 相同"
+ },
+ "optTarget": {
+  "message": "翻译成"
+ },
+ "optTheme": {
+  "message": "主题"
+ },
+ "optThemeAuto": {
+  "message": "跟随系统"
+ },
+ "optThemeLight": {
+  "message": "浅色"
+ },
+ "optThemeDark": {
+  "message": "深色"
+ },
+ "optShortcut": {
+  "message": "迷你弹窗的键盘快捷键"
+ },
+ "optShortcutChange": {
+  "message": "在 chrome://extensions/shortcuts 中更改"
+ },
+ "optEngine": {
+  "message": "翻译引擎"
+ },
+ "optPrivacy": {
+  "message": "隐私"
+ },
+ "optLocalOnly": {
+  "message": "默认情况下，所有内容都在你的设备上本地翻译。不会向任何地方发送任何内容。"
+ },
+ "optKeepDraft": {
+  "message": "在关闭浏览器前保留弹窗草稿"
+ },
+ "optClear": {
+  "message": "清除草稿和缓存"
+ },
+ "optCleared": {
+  "message": "已清除"
+ },
+ "optPrivacyPolicy": {
+  "message": "隐私政策"
+ },
+ "optAbout": {
+  "message": "关于"
+ },
+ "optVersion": {
+  "message": "版本 $1"
+ },
+ "optSource": {
+  "message": "反馈"
+ },
+ "optSupport": {
+  "message": "☕ 支持 Transello"
+ },
+ "optLicenses": {
+  "message": "许可"
+ }
+}

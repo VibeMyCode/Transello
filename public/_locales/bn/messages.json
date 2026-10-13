@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "ইন্টারনেটের ভাষায় সাবলীল হন। পেস্ট, হাইলাইট বা পুরো পেজ এক ক্লিকে অনুবাদ করুন, ডিভাইসেই গোপনে, বা GPT বা Claude দিয়ে।"
+ },
+ "cmdTranslateSelection": {
+  "message": "নির্বাচিত অংশ অনুবাদ করুন (মিনি পপআপ)"
+ },
+ "menuTranslateSelection": {
+  "message": "Transello-তে অনুবাদ করুন"
+ },
+ "menuTranslatePage": {
+  "message": "Transello দিয়ে পেজ অনুবাদ করুন"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "সেটিংস"
+ },
+ "openWindow": {
+  "message": "আলাদা উইন্ডোতে খুলুন"
+ },
+ "sourceLang": {
+  "message": "মূল ভাষা"
+ },
+ "targetLang": {
+  "message": "অনুবাদের ভাষা"
+ },
+ "recentLangs": {
+  "message": "সাম্প্রতিক"
+ },
+ "allLangs": {
+  "message": "সব ভাষা"
+ },
+ "autoDetect": {
+  "message": "স্বয়ংক্রিয় শনাক্তকরণ"
+ },
+ "swap": {
+  "message": "ভাষা অদলবদল করুন"
+ },
+ "inputPlaceholder": {
+  "message": "টেক্সট পেস্ট করুন বা লিখুন…"
+ },
+ "inputLabel": {
+  "message": "অনুবাদের জন্য টেক্সট"
+ },
+ "resultLabel": {
+  "message": "অনুবাদ"
+ },
+ "translate": {
+  "message": "অনুবাদ করুন"
+ },
+ "copy": {
+  "message": "অনুবাদ কপি করুন"
+ },
+ "copyShort": {
+  "message": "কপি"
+ },
+ "copied": {
+  "message": "কপি হয়েছে"
+ },
+ "clear": {
+  "message": "মুছুন"
+ },
+ "retry": {
+  "message": "আবার চেষ্টা করুন"
+ },
+ "cancel": {
+  "message": "বাতিল"
+ },
+ "close": {
+  "message": "বন্ধ করুন"
+ },
+ "expand": {
+  "message": "বড় করুন"
+ },
+ "translating": {
+  "message": "অনুবাদ হচ্ছে…"
+ },
+ "downloading": {
+  "message": "ভাষা মডেল ডাউনলোড হচ্ছে… $1%"
+ },
+ "downloadingNote": {
+  "message": "Chrome একবারই ডাউনলোড করে; পরে অনুবাদ অফলাইনেও কাজ করবে।"
+ },
+ "detected": {
+  "message": "শনাক্ত হয়েছে: $1"
+ },
+ "detectedUncertain": {
+  "message": "দেখে $1 মনে হচ্ছে, তবে নিশ্চিত নয়। ভুল হলে ভাষা বেছে নিন।"
+ },
+ "sameLanguage": {
+  "message": "টেক্সটটি আগে থেকেই $1 ভাষায় আছে।"
+ },
+ "translateTo": {
+  "message": "$1 ভাষায় অনুবাদ করুন"
+ },
+ "chooseTarget": {
+  "message": "ভাষা বেছে নিন"
+ },
+ "truncated": {
+  "message": "শুধু প্রথম $1টি অক্ষর অনুবাদ হয়েছে। বাকিটা আলাদাভাবে অনুবাদ করুন।"
+ },
+ "emptyHint": {
+  "message": "টেক্সট পেস্ট করুন - অনুবাদ নিজে থেকেই দেখা যাবে।"
+ },
+ "original": {
+  "message": "মূল"
+ },
+ "selectText": {
+  "message": "আগে একটি শব্দ বা বাক্যাংশ নির্বাচন করুন।"
+ },
+ "openTransello": {
+  "message": "Transello খুলুন"
+ },
+ "pageTranslating": {
+  "message": "পেজ অনুবাদ হচ্ছে… $1 / $2"
+ },
+ "pageDone": {
+  "message": "$2টির মধ্যে $1টি টেক্সট ব্লক অনুবাদ হয়েছে।"
+ },
+ "pageLimited": {
+  "message": "বড় পেজ: শুধু প্রথম $1টি ব্লক অনুবাদ হয়েছে।"
+ },
+ "pageNothing": {
+  "message": "এই পেজে অনুবাদযোগ্য টেক্সট পাওয়া যায়নি।"
+ },
+ "showOriginal": {
+  "message": "মূল দেখান"
+ },
+ "translateAgain": {
+  "message": "আবার অনুবাদ করুন"
+ },
+ "pageOriginal": {
+  "message": "পেজের মূল টেক্সট ফিরিয়ে আনা হয়েছে।"
+ },
+ "pageCloudConfirm": {
+  "message": "এই পেজের প্রায় $1টি অক্ষর $2-কে পাঠাবেন? প্রদানকারী এর জন্য চার্জ নিতে পারে।"
+ },
+ "pageSensitive": {
+  "message": "এটি স্পর্শকাতর সাইট বলে মনে হচ্ছে (ব্যাংক, মেইল, পেমেন্ট)।"
+ },
+ "confirmSend": {
+  "message": "পাঠান ও অনুবাদ করুন"
+ },
+ "cloudNotice": {
+  "message": "নির্বাচিত টেক্সট অনুবাদের জন্য $1-কে পাঠানো হয় এবং প্রদানকারী এর জন্য বিল করতে পারে।"
+ },
+ "restrictedHere": {
+  "message": "Chrome এই পেজে এক্সটেনশন চালাতে দেয় না। এর বদলে টেক্সট Transello-তে পেস্ট করুন।"
+ },
+ "shortcutHint": {
+  "message": "শর্টকাট: $1"
+ },
+ "shortcutNotSet": {
+  "message": "সেট করা নেই"
+ },
+ "err_cancelled": {
+  "message": "বাতিল করা হয়েছে।"
+ },
+ "err_api_missing": {
+  "message": "এই ব্রাউজারে বিল্ট-ইন অনুবাদ বন্ধ করা আছে (Brave কিছু সিস্টেমে এমন করে)। সেটিংসে ক্লাউড AI যুক্ত করুন বা Google Chrome ব্যবহার করুন।"
+ },
+ "err_local_unavailable_here": {
+  "message": "এখানে লোকাল অনুবাদ উপলব্ধ নেই। Transello উইন্ডো খুলুন।"
+ },
+ "err_unsupported_pair": {
+  "message": "লোকাল অনুবাদ এই ভাষা জোড়া সমর্থন করে না। অন্য ভাষা বেছে নিন অথবা একটি ক্লাউড প্রদানকারী যুক্ত করুন।"
+ },
+ "err_unknown_language": {
+  "message": "ভাষা শনাক্ত করা যায়নি। মূল ভাষা বেছে নিন।"
+ },
+ "err_download_failed": {
+  "message": "ভাষা মডেল ডাউনলোড করা যায়নি (অফলাইন আছেন, নাকি ডিস্কে জায়গা কম?)।"
+ },
+ "err_download_stalled": {
+  "message": "ভাষা মডেলের ডাউনলোড এগোচ্ছে না। সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"
+ },
+ "err_too_long": {
+  "message": "একটি অনুরোধের জন্য টেক্সট খুব বড়।"
+ },
+ "err_restricted_page": {
+  "message": "Chrome এই পেজে এক্সটেনশন চালাতে দেয় না।"
+ },
+ "err_no_selection": {
+  "message": "আগে একটি শব্দ বা বাক্যাংশ নির্বাচন করুন।"
+ },
+ "err_offline": {
+  "message": "আপনি অফলাইনে আছেন।"
+ },
+ "err_auth": {
+  "message": "কী বা সাইন-ইন অবৈধ অথবা মেয়াদোত্তীর্ণ। সেটিংসে পরীক্ষা করুন।"
+ },
+ "err_forbidden": {
+  "message": "প্রদানকারী অ্যাক্সেস অস্বীকার করেছে (403)। কী-এর অনুমতি বা মডেলের অ্যাক্সেস পরীক্ষা করুন।"
+ },
+ "err_rate_limit": {
+  "message": "অনেক বেশি অনুরোধ (429)। কিছুক্ষণ অপেক্ষা করে আবার চেষ্টা করুন।"
+ },
+ "err_quota": {
+  "message": "প্রদানকারীর কাছে ক্রেডিট বা কোটা অবশিষ্ট নেই।"
+ },
+ "err_context_limit": {
+  "message": "এই মডেলের জন্য টেক্সট খুব বড়। ছোট অংশ অনুবাদ করুন।"
+ },
+ "err_server": {
+  "message": "প্রদানকারীর সার্ভারে ত্রুটি হয়েছে। পরে আবার চেষ্টা করুন।"
+ },
+ "err_network": {
+  "message": "নেটওয়ার্ক ত্রুটি।"
+ },
+ "err_bad_response": {
+  "message": "প্রদানকারীর কাছ থেকে অপ্রত্যাশিত উত্তর এসেছে।"
+ },
+ "err_empty_output": {
+  "message": "মডেল ফাঁকা উত্তর দিয়েছে (হয়তো রিজনিং মডেল তার টোকেন সীমা শেষ করে ফেলেছে)। আবার চেষ্টা করুন, অথবা সেটিংসে অন্য মডেল বেছে নিন।"
+ },
+ "err_no_key": {
+  "message": "আগে সেটিংসে প্রদানকারী কানেক্ট করুন।"
+ },
+ "err_no_permission": {
+  "message": "সেটিংসে Transello-কে প্রদানকারীর API অ্যাক্সেস করার অনুমতি দিন।"
+ },
+ "err_consent_required": {
+  "message": "আগে ক্লাউড প্রদানকারীকে টেক্সট পাঠানোর বিষয়টি নিশ্চিত করুন।"
+ },
+ "err_internal": {
+  "message": "কিছু একটা ভুল হয়েছে।"
+ },
+ "pvNotice": {
+  "message": "আপনি যে টেক্সট অনুবাদ করেন তা $1-কে পাঠানো হয় এবং এর বিল আপনার নিজের অ্যাকাউন্টে আসে। Transello-র কোনো সার্ভার নেই এবং এটি কিছুই সংরক্ষণ করে না।"
+ },
+ "pvApiKey": {
+  "message": "API কী"
+ },
+ "pvGetKey": {
+  "message": "কী নিন"
+ },
+ "pvSave": {
+  "message": "সংরক্ষণ করুন ও পরীক্ষা করুন"
+ },
+ "pvChecking": {
+  "message": "পরীক্ষা হচ্ছে…"
+ },
+ "pvConnected": {
+  "message": "কানেক্ট হয়েছে · কী $1"
+ },
+ "pvConnectedOauth": {
+  "message": "OpenRouter সাইন-ইনের মাধ্যমে কানেক্ট হয়েছে · কী $1"
+ },
+ "pvAuthorized": {
+  "message": "অনুবাদ অনুরোধের জন্য অনুমোদিত।"
+ },
+ "pvUsage": {
+  "message": "কী-এর সীমা: $1 · ব্যবহৃত: $2"
+ },
+ "pvUnlimited": {
+  "message": "সীমাহীন"
+ },
+ "pvDisconnect": {
+  "message": "ডিসকানেক্ট করুন"
+ },
+ "pvDisconnected": {
+  "message": "ডিসকানেক্ট হয়েছে। কী এই ডিভাইস থেকে মুছে ফেলা হয়েছে।"
+ },
+ "pvKeyStorage": {
+  "message": "কী শুধু এই ডিভাইসেই (chrome.storage.local-এ) রাখা হয়, কখনো সিঙ্ক হয় না এবং ওয়েব পেজ এটি দেখতে পায় না। এটি OS কীচেন নয়: এই Chrome প্রোফাইলে অ্যাক্সেস আছে এমন যে কেউ এটি পড়তে পারে।"
+ },
+ "pvModel": {
+  "message": "মডেল"
+ },
+ "pvChooseModel": {
+  "message": "একটি মডেল বেছে নিন"
+ },
+ "pvCustomModel": {
+  "message": "কাস্টম মডেল ID"
+ },
+ "pvUseCustom": {
+  "message": "ব্যবহার করুন"
+ },
+ "pvRefresh": {
+  "message": "তালিকা রিফ্রেশ করুন"
+ },
+ "pvModelsLoaded": {
+  "message": "$1টি মডেল উপলব্ধ"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 প্রতি 1M টোকেন (ইন/আউট)"
+ },
+ "pvTest": {
+  "message": "অনুবাদ পরীক্ষা"
+ },
+ "pvTestNote": {
+  "message": "একটি ছোট অনুরোধ পাঠায়; প্রদানকারী এর বিল করতে পারে (সাধারণত এক সেন্টের ভগ্নাংশ)।"
+ },
+ "pvTestOk": {
+  "message": "মডেলের উত্তর: $1"
+ },
+ "pvPermDenied": {
+  "message": "$1-এ অ্যাক্সেস ছাড়া এই প্রদানকারী ব্যবহার করা যাবে না।"
+ },
+ "pvOauthTitle": {
+  "message": "সাইন-ইন (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "OpenRouter দিয়ে সাইন ইন করুন"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "OpenRouter আপনার অ্যাকাউন্টের সাথে যুক্ত একটি কী তৈরি করে; ব্যবহারের খরচ আপনার OpenRouter ব্যালেন্স থেকে মেটানো হয়।"
+ },
+ "pvOauthOpenAI": {
+  "message": "ChatGPT দিয়ে সাইন-ইন উপলব্ধ নেই: OpenAI বর্তমানে এটি শুধু 127.0.0.1 কলব্যাকযুক্ত লোকাল অ্যাপের জন্য অনুমোদন করে, যা ব্রাউজার এক্সটেনশন গ্রহণ করতে পারে না। API কী ব্যবহার করুন।"
+ },
+ "pvOauthClaude": {
+  "message": "থার্ড-পার্টি এক্সটেনশনের জন্য OAuth উপলব্ধ নেই। Anthropic, Claude Console থেকে API কী নেওয়ার পরামর্শ দেয়।"
+ },
+ "pvOauthDeepSeek": {
+  "message": "DeepSeek শুধু API কী দেয়।"
+ },
+ "optGeneral": {
+  "message": "সাধারণ"
+ },
+ "optUiLang": {
+  "message": "ইন্টারফেসের ভাষা"
+ },
+ "optUiLangAuto": {
+  "message": "Chrome-এর মতো"
+ },
+ "optTarget": {
+  "message": "অনুবাদের ভাষা"
+ },
+ "optTheme": {
+  "message": "থিম"
+ },
+ "optThemeAuto": {
+  "message": "সিস্টেম"
+ },
+ "optThemeLight": {
+  "message": "লাইট"
+ },
+ "optThemeDark": {
+  "message": "ডার্ক"
+ },
+ "optShortcut": {
+  "message": "মিনি পপআপের কিবোর্ড শর্টকাট"
+ },
+ "optShortcutChange": {
+  "message": "chrome://extensions/shortcuts-এ পরিবর্তন করুন"
+ },
+ "optEngine": {
+  "message": "অনুবাদ ইঞ্জিন"
+ },
+ "optPrivacy": {
+  "message": "গোপনীয়তা"
+ },
+ "optLocalOnly": {
+  "message": "ডিফল্টভাবে সবকিছু আপনার ডিভাইসেই লোকালভাবে অনুবাদ হয়। কোথাও কিছু পাঠানো হয় না।"
+ },
+ "optKeepDraft": {
+  "message": "ব্রাউজার বন্ধ না হওয়া পর্যন্ত পপআপের খসড়া রাখুন"
+ },
+ "optClear": {
+  "message": "খসড়া ও ক্যাশ মুছুন"
+ },
+ "optCleared": {
+  "message": "মুছে ফেলা হয়েছে"
+ },
+ "optPrivacyPolicy": {
+  "message": "গোপনীয়তা নীতি"
+ },
+ "optAbout": {
+  "message": "সম্পর্কে"
+ },
+ "optVersion": {
+  "message": "সংস্করণ $1"
+ },
+ "optSource": {
+  "message": "মতামত"
+ },
+ "optSupport": {
+  "message": "☕ Transello-কে সমর্থন করুন"
+ },
+ "optLicenses": {
+  "message": "লাইসেন্স"
+ }
+}

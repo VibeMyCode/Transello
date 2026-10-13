@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transello</title>
+    <link rel="stylesheet" href="options-ui.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="head">
+        <img src="icons/icon-48.png" alt="" width="36" height="36" />
+        <div>
+          <h1>Transello</h1>
+          <p class="muted">Translate with your favorite AI.</p>
+        </div>
+      </header>
+
+      <section aria-labelledby="h-general">
+        <h2 id="h-general" data-i18n="optGeneral"></h2>
+        <label class="row"><span data-i18n="optUiLang"></span>
+          <select id="uiLang"></select>
+        </label>
+        <label class="row"><span data-i18n="optTarget"></span><select id="target"></select></label>
+        <label class="row"><span data-i18n="optTheme"></span>
+          <select id="theme">
+            <option value="auto" data-i18n="optThemeAuto"></option>
+            <option value="light" data-i18n="optThemeLight"></option>
+            <option value="dark" data-i18n="optThemeDark"></option>
+          </select>
+        </label>
+        <div class="row">
+          <span data-i18n="optShortcut"></span>
+          <span class="right"><kbd id="shortcut"></kbd> <button id="shortcutLink" class="btn" type="button" data-i18n="optShortcutChange"></button></span>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-engine">
+        <h2 id="h-engine" data-i18n="optEngine"></h2>
+        <div id="engines" class="engines" role="radiogroup" aria-labelledby="h-engine"></div>
+        <div id="provider" class="provider" hidden></div>
+      </section>
+
+      <section aria-labelledby="h-privacy">
+        <h2 id="h-privacy" data-i18n="optPrivacy"></h2>
+        <p class="muted" data-i18n="optLocalOnly"></p>
+        <label class="check"><input id="keepDraft" type="checkbox" /> <span data-i18n="optKeepDraft"></span></label>
+        <div class="row">
+          <button id="clearData" class="btn" type="button" data-i18n="optClear"></button>
+          <a id="privacyLink" class="link" target="_blank" rel="noopener" data-i18n="optPrivacyPolicy"></a>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-about">
+        <h2 id="h-about" data-i18n="optAbout"></h2>
+        <p id="version" class="muted"></p>
+        <p id="diag" class="muted small"></p>
+        <p class="links">
+          <a id="sourceLink" class="link" target="_blank" rel="noopener" data-i18n="optSource"></a>
+          <a id="supportLink" class="link" target="_blank" rel="noopener" data-i18n="optSupport" hidden></a>
+          <a class="link" href="licenses.html" target="_blank" data-i18n="optLicenses"></a>
+        </p>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

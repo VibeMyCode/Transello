@@ -1,0 +1,21 @@
+node_modules/
+dist/
+dist-e2e/
+release/
+.profile*/
+.remember/
+*.log
+!spikes/phase0/results-chrome155.log
+.env*
+coverage/
+test-results/
+site-dist/
+.DS_Store
+
+# Internal: spec, docs, agent notes, spikes, generated store assets
+Transello_SPEC.md
+docs/
+.claude/
+.claudeignore
+spikes/
+store/

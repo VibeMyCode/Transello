@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Fixture: SPA</title></head>
+<body>
+<div id="app"><h1 id="view-title">Inbox overview</h1><p id="view-text">You have three unread messages from your team.</p></div>
+<button id="nav" type="button">Next view</button>
+<script>
+  document.getElementById('nav').addEventListener('click', () => {
+    history.pushState({}, '', '/spa.html#second');
+    const app = document.getElementById('app');
+    app.replaceChildren();
+    const h = document.createElement('h1'); h.id = 'view-title'; h.textContent = 'Settings page';
+    const p = document.createElement('p'); p.id = 'view-text'; p.textContent = 'Change your notification preferences here.';
+    app.append(h, p);
+  });
+</script>
+</body></html>

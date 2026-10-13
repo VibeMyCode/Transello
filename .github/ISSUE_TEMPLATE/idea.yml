@@ -1,0 +1,11 @@
+name: Idea or feature request
+description: Suggest an improvement or a new language for the interface
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: Describe the situation and what Transello should do. Why it matters to you helps us prioritize.
+    validations:
+      required: true

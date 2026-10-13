@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} · Transello</title>
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg:#fff; --fg:#16181c; --muted:#5b6370; --accent:#3949c9; --border:#dfe2e7; --surface:#f5f6f8; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17191d; --fg:#eceef2; --muted:#a1a8b4; --accent:#8d9cff; --border:#343943; --surface:#1f2227; color-scheme: dark; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { display:flex; gap:12px; align-items:center; margin-bottom: 24px; }
+  header img { width:40px; height:40px; }
+  header a { color: inherit; text-decoration: none; font-weight: 700; font-size: 20px; }
+  nav { margin-left:auto; display:flex; gap:16px; font-size:14px; }
+  a { color: var(--accent); }
+  h1 { font-size: 28px; letter-spacing: -0.02em; } h2 { font-size: 20px; margin-top: 2em; }
+  code { background: var(--surface); padding: 2px 6px; border-radius: 6px; font-size: .92em; overflow-wrap: anywhere; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 3em 0; }
+  .card { border:1px solid var(--border); border-radius:14px; padding:18px 20px; background: var(--surface); }
+  .addr { font: 15px/1.4 ui-monospace,Menlo,monospace; word-break: break-all; }
+  button { font: inherit; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--fg); cursor: pointer; min-height: 40px; }
+  .muted { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+<header><img src="icon.png" alt=""><a href="index.html">Transello</a>
+<nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav></header>
+{{BODY}}
+</main>
+</body>
+</html>

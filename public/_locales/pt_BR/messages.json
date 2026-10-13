@@ -1,0 +1,389 @@
+{
+ "extName": {
+  "message": "Transello"
+ },
+ "extDescription": {
+  "message": "Fale a língua da internet. Cole, selecione ou traduza páginas inteiras num clique, com privacidade no aparelho, ou com GPT, Claude."
+ },
+ "cmdTranslateSelection": {
+  "message": "Traduzir seleção (minijanela)"
+ },
+ "menuTranslateSelection": {
+  "message": "Traduzir com o Transello"
+ },
+ "menuTranslatePage": {
+  "message": "Traduzir página com o Transello"
+ },
+ "engineLocal": {
+  "message": "Local · Private"
+ },
+ "settings": {
+  "message": "Configurações"
+ },
+ "openWindow": {
+  "message": "Abrir em uma janela separada"
+ },
+ "sourceLang": {
+  "message": "Idioma de origem"
+ },
+ "targetLang": {
+  "message": "Idioma de destino"
+ },
+ "recentLangs": {
+  "message": "Recentes"
+ },
+ "allLangs": {
+  "message": "Todos os idiomas"
+ },
+ "autoDetect": {
+  "message": "Detectar idioma"
+ },
+ "swap": {
+  "message": "Trocar idiomas"
+ },
+ "inputPlaceholder": {
+  "message": "Cole ou digite o texto…"
+ },
+ "inputLabel": {
+  "message": "Texto a traduzir"
+ },
+ "resultLabel": {
+  "message": "Tradução"
+ },
+ "translate": {
+  "message": "Traduzir"
+ },
+ "copy": {
+  "message": "Copiar tradução"
+ },
+ "copyShort": {
+  "message": "Copiar"
+ },
+ "copied": {
+  "message": "Copiado"
+ },
+ "clear": {
+  "message": "Limpar"
+ },
+ "retry": {
+  "message": "Tentar novamente"
+ },
+ "cancel": {
+  "message": "Cancelar"
+ },
+ "close": {
+  "message": "Fechar"
+ },
+ "expand": {
+  "message": "Expandir"
+ },
+ "translating": {
+  "message": "Traduzindo…"
+ },
+ "downloading": {
+  "message": "Baixando modelo de idioma… $1%"
+ },
+ "downloadingNote": {
+  "message": "Download único feito pelo Chrome; as próximas traduções funcionam off-line."
+ },
+ "detected": {
+  "message": "Detectado: $1"
+ },
+ "detectedUncertain": {
+  "message": "Parece $1, mas não é certo. Escolha o idioma se estiver errado."
+ },
+ "sameLanguage": {
+  "message": "O texto já está em $1."
+ },
+ "translateTo": {
+  "message": "Traduzir para $1"
+ },
+ "chooseTarget": {
+  "message": "Escolher idioma"
+ },
+ "truncated": {
+  "message": "Apenas os primeiros $1 caracteres foram traduzidos. Traduza o restante separadamente."
+ },
+ "emptyHint": {
+  "message": "Cole um texto - a tradução aparece automaticamente."
+ },
+ "original": {
+  "message": "Original"
+ },
+ "selectText": {
+  "message": "Selecione uma palavra ou frase primeiro."
+ },
+ "openTransello": {
+  "message": "Abrir o Transello"
+ },
+ "pageTranslating": {
+  "message": "Traduzindo página… $1 / $2"
+ },
+ "pageDone": {
+  "message": "$1 de $2 blocos de texto traduzidos."
+ },
+ "pageLimited": {
+  "message": "Página grande: apenas os primeiros $1 blocos são traduzidos."
+ },
+ "pageNothing": {
+  "message": "Nenhum texto traduzível encontrado nesta página."
+ },
+ "showOriginal": {
+  "message": "Mostrar original"
+ },
+ "translateAgain": {
+  "message": "Traduzir novamente"
+ },
+ "pageOriginal": {
+  "message": "Texto original da página restaurado."
+ },
+ "pageCloudConfirm": {
+  "message": "Enviar cerca de $1 caracteres desta página para $2? O provedor pode cobrar por isso."
+ },
+ "pageSensitive": {
+  "message": "Este parece ser um site sensível (banco, e-mail, pagamentos)."
+ },
+ "confirmSend": {
+  "message": "Enviar e traduzir"
+ },
+ "cloudNotice": {
+  "message": "O texto selecionado é enviado para $1 para tradução e pode ser cobrado pelo provedor."
+ },
+ "restrictedHere": {
+  "message": "O Chrome não permite extensões nesta página. Cole o texto no Transello."
+ },
+ "shortcutHint": {
+  "message": "Atalho: $1"
+ },
+ "shortcutNotSet": {
+  "message": "não definido"
+ },
+ "err_cancelled": {
+  "message": "Cancelado."
+ },
+ "err_api_missing": {
+  "message": "A tradução integrada está desativada neste navegador (o Brave faz isso em alguns sistemas). Conecte uma IA na nuvem nas Configurações ou use o Google Chrome."
+ },
+ "err_local_unavailable_here": {
+  "message": "A tradução local não está disponível aqui. Abra a janela do Transello."
+ },
+ "err_unsupported_pair": {
+  "message": "Este par de idiomas não é compatível com a tradução local. Escolha outro idioma ou conecte um provedor na nuvem."
+ },
+ "err_unknown_language": {
+  "message": "Não foi possível detectar o idioma. Escolha o idioma de origem."
+ },
+ "err_download_failed": {
+  "message": "Não foi possível baixar o modelo de idioma (sem conexão ou sem espaço em disco?)."
+ },
+ "err_download_stalled": {
+  "message": "O download do modelo de idioma não está avançando. Verifique sua conexão e tente novamente."
+ },
+ "err_too_long": {
+  "message": "O texto é longo demais para uma única solicitação."
+ },
+ "err_restricted_page": {
+  "message": "O Chrome não permite extensões nesta página."
+ },
+ "err_no_selection": {
+  "message": "Selecione uma palavra ou frase primeiro."
+ },
+ "err_offline": {
+  "message": "Você está off-line."
+ },
+ "err_auth": {
+  "message": "A chave ou o login é inválido ou expirou. Verifique em Configurações."
+ },
+ "err_forbidden": {
+  "message": "Acesso negado pelo provedor (403). Verifique as permissões da chave ou o acesso ao modelo."
+ },
+ "err_rate_limit": {
+  "message": "Muitas solicitações (429). Aguarde um momento e tente novamente."
+ },
+ "err_quota": {
+  "message": "Sem créditos ou cota restante no provedor."
+ },
+ "err_context_limit": {
+  "message": "O texto é longo demais para este modelo. Traduza uma parte menor."
+ },
+ "err_server": {
+  "message": "O provedor está com um erro de servidor. Tente novamente mais tarde."
+ },
+ "err_network": {
+  "message": "Erro de rede."
+ },
+ "err_bad_response": {
+  "message": "Resposta inesperada do provedor."
+ },
+ "err_empty_output": {
+  "message": "O modelo retornou uma resposta vazia (um modelo de raciocínio pode ter esgotado seu limite de tokens). Tente novamente ou escolha outro modelo em Configurações."
+ },
+ "err_no_key": {
+  "message": "Conecte o provedor em Configurações primeiro."
+ },
+ "err_no_permission": {
+  "message": "Permita que o Transello acesse a API do provedor em Configurações."
+ },
+ "err_consent_required": {
+  "message": "Confirme primeiro o envio do texto ao provedor na nuvem."
+ },
+ "err_internal": {
+  "message": "Algo deu errado."
+ },
+ "pvNotice": {
+  "message": "O texto que você traduz é enviado para $1 e cobrado na sua própria conta. O Transello não tem servidor e não armazena nada."
+ },
+ "pvApiKey": {
+  "message": "Chave de API"
+ },
+ "pvGetKey": {
+  "message": "Obter uma chave"
+ },
+ "pvSave": {
+  "message": "Salvar e verificar"
+ },
+ "pvChecking": {
+  "message": "Verificando…"
+ },
+ "pvConnected": {
+  "message": "Conectado · chave $1"
+ },
+ "pvConnectedOauth": {
+  "message": "Conectado via login do OpenRouter · chave $1"
+ },
+ "pvAuthorized": {
+  "message": "Autorizado para solicitações de tradução."
+ },
+ "pvUsage": {
+  "message": "Limite da chave: $1 · usado: $2"
+ },
+ "pvUnlimited": {
+  "message": "sem limite"
+ },
+ "pvDisconnect": {
+  "message": "Desconectar"
+ },
+ "pvDisconnected": {
+  "message": "Desconectado. A chave foi excluída deste dispositivo."
+ },
+ "pvKeyStorage": {
+  "message": "A chave é mantida apenas neste dispositivo (chrome.storage.local), nunca é sincronizada e não fica visível para páginas da web. Não é um chaveiro do sistema operacional: qualquer pessoa com acesso a este perfil do Chrome poderia lê-la."
+ },
+ "pvModel": {
+  "message": "Modelo"
+ },
+ "pvChooseModel": {
+  "message": "Escolha um modelo"
+ },
+ "pvCustomModel": {
+  "message": "ID de modelo personalizado"
+ },
+ "pvUseCustom": {
+  "message": "Usar"
+ },
+ "pvRefresh": {
+  "message": "Atualizar lista"
+ },
+ "pvModelsLoaded": {
+  "message": "$1 modelos disponíveis"
+ },
+ "pvPrice": {
+  "message": "USD $1 / $2 por 1 M de tokens (entrada/saída)"
+ },
+ "pvTest": {
+  "message": "Testar tradução"
+ },
+ "pvTestNote": {
+  "message": "Envia uma solicitação curta; o provedor pode cobrá-la (geralmente uma fração de centavo)."
+ },
+ "pvTestOk": {
+  "message": "Resposta do modelo: $1"
+ },
+ "pvPermDenied": {
+  "message": "Sem acesso a $1, este provedor não pode ser usado."
+ },
+ "pvOauthTitle": {
+  "message": "Login (OAuth)"
+ },
+ "pvOauthOpenRouter": {
+  "message": "Entrar com o OpenRouter"
+ },
+ "pvOauthOpenRouterNote": {
+  "message": "O OpenRouter cria uma chave vinculada à sua conta; o uso é pago com o seu saldo do OpenRouter."
+ },
+ "pvOauthOpenAI": {
+  "message": "Entrar com o ChatGPT não está disponível: atualmente a OpenAI só permite isso para apps locais com callback em 127.0.0.1, que uma extensão de navegador não consegue receber. Use uma chave de API."
+ },
+ "pvOauthClaude": {
+  "message": "OAuth não está disponível para extensões de terceiros. A Anthropic recomenda uma chave de API do Claude Console."
+ },
+ "pvOauthDeepSeek": {
+  "message": "O DeepSeek oferece apenas chaves de API."
+ },
+ "optGeneral": {
+  "message": "Geral"
+ },
+ "optUiLang": {
+  "message": "Idioma da interface"
+ },
+ "optUiLangAuto": {
+  "message": "Igual ao Chrome"
+ },
+ "optTarget": {
+  "message": "Traduzir para"
+ },
+ "optTheme": {
+  "message": "Tema"
+ },
+ "optThemeAuto": {
+  "message": "Sistema"
+ },
+ "optThemeLight": {
+  "message": "Claro"
+ },
+ "optThemeDark": {
+  "message": "Escuro"
+ },
+ "optShortcut": {
+  "message": "Atalho de teclado da minijanela"
+ },
+ "optShortcutChange": {
+  "message": "Alterar em chrome://extensions/shortcuts"
+ },
+ "optEngine": {
+  "message": "Mecanismo de tradução"
+ },
+ "optPrivacy": {
+  "message": "Privacidade"
+ },
+ "optLocalOnly": {
+  "message": "Por padrão, tudo é traduzido localmente no seu dispositivo. Nada é enviado para lugar nenhum."
+ },
+ "optKeepDraft": {
+  "message": "Manter o rascunho da janela até o navegador ser fechado"
+ },
+ "optClear": {
+  "message": "Limpar rascunhos e cache"
+ },
+ "optCleared": {
+  "message": "Limpo"
+ },
+ "optPrivacyPolicy": {
+  "message": "Política de Privacidade"
+ },
+ "optAbout": {
+  "message": "Sobre"
+ },
+ "optVersion": {
+  "message": "Versão $1"
+ },
+ "optSource": {
+  "message": "Feedback"
+ },
+ "optSupport": {
+  "message": "☕ Apoiar o Transello"
+ },
+ "optLicenses": {
+  "message": "Licenças"
+ }
+}

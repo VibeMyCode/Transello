@@ -107,17 +107,21 @@ function translateInto(
   return p.cancel;
 }
 
-function copyButton(get: () => string): HTMLButtonElement {
-  const b = el('button', { type: 'button', class: 'btn', text: t('copyShort'), title: t('copy'), 'aria-label': t('copy'), disabled: true });
-  b.onclick = async () => {
+/** Copy icon, the same in the modal and the mini popup: turns green and pops when copied. */
+function copyButton(get: () => string, disabled = true): HTMLButtonElement {
+  const b = iconButton('copy', t('copy'), async () => {
     await navigator.clipboard.writeText(get());
-    b.textContent = t('copied');
+    pop(b);
     b.classList.add('copied');
+    b.title = t('copied');
+    b.setAttribute('aria-label', t('copied'));
     setTimeout(() => {
-      b.textContent = t('copyShort');
       b.classList.remove('copied');
+      b.title = t('copy');
+      b.setAttribute('aria-label', t('copy'));
     }, 1500);
-  };
+  });
+  b.disabled = disabled;
   return b;
 }
 
@@ -157,21 +161,23 @@ export async function showModal(text: string) {
     'div',
     { class: 'modal glass', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Transello' },
     el('span', { class: 'beam', 'aria-hidden': 'true' }),
-    el('div', { class: 'head' }, el('span', { class: 'brand', text: 'Transello' }), el('span', { class: 'chip', text: engineLabel(settings) }), el('span', { class: 'spacer' }), closeBtn),
+    el(
+      'div',
+      { class: 'head' },
+      el('span', { class: 'brand', text: 'Transello' }),
+      el('span', { class: 'chip', text: engineLabel(settings) }),
+      el('span', { class: 'spacer' }),
+      copy,
+      iconButton('expand', t('openWindow'), () => (chrome.runtime.sendMessage({ type: 'open_window', text }), close())),
+      closeBtn,
+    ),
     el(
       'div',
       { class: 'body' },
       el('div', {}, el('div', { class: 'label', text: t('original') }), el('p', { class: 'text source', dir: 'auto', text })),
       el('div', { 'aria-live': 'polite' }, el('div', { class: 'label', text: t('resultLabel') }), status, result),
     ),
-    el(
-      'div',
-      { class: 'foot' },
-      copy,
-      target,
-      el('span', { class: 'spacer' }),
-      iconButton('expand', t('openWindow'), () => (chrome.runtime.sendMessage({ type: 'open_window', text }), close())),
-    ),
+    el('div', { class: 'foot' }, el('span', { class: 'label', text: t('targetLang') }), target),
   );
   const backdrop = el('div', { class: 'backdrop' }, dialog);
   backdrop.addEventListener('mousedown', (e) => e.target === backdrop && close());
@@ -268,12 +274,7 @@ export async function toggleMini() {
     closeMini = null;
     miniText = '';
   };
-  const copy = iconButton('copy', t('copy'), async () => {
-    await navigator.clipboard.writeText(result.textContent ?? '');
-    pop(copy);
-    copy.classList.add('copied');
-    setTimeout(() => copy.classList.remove('copied'), 1200);
-  });
+  const copy = copyButton(() => result.textContent ?? '', false);
   const tools = el('div', { class: 'tools' });
   const box = el(
     'div',

@@ -107,8 +107,14 @@ progress {
   align-items: center;
   flex-wrap: wrap;
 }
+.foot .label {
+  margin: 0;
+}
 .foot select {
-  max-width: 180px;
+  max-width: 200px;
+}
+.icon-btn.copied {
+  color: var(--ok) !important;
 }
 .mini {
   position: fixed;

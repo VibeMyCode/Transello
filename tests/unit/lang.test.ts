@@ -21,6 +21,13 @@ describe('retargetFor', () => {
     expect(retargetFor('en', ['en', 'de'])).toBe('de');
     expect(retargetFor('en', ['en'])).toBe('ru');
   });
+  it('user report: en text, target en, stray recents (lt) → the browser UI language (ru), not lt', () => {
+    langs(['ru-RU', 'ru', 'en-US', 'en']);
+    (globalThis as { chrome?: unknown }).chrome = { i18n: { getUILanguage: () => 'ru' } };
+    expect(retargetFor('en', ['en', 'lt', 'de'])).toBe('ru');
+    expect(retargetFor('ru', ['ru', 'en', 'lt'])).toBe('en'); // text already in the home language → most recent other
+    delete (globalThis as { chrome?: unknown }).chrome;
+  });
   it('English-only browser, English text, no history → null (ask, never guess)', () => {
     langs(['en-US', 'en']);
     expect(retargetFor('en', ['en'])).toBeNull();

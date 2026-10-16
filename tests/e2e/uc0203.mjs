@@ -158,7 +158,7 @@ export async function uc02({ browser, sw }) {
     const out = await waitResult(p, '.result');
     const bg = await p.$eval('transello-overlay >>> .modal', (m) => getComputedStyle(m).borderRadius);
     await p.close();
-    assert(bg === '14px' && CYR.test(out), JSON.stringify({ bg, out }));
+    assert(bg === '20px' && CYR.test(out), JSON.stringify({ bg, out }));
     return `border-radius ${bg}; ${out}`;
   });
 

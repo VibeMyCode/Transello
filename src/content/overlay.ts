@@ -7,6 +7,7 @@ import { fillLangSelect } from '../ui/langs';
 import { ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 import { el, iconButton } from './dom';
+import { pop, reveal, setPair, springIn } from '../ui/fx';
 import tokens from '../ui/tokens.css';
 import css from './overlay.css';
 
@@ -38,6 +39,9 @@ export async function ctx(): Promise<{ settings: Settings; layer: HTMLElement }>
 
 export const inOverlay = (e: Event) => !!host && e.composedPath().includes(host);
 
+/** Overlay colours follow the language pair. Set on the host: derived tokens (--glow-*, --accent) resolve at :host. */
+export const paintPair = (from?: string | null, to?: string | null) => host && setPair(host, from, to);
+
 function engineLabel(s: Settings) {
   return s.engine === 'local' ? t('engineLocal') : `${ENGINE_NAMES[s.engine]}${s.models[s.engine] ? ' · ' + s.models[s.engine] : ''}`;
 }
@@ -57,15 +61,22 @@ function translateInto(
     view.status.replaceChildren(msg);
     if (progress !== undefined) view.status.append(el('progress', { max: 100, value: Math.round(progress * 100) }));
   };
-  view.result.textContent = '';
+  // The card (modal / mini) wears the language pair's colours and a border beam while working.
+  const card = view.status.closest<HTMLElement>('.modal, .mini');
+  const busy = (on: boolean) => card?.classList.toggle('busy', on);
+  paintPair(null, target);
+  reveal(view.result, '');
   if (view.copy) view.copy.disabled = true;
   setStatus(t('translating'));
+  busy(true);
   const p = request({ type: 'translate', req: { text, source: 'auto', target, mode: 'selection', fixedTarget } }, (loaded) =>
     setStatus(t('downloading', Math.round(loaded * 100)), false, loaded),
   );
   p.promise
     .then((m) => {
       const r = (m as { result: TranslateResult }).result;
+      busy(false);
+      paintPair(r.source, r.retarget ?? target);
       if (r.sameLanguage && r.source) {
         const alt = retargetFor(r.source, s.recentLangs);
         setStatus(t('sameLanguage', langName(r.source, ui)));
@@ -78,11 +89,12 @@ function translateInto(
       if (r.detection?.lang && r.detection.uncertain) view.status.append(t('detectedUncertain', langName(r.detection.lang, ui)));
       if (r.truncated) view.status.append(t('truncated', r.text.length));
       if (r.retarget && view.target) void getSettings().then((fresh) => fillLangSelect(view.target!, ui, fresh, r.retarget!));
-      view.result.textContent = r.text; // plain text only
+      reveal(view.result, r.text, text); // plain text only; the decode effect is visual
       if (view.copy) view.copy.disabled = !r.text;
       onDone?.(r);
     })
     .catch((e: unknown) => {
+      busy(false);
       const te = e instanceof TError ? e : toTError(e);
       if (te.code === 'cancelled') return;
       setStatus(t(`err_${te.code}` as MsgKey), true);
@@ -143,7 +155,8 @@ export async function showModal(text: string) {
   const closeBtn = iconButton('close', t('close'), close);
   const dialog = el(
     'div',
-    { class: 'modal', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Transello' },
+    { class: 'modal glass', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Transello' },
+    el('span', { class: 'beam', 'aria-hidden': 'true' }),
     el('div', { class: 'head' }, el('span', { class: 'brand', text: 'Transello' }), el('span', { class: 'chip', text: engineLabel(settings) }), el('span', { class: 'spacer' }), closeBtn),
     el(
       'div',
@@ -170,6 +183,7 @@ export async function showModal(text: string) {
     } else if (e.key === 'Tab') trapFocus(e, dialog);
   });
   layer.append(backdrop);
+  springIn(dialog, 'center', { y: 14, scale: 0.97 });
   closeModal = close;
   closeBtn.focus({ preventScroll: true });
   run(settings.target);
@@ -256,11 +270,18 @@ export async function toggleMini() {
   };
   const copy = iconButton('copy', t('copy'), async () => {
     await navigator.clipboard.writeText(result.textContent ?? '');
+    pop(copy);
     copy.classList.add('copied');
     setTimeout(() => copy.classList.remove('copied'), 1200);
   });
   const tools = el('div', { class: 'tools' });
-  const box = el('div', { class: 'mini', role: 'dialog', 'aria-label': 'Transello', 'aria-live': 'polite' }, el('div', { class: 'row' }, result, tools), status);
+  const box = el(
+    'div',
+    { class: 'mini glass', role: 'dialog', 'aria-label': 'Transello', 'aria-live': 'polite' },
+    el('span', { class: 'beam', 'aria-hidden': 'true' }),
+    el('div', { class: 'row' }, result, tools),
+    status,
+  );
 
   if (!text) {
     result.textContent = t('selectText');
@@ -286,6 +307,10 @@ export async function toggleMini() {
   const onOutside = (e: Event) => !inOverlay(e) && close();
   layer.append(box);
   place(box, sel.rect());
+  // Grow out of the selection: from its left edge, downwards (or upwards when flipped above it).
+  const a = sel.rect();
+  const b = box.getBoundingClientRect();
+  springIn(box, a ? `${Math.round(a.left - b.left)}px ${b.top < a.top ? '100%' : '0%'}` : 'center', { y: 0, scale: 0.92 });
   ro.observe(box);
   addEventListener('scroll', reposition, { capture: true, passive: true });
   addEventListener('resize', reposition);

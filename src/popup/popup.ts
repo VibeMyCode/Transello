@@ -4,6 +4,7 @@ import { isRetryable, TError, toTError } from '../core/errors';
 import { applyI18n, t, uiLocale, type MsgKey } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
 import { fillLangSelect } from '../ui/langs';
+import { enter, pop, reveal, setPair, spin } from '../ui/fx';
 import { applyTheme, ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 
@@ -31,7 +32,11 @@ function fillLangs() {
   const ui = uiLocale();
   fillLangSelect(source, ui, settings, source.value || 'auto', true);
   fillLangSelect(target, ui, settings, settings.target);
+  paint();
 }
+
+/** The whole popup takes the colours of the current language pair (source: chosen, else last detected). */
+const paint = () => setPair(document.documentElement, source.value !== 'auto' ? source.value : (last?.source ?? null), target.value);
 
 function engineLabel(): string {
   if (settings.engine === 'local') return t('engineLocal');
@@ -84,7 +89,8 @@ function render(r: TranslateResult) {
   last = r;
   const ui = uiLocale();
   status.replaceChildren();
-  result.textContent = r.text; // plain text only, never HTML (spec §6)
+  reveal(result, r.text, input.value); // plain text only, never HTML (spec §6); the decode effect is visual only
+  paint();
   btnCopy.disabled = !r.text;
   if (r.retarget) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
   const m: (string | Node)[] = [];
@@ -102,7 +108,7 @@ function render(r: TranslateResult) {
 }
 
 function showError(e: TError) {
-  result.textContent = '';
+  reveal(result, '');
   btnCopy.disabled = true;
   showStatus(t(`err_${e.code}` as MsgKey), { error: true, retry: isRetryable(e.code) });
   if (e.code === 'unknown_language' || e.code === 'unsupported_pair') source.focus();
@@ -117,7 +123,7 @@ async function run(fixedTarget = false) {
   const text = input.value;
   if (!text.trim()) {
     last = null;
-    result.textContent = '';
+    reveal(result, '');
     btnCopy.disabled = true;
     setMeta([]);
     showStatus(t('emptyHint'));
@@ -171,6 +177,8 @@ async function init() {
   applyTheme(settings);
   applyI18n();
   if (isWindow) document.body.classList.add('window');
+  enter([...document.querySelectorAll('.app > *')]);
+  setTimeout(() => document.documentElement.classList.add('ready'), 60); // first colours instantly, later ones glide
   fillLangs();
   $('engine').textContent = engineLabel();
 
@@ -205,6 +213,7 @@ async function init() {
   btnCopy.onclick = async () => {
     if (!last?.text) return;
     await navigator.clipboard.writeText(last.text);
+    pop(btnCopy);
     btnCopy.textContent = t('copied');
     btnCopy.classList.add('copied');
     setTimeout(() => {
@@ -217,12 +226,14 @@ async function init() {
       settings = await rememberLang(source.value);
       fillLangs();
     }
+    paint();
     void run();
   };
   target.onchange = () => setTarget(target.value);
   $('swap').onclick = () => {
     const from = source.value === 'auto' ? last?.source : source.value;
     if (!from) return;
+    spin($('swap').firstElementChild!);
     const to = target.value;
     if (source.value !== 'auto') source.value = to; // auto stays auto: detection + retarget handle both directions
     void rememberLang(to).then(() => setTarget(from));

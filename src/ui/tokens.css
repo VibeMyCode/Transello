@@ -1,65 +1,168 @@
-/* Shared design tokens: premium-minimal, light/dark by system with manual override (spec §2). */
+/* Shared design tokens. "Aura": every language has a hue (--ha source, --hb target, set from fx.ts); surfaces are
+   frosted glass over a soft two-colour glow, so each language pair has its own look. OKLCH keeps contrast equal
+   across hues. Light/dark by system with a manual override (spec §2). */
+@property --ha {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 290;
+}
+@property --hb {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 290;
+}
 :root,
 :host {
-  --bg: #ffffff;
-  --surface: #f5f6f8;
-  --surface-2: #eceef2;
-  --border: #dfe2e7;
-  --text: #16181c;
-  --muted: #5b6370;
-  --accent: #3949c9;
-  --accent-hover: #2e3cae;
+  --ha: 290;
+  --hb: 290;
+  --bg: #fbfbfd;
+  --surface: #f2f3f7;
+  --surface-2: #e9ebf1;
+  --border: #dcdfe7;
+  --line: rgb(20 24 40 / 0.1);
+  --glass: rgb(255 255 255 / 0.62);
+  --glass-strong: rgb(255 255 255 / 0.8);
+  --highlight: inset 0 1px 0 rgb(255 255 255 / 0.75);
+  --text: #14161c;
+  --muted: #5a6170;
+  --accent: oklch(0.52 0.17 var(--hb));
+  --accent-hover: oklch(0.47 0.17 var(--hb));
   --accent-text: #ffffff;
-  --accent-soft: #e9ebfb;
+  --accent-soft: oklch(0.95 0.035 var(--hb));
+  --glow-a: oklch(0.74 0.17 var(--ha) / 0.5);
+  --glow-b: oklch(0.74 0.17 var(--hb) / 0.5);
+  --grad: linear-gradient(115deg in oklch, oklch(0.56 0.19 var(--ha)), oklch(0.56 0.19 var(--hb)));
   --danger: #b4232a;
   --danger-soft: #fdecec;
   --ok: #1d7a46;
-  --shadow: 0 12px 32px rgba(18, 22, 33, 0.16), 0 2px 6px rgba(18, 22, 33, 0.08);
-  --radius: 10px;
-  --radius-sm: 7px;
-  --ring: 0 0 0 3px rgba(57, 73, 201, 0.35);
+  --shadow: 0 18px 50px -12px rgb(20 24 50 / 0.28), 0 2px 8px rgb(20 24 50 / 0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --ring: 0 0 0 3px oklch(0.6 0.17 var(--hb) / 0.35);
   --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']),
   :host(:not([data-theme='light'])) {
-    --bg: #17191d;
-    --surface: #1f2227;
-    --surface-2: #282c33;
-    --border: #343943;
-    --text: #eceef2;
-    --muted: #a1a8b4;
-    --accent: #8d9cff;
-    --accent-hover: #a6b2ff;
-    --accent-text: #10131c;
-    --accent-soft: #262b45;
+    --bg: #0e1015;
+    --surface: #171a21;
+    --surface-2: #20242d;
+    --border: #2b303b;
+    --line: rgb(255 255 255 / 0.09);
+    --glass: rgb(22 25 33 / 0.55);
+    --glass-strong: rgb(22 25 33 / 0.78);
+    --highlight: inset 0 1px 0 rgb(255 255 255 / 0.06);
+    --text: #eceef3;
+    --muted: #9ea5b3;
+    --accent: oklch(0.8 0.13 var(--hb));
+    --accent-hover: oklch(0.86 0.11 var(--hb));
+    --accent-text: #0b0d12;
+    --accent-soft: oklch(0.3 0.06 var(--hb));
+    --glow-a: oklch(0.55 0.17 var(--ha) / 0.45);
+    --glow-b: oklch(0.55 0.17 var(--hb) / 0.45);
+    --grad: linear-gradient(115deg in oklch, oklch(0.62 0.17 var(--ha)), oklch(0.62 0.17 var(--hb)));
     --danger: #ff8a8a;
     --danger-soft: #3a2224;
     --ok: #6fd39b;
-    --shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
-    --ring: 0 0 0 3px rgba(141, 156, 255, 0.4);
+    --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px rgb(0 0 0 / 0.4);
+    --ring: 0 0 0 3px oklch(0.75 0.14 var(--hb) / 0.45);
     color-scheme: dark;
   }
 }
 :root[data-theme='dark'],
 :host([data-theme='dark']) {
-  --bg: #17191d;
-  --surface: #1f2227;
-  --surface-2: #282c33;
-  --border: #343943;
-  --text: #eceef2;
-  --muted: #a1a8b4;
-  --accent: #8d9cff;
-  --accent-hover: #a6b2ff;
-  --accent-text: #10131c;
-  --accent-soft: #262b45;
+  --bg: #0e1015;
+  --surface: #171a21;
+  --surface-2: #20242d;
+  --border: #2b303b;
+  --line: rgb(255 255 255 / 0.09);
+  --glass: rgb(22 25 33 / 0.55);
+  --glass-strong: rgb(22 25 33 / 0.78);
+  --highlight: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  --text: #eceef3;
+  --muted: #9ea5b3;
+  --accent: oklch(0.8 0.13 var(--hb));
+  --accent-hover: oklch(0.86 0.11 var(--hb));
+  --accent-text: #0b0d12;
+  --accent-soft: oklch(0.3 0.06 var(--hb));
+  --glow-a: oklch(0.55 0.17 var(--ha) / 0.45);
+  --glow-b: oklch(0.55 0.17 var(--hb) / 0.45);
+  --grad: linear-gradient(115deg in oklch, oklch(0.62 0.17 var(--ha)), oklch(0.62 0.17 var(--hb)));
   --danger: #ff8a8a;
   --danger-soft: #3a2224;
   --ok: #6fd39b;
-  --shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
-  --ring: 0 0 0 3px rgba(141, 156, 255, 0.4);
+  --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px rgb(0 0 0 / 0.4);
+  --ring: 0 0 0 3px oklch(0.75 0.14 var(--hb) / 0.45);
   color-scheme: dark;
+}
+
+/* The glow behind a surface: source colour top-left, target colour top-right, their blend underneath. */
+.aura {
+  background:
+    radial-gradient(55% 45% at 8% 0%, var(--glow-a), transparent 70%),
+    radial-gradient(55% 45% at 100% 8%, var(--glow-b), transparent 70%),
+    radial-gradient(70% 50% at 50% 115%, oklch(0.75 0.12 calc((var(--ha) + var(--hb)) / 2) / 0.22), transparent 70%),
+    var(--bg);
+}
+/* Frosted glass card. */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--highlight);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+}
+/* Border beam: a light travelling around the card while work is in progress. No @property needed, so it also
+   runs inside overlay shadow roots: a masked ring holding a rotating conic gradient. */
+.beam {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.beam::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 160%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: conic-gradient(from 0deg, transparent 0 62%, oklch(0.7 0.2 var(--ha)) 76%, oklch(0.75 0.2 var(--hb)) 88%, transparent 100%);
+  animation: beam 1.7s linear infinite;
+}
+.busy > .beam,
+.beam.on {
+  opacity: 1;
+}
+@keyframes beam {
+  to {
+    rotate: 1turn;
+  }
+}
+/* Decode effect (fx.ts reveal): the real word is transparent while ::before shows its scrambled glyphs. */
+.w {
+  display: inline;
+}
+.w.scr {
+  position: relative;
+  color: transparent;
+}
+.w.scr::before {
+  content: attr(data-s);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  white-space: pre;
+  color: var(--accent);
 }
 
 /* Shared controls (used in extension pages and inside overlay shadow roots). */
@@ -69,34 +172,41 @@
 select {
   font: inherit;
   color: inherit;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 1px solid var(--line);
+  background: var(--glass-strong);
   border-radius: var(--radius-sm);
   min-height: 36px;
   cursor: pointer;
-  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.12s ease, box-shadow 0.2s ease;
 }
 .btn {
-  padding: 0 14px;
-  font-weight: 550;
+  padding: 0 15px;
+  font-weight: 600;
 }
 .btn:hover,
 .icon-btn:hover,
-.chip:hover,
 select:hover {
   background: var(--surface);
 }
+.btn:active,
+.icon-btn:active {
+  transform: scale(0.97);
+}
 .btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-text);
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 20px -8px oklch(0.55 0.19 var(--hb) / 0.75), inset 0 1px 0 rgb(255 255 255 / 0.25);
+  text-shadow: 0 1px 1px rgb(0 0 0 / 0.15);
 }
 .btn.primary:hover {
-  background: var(--accent-hover);
+  background: var(--grad);
+  filter: brightness(1.06) saturate(1.05);
 }
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: default;
+  transform: none;
 }
 .icon-btn {
   width: 36px;
@@ -108,6 +218,9 @@ select:hover {
   background: transparent;
   color: var(--muted);
 }
+.icon-btn:hover {
+  color: var(--text);
+}
 .icon-btn svg {
   width: 18px;
   height: 18px;
@@ -115,18 +228,30 @@ select:hover {
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0 10px;
+  gap: 6px;
+  padding: 0 11px 0 9px;
   font-size: 12px;
   font-weight: 600;
-  background: var(--accent-soft);
-  border-color: transparent;
-  color: var(--accent);
+  background: var(--glass-strong);
+  color: var(--text);
   border-radius: 999px;
   min-height: 28px;
   white-space: nowrap;
 }
+.chip::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grad);
+  box-shadow: 0 0 8px oklch(0.7 0.18 var(--hb) / 0.8);
+}
+.chip:hover {
+  background: var(--glass-strong);
+  border-color: oklch(0.6 0.15 var(--hb) / 0.4);
+}
 select {
-  padding: 0 28px 0 10px;
+  padding: 0 28px 0 11px;
   appearance: none;
   background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
   background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%;
@@ -134,7 +259,7 @@ select {
   background-repeat: no-repeat;
 }
 select:dir(rtl) {
-  padding: 0 10px 0 28px;
+  padding: 0 11px 0 28px;
   background-position: 10px 50%, 15px 50%;
 }
 :focus-visible {

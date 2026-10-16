@@ -2,6 +2,7 @@
 import { LINKS } from '../core/config';
 import { applyI18n, t, UI_LANGS, uiLocale } from '../core/i18n';
 import { fillLangSelect } from '../ui/langs';
+import { setPair } from '../ui/fx';
 import { applyTheme, ENGINE_NAMES, getSettings, onSettingsChanged, initUi, rememberLang, setSettings, type EngineId, type Settings } from '../core/settings';
 import { renderProvider } from './provider';
 import { localDiagnostics } from '../core/local';
@@ -53,6 +54,7 @@ async function renderAll() {
   );
   const target = $<HTMLSelectElement>('target');
   fillLangSelect(target, ui, settings, settings.target);
+  setPair(document.documentElement, settings.uiLang === 'auto' ? uiLocale() : settings.uiLang, settings.target); // interface language → target
   $<HTMLSelectElement>('uiLang').value = settings.uiLang;
   $<HTMLSelectElement>('theme').value = settings.theme;
   $<HTMLInputElement>('keepDraft').checked = settings.keepDraft;

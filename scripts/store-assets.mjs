@@ -36,6 +36,7 @@ const select = (p, id) =>
   });
   await sleep(600);
   await pop.waitForFunction(() => document.getElementById('result').textContent.length > 10, { timeout: 60_000 });
+  await sleep(1200); // let the decode effect settle
   const img = (await pop.screenshot({ encoding: 'base64' })).toString();
   await pop.close();
   const p = await browser.newPage();
@@ -58,7 +59,7 @@ const tab = await tabOf('http://localhost:8766/docs.html');
 await select(page, 'intro');
 await sw.evaluate((t, tab) => self.__transelloTest.onMenuClick({ menuItemId: 'translate-selection', selectionText: t, frameId: 0 }, tab), await select(page, 'intro'), tab);
 await overlayDone(page, '.result');
-await sleep(300);
+await sleep(1200);
 await shot(page, 'screenshot-2-modal.png');
 await page.keyboard.press('Escape');
 
@@ -66,7 +67,7 @@ await page.keyboard.press('Escape');
 await select(page, 'li2');
 await sw.evaluate((tab) => self.__transelloTest.onCommand('translate-selection', tab), tab);
 await overlayDone(page, '.mini .text');
-await sleep(300);
+await sleep(1200);
 await shot(page, 'screenshot-3-mini.png');
 await page.keyboard.press('Escape');
 await page.evaluate(() => getSelection().removeAllRanges());

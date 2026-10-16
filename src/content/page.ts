@@ -5,7 +5,8 @@ import { t, type MsgKey } from '../core/i18n';
 import { isSensitiveHost } from '../core/sensitive';
 import { ENGINE_NAMES, setSettings, type Settings } from '../core/settings';
 import { el, iconButton } from './dom';
-import { ctx } from './overlay';
+import { springIn } from '../ui/fx';
+import { ctx, paintPair } from './overlay';
 import { apply, batches, collectSegments, MAX_NODES, restore, type Segment } from './segments';
 
 type State = 'idle' | 'running' | 'translated' | 'original';
@@ -18,9 +19,11 @@ const CLOUD_PAGE_MAX = 40_000; // chars per cloud page run
 async function toolbar(): Promise<{ msg: HTMLElement; actions: HTMLElement; settings: Settings }> {
   const { settings, layer } = await ctx();
   if (!bar?.isConnected) {
-    bar = el('div', { class: 'toolbar', role: 'status', 'aria-live': 'polite' }, el('span', { class: 'msg' }), el('span', { class: 'actions' }));
+    bar = el('div', { class: 'toolbar glass', role: 'status', 'aria-live': 'polite' }, el('span', { class: 'beam', 'aria-hidden': 'true' }), el('span', { class: 'msg' }), el('span', { class: 'actions' }));
     bar.append(iconButton('close', t('close'), closeBar));
+    paintPair(null, settings.target);
     layer.append(bar);
+    springIn(bar, '100% 100%', { y: 10, scale: 0.96 });
   }
   return { msg: bar.querySelector('.msg')!, actions: bar.querySelector('.actions')!, settings };
 }
@@ -38,6 +41,7 @@ function button(label: string, onclick: () => void, primary = false) {
 async function show(text: string, buttons: HTMLButtonElement[] = [], progress?: number) {
   const { msg, actions } = await toolbar();
   msg.replaceChildren(text);
+  bar?.classList.toggle('busy', progress !== undefined);
   if (progress !== undefined) msg.append(el('progress', { max: 100, value: Math.round(progress * 100) }));
   actions.replaceChildren(...buttons);
 }

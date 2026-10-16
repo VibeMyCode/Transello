@@ -101,6 +101,15 @@
  "chooseTarget": {
   "message": "Choose language"
  },
+ "needDownload": {
+  "message": "Translating $1 → $2 needs a language model download (about 80 MB)."
+ },
+ "needDownloadUnsure": {
+  "message": "Translation direction unclear: it looks like $1. Download the $1 → $2 language model (about 80 MB), or choose the language yourself."
+ },
+ "downloadModel": {
+  "message": "Download"
+ },
  "truncated": {
   "message": "Only the first $1 characters were translated. Translate the rest separately."
  },
@@ -172,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "Could not detect the language. Pick the source language."
+ },
+ "err_needs_download": {
+  "message": "This direction needs a language model download first (about 80 MB)."
  },
  "err_download_failed": {
   "message": "The language model could not be downloaded (offline or not enough disk space?)."

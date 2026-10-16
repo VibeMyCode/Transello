@@ -2,11 +2,13 @@
 import { splitText, translatePieces } from './chunk';
 import { TError } from './errors';
 import { normalizeLang, retargetFor } from './lang';
-import { detectLanguage, localApiPresent, localTranslate } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairReady } from './local';
 import type { Ctx } from './translate';
 
 export interface BatchCtx extends Ctx {
   consent?: boolean;
+  /** The user agreed to download the model for the detected direction. */
+  allowDownload?: boolean;
   cloudBatch?: (segments: string[], target: string, ctx: Ctx) => Promise<{ segments: string[]; model?: string }>;
 }
 
@@ -36,9 +38,12 @@ export async function translateBatch(segments: string[], source: string, target:
   let retarget: string | undefined;
   if (src === tgt) {
     const alt = source === 'auto' ? retargetFor(src, ctx.settings.recentLangs) : null;
-    if (!alt) return { segments, engine }; // already in the target language, nothing else to go to
+    // Already in the target and no ready alternative: leave the page as is (no surprise model downloads).
+    if (!alt || !(await pairReady(src, alt))) return { segments, engine };
     tgt = retarget = alt;
   }
+  // Same rule as single translations: no surprise model download for a detected direction.
+  if (source === 'auto' && !ctx.allowDownload && !(await pairReady(src, tgt))) throw new TError('needs_download', `${src}>${tgt}`);
   const out: string[] = [];
   for (const s of segments) out.push(await translatePieces(splitText(s), (p) => localTranslate(p, src!, tgt, ctx.signal, ctx.onProgress), ctx.signal));
   return { segments: out, engine, retarget };

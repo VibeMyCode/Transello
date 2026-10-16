@@ -190,6 +190,12 @@ function evict(key: string, p: Pending<Translator>) {
   p.promise.then((t) => t.destroy()).catch(() => {});
 }
 
+/** True when this pair's model is already on the device (no download needed). */
+export async function pairReady(source: string, target: string): Promise<boolean> {
+  if (!localApiPresent()) return false;
+  return (await Translator.availability({ sourceLanguage: source, targetLanguage: target }).catch(() => 'unavailable')) === 'available';
+}
+
 export async function localTranslate(text: string, source: string, target: string, signal?: AbortSignal, onProgress?: OnProgress): Promise<string> {
   // Live finding: installing another language pack can invalidate an already-created Translator
   // ("UnknownError: Other generic failures occurred"). Recreate once before reporting an error.

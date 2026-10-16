@@ -6,10 +6,10 @@
     <title>Transello</title>
     <link rel="stylesheet" href="popup-ui.css" />
   </head>
-  <body>
+  <body class="aura">
     <main class="app">
       <header class="bar">
-        <span class="brand"><img src="icons/icon-32.png" alt="" width="20" height="20" />Transello</span>
+        <span class="brand"><img src="icons/icon-32.png" alt="" width="22" height="22" /><span class="word">Transello</span></span>
         <button id="engine" class="chip" type="button" data-i18n-title="optEngine"></button>
         <span class="spacer"></span>
         <button id="openWindow" class="icon-btn" type="button" data-i18n-title="openWindow">
@@ -20,7 +20,7 @@
         </button>
       </header>
 
-      <div class="langs">
+      <div class="langs glass">
         <select id="source" data-i18n-title="sourceLang"></select>
         <button id="swap" class="icon-btn" type="button" data-i18n-title="swap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h13l-4-4M17 17H4l4 4" /></svg>
@@ -28,13 +28,16 @@
         <select id="target" data-i18n-title="targetLang"></select>
       </div>
 
-      <textarea id="input" dir="auto" spellcheck="false" data-i18n-placeholder="inputPlaceholder" data-i18n-title="inputLabel"></textarea>
+      <textarea id="input" class="glass" dir="auto" spellcheck="false" data-i18n-placeholder="inputPlaceholder" data-i18n-title="inputLabel"></textarea>
       <div id="meta" class="meta" aria-live="polite"></div>
 
-      <section id="output" class="output" aria-live="polite" aria-busy="false" data-i18n-title="resultLabel">
-        <div id="status" class="status"></div>
-        <div id="result" class="result" dir="auto" tabindex="0"></div>
-      </section>
+      <div class="out glass">
+        <span class="beam" aria-hidden="true"></span>
+        <section id="output" class="output" aria-live="polite" aria-busy="false" data-i18n-title="resultLabel">
+          <div id="status" class="status"></div>
+          <div id="result" class="result" dir="auto" tabindex="0"></div>
+        </section>
+      </div>
 
       <footer class="actions">
         <button id="translate" class="btn primary" type="button" data-i18n="translate"></button>

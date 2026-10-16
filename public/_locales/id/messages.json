@@ -101,6 +101,15 @@
  "chooseTarget": {
   "message": "Pilih bahasa"
  },
+ "needDownload": {
+  "message": "Untuk menerjemahkan $1 → $2, model bahasa perlu diunduh (sekitar 80 MB)."
+ },
+ "needDownloadUnsure": {
+  "message": "Arah terjemahan belum jelas: sepertinya $1. Unduh model $1 → $2 (sekitar 80 MB) atau pilih bahasanya sendiri."
+ },
+ "downloadModel": {
+  "message": "Unduh"
+ },
  "truncated": {
   "message": "Hanya $1 karakter pertama yang diterjemahkan. Terjemahkan sisanya secara terpisah."
  },
@@ -172,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "Bahasa tidak dapat dideteksi. Pilih bahasa sumber."
+ },
+ "err_needs_download": {
+  "message": "Arah ini perlu mengunduh model bahasa terlebih dahulu (sekitar 80 MB)."
  },
  "err_download_failed": {
   "message": "Model bahasa tidak dapat diunduh (offline atau ruang disk tidak cukup?)."

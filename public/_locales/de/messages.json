@@ -101,6 +101,15 @@
  "chooseTarget": {
   "message": "Sprache wählen"
  },
+ "needDownload": {
+  "message": "Für $1 → $2 muss ein Sprachmodell heruntergeladen werden (etwa 80 MB)."
+ },
+ "needDownloadUnsure": {
+  "message": "Übersetzungsrichtung unklar: sieht nach $1 aus. Laden Sie das Modell $1 → $2 herunter (etwa 80 MB) oder wählen Sie die Sprache selbst."
+ },
+ "downloadModel": {
+  "message": "Herunterladen"
+ },
  "truncated": {
   "message": "Nur die ersten $1 Zeichen wurden übersetzt. Übersetzen Sie den Rest separat."
  },
@@ -172,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "Die Sprache konnte nicht erkannt werden. Wählen Sie die Ausgangssprache."
+ },
+ "err_needs_download": {
+  "message": "Für diese Richtung muss zuerst ein Sprachmodell heruntergeladen werden (etwa 80 MB)."
  },
  "err_download_failed": {
   "message": "Das Sprachmodell konnte nicht heruntergeladen werden (offline oder zu wenig Speicherplatz?)."

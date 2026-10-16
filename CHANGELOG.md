@@ -1,6 +1,7 @@
 # Changelog
 
-## 1.0.0 — unreleased
+## 1.0.0 - unreleased
+- Design "Aura": every language has its own colour; the popup glows in the colours of the current pair and they glide when it changes. Glass cards, a border beam while translating, translations "decode" from the source script into the target one, spring entrances for the modal and mini popup (Motion, MIT, bundled). Everything is off with reduced motion; the real text is in the DOM from the first frame.
 - UC-01: toolbar popup with auto-detect, local Chrome translation, download progress, copy, draft, standalone window.
 - Local engine runs in the extension service worker (ADR-001) with stall guard, bounded cache and recovery from invalidated models.
 - UC-02: context menu "Translate in Transello" → Shadow-DOM modal (focus trap, Esc, backdrop, CSP-safe styles, iframes, fallback window on restricted pages, honest length limit).

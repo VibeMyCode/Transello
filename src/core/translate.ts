@@ -3,7 +3,7 @@ import { limitText, MAX_TEXT, splitText, translatePieces } from './chunk';
 import { CLOUD_TEXT_MAX } from './cloud';
 import { TError } from './errors';
 import { normalizeLang, retargetFor, type Detection } from './lang';
-import { detectLanguage, localApiPresent, localTranslate, type OnProgress } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairReady, type OnProgress } from './local';
 import type { EngineId, Settings } from './settings';
 
 export type Mode = 'text' | 'selection' | 'page_chunk';
@@ -15,6 +15,8 @@ export interface TranslateRequest {
   mode: Mode;
   /** The user just picked this target: never switch it, report sameLanguage instead. */
   fixedTarget?: boolean;
+  /** The user agreed to download the model for this direction (the "Download" button). */
+  allowDownload?: boolean;
 }
 
 export interface TranslateResult {
@@ -24,6 +26,9 @@ export interface TranslateResult {
   sameLanguage?: boolean;
   /** Set when the detected language equalled the target and another target was used instead. */
   retarget?: string;
+  /** The direction was chosen automatically and its model (~80 MB) is not on the device: nothing was translated,
+   *  ask the user first (download, or pick the language). `retarget` is set when the target was the guess. */
+  needsDownload?: boolean;
   truncated?: boolean;
   engine: EngineId;
   model?: string;
@@ -73,6 +78,10 @@ export async function translate(req: TranslateRequest, ctx: Ctx): Promise<Transl
     if (!alt) return { text: '', source: src, detection, sameLanguage: true, engine };
     tgt = retarget = alt;
   }
+  // Never download a model (~80 MB) for a direction the user didn't choose: a guessed source (user report: a URL
+  // "looked like Czech") or a guessed target (a stray recent pulled Lithuanian). Picking a language is consent.
+  const chosen = req.allowDownload || req.fixedTarget || req.source !== 'auto';
+  if (!chosen && !(await pairReady(src, tgt))) return { text: '', source: src, detection, engine, retarget, needsDownload: true };
 
   const out = await translatePieces(
     splitText(text),

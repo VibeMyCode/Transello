@@ -101,6 +101,15 @@
  "chooseTarget": {
   "message": "言語を選択"
  },
+ "needDownload": {
+  "message": "$1 → $2 の翻訳には言語モデルのダウンロードが必要です（約 80 MB）。"
+ },
+ "needDownloadUnsure": {
+  "message": "翻訳の方向がはっきりしません：$1 のようです。$1 → $2 の言語モデル（約 80 MB）をダウンロードするか、言語を手動で選んでください。"
+ },
+ "downloadModel": {
+  "message": "ダウンロード"
+ },
  "truncated": {
   "message": "最初の $1 文字のみ翻訳されました。残りは別途翻訳してください。"
  },
@@ -172,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "言語を検出できませんでした。翻訳元の言語を選択してください。"
+ },
+ "err_needs_download": {
+  "message": "この方向の翻訳には、先に言語モデルのダウンロードが必要です（約 80 MB）。"
  },
  "err_download_failed": {
   "message": "言語モデルをダウンロードできませんでした（オフライン、またはディスク容量不足の可能性があります）。"

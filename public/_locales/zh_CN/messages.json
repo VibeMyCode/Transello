@@ -101,6 +101,15 @@
  "chooseTarget": {
   "message": "选择语言"
  },
+ "needDownload": {
+  "message": "翻译 $1 → $2 需要下载语言模型（约 80 MB）。"
+ },
+ "needDownloadUnsure": {
+  "message": "无法确定翻译方向：看起来像$1。下载 $1 → $2 语言模型（约 80 MB），或手动选择语言。"
+ },
+ "downloadModel": {
+  "message": "下载"
+ },
  "truncated": {
   "message": "仅翻译了前 $1 个字符。请单独翻译其余部分。"
  },
@@ -172,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "无法检测语言。请选择源语言。"
+ },
+ "err_needs_download": {
+  "message": "此翻译方向需要先下载语言模型（约 80 MB）。"
  },
  "err_download_failed": {
   "message": "无法下载语言模型（可能已离线或磁盘空间不足）。"

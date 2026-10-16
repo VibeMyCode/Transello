@@ -6,9 +6,15 @@
 html,
 body {
   margin: 0;
-  background: var(--surface);
   color: var(--text);
   font: 14px/1.5 var(--font);
+}
+html {
+  background: var(--bg);
+}
+body {
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 .page {
   max-width: 680px;
@@ -23,8 +29,17 @@ body {
 }
 h1 {
   margin: 0;
-  font-size: 22px;
-  letter-spacing: -0.02em;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: fit-content;
+}
+.head img {
+  border-radius: 10px;
+  box-shadow: 0 8px 22px -8px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.7);
 }
 h2 {
   margin: 0 0 12px;
@@ -35,9 +50,12 @@ h2 {
   margin: 0;
 }
 section {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--highlight), 0 10px 30px -18px rgb(20 24 50 / 0.35);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border-radius: 18px;
   padding: 18px 20px;
   margin-bottom: 14px;
 }
@@ -99,7 +117,9 @@ kbd {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--line);
+  background: var(--glass-strong);
+  transition: border-color 0.15s ease, box-shadow 0.2s ease, transform 0.12s ease;
   border-radius: var(--radius);
   padding: 10px 12px;
   cursor: pointer;
@@ -110,9 +130,14 @@ kbd {
   opacity: 0;
   pointer-events: none;
 }
+.engine:hover {
+  transform: translateY(-1px);
+}
 .engine:has(input:checked) {
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  /* Gradient ring in the pair colours around the chosen engine. */
+  border-color: transparent;
+  background: linear-gradient(var(--accent-soft), var(--accent-soft)) padding-box, var(--grad) border-box;
+  box-shadow: 0 8px 20px -10px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.6);
 }
 .engine:has(input:focus-visible) {
   box-shadow: var(--ring);

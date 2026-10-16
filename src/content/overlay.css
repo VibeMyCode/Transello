@@ -14,31 +14,40 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(12, 14, 20, 0.32);
+  background: rgb(10 12 20 / 0.3);
+  -webkit-backdrop-filter: blur(3px) saturate(1.1);
+  backdrop-filter: blur(3px) saturate(1.1);
   display: grid;
   place-items: center;
   padding: 16px;
   z-index: 2147483647;
   animation: fade 0.12s ease-out;
 }
+/* Floating surfaces: frosted glass tinted by the language pair (glows in the corners), springs in via fx.ts. */
+.modal,
+.mini,
+.toolbar {
+  position: relative;
+  background:
+    radial-gradient(60% 50% at 0% 0%, var(--glow-a), transparent 70%),
+    radial-gradient(60% 50% at 100% 0%, var(--glow-b), transparent 70%),
+    var(--glass-strong);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: var(--shadow), var(--highlight);
+}
 .modal {
-  width: min(560px, 100%);
-  max-height: min(80vh, 640px);
+  width: min(580px, 100%);
+  max-height: min(80vh, 660px);
   display: flex;
   flex-direction: column;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  animation: rise 0.14s ease-out;
+  border-radius: 20px;
 }
 .head {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 10px 10px 16px;
-  border-bottom: 1px solid var(--border);
+  padding: 12px 12px 6px 18px;
 }
 .brand {
   font-weight: 700;
@@ -50,9 +59,10 @@
 }
 .body {
   overflow: auto;
-  padding: 14px 16px;
+  overflow-x: hidden; /* decode glyphs (fx.ts) may be wider than the words they stand for */
+  padding: 8px 18px 14px;
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 .label {
   font-size: 11.5px;
@@ -73,7 +83,8 @@
   color: var(--muted);
 }
 .result {
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1.55;
 }
 .status {
   color: var(--muted);
@@ -81,6 +92,12 @@
 }
 .status.error {
   color: var(--danger);
+}
+.ask {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 progress {
   display: block;
@@ -92,27 +109,29 @@ progress {
 .foot {
   display: flex;
   gap: 8px;
-  padding: 10px 16px 14px;
+  padding: 10px 14px 14px 18px;
   align-items: center;
   flex-wrap: wrap;
 }
+.foot .label {
+  margin: 0;
+}
 .foot select {
-  max-width: 180px;
+  max-width: 200px;
+}
+.icon-btn.copied {
+  color: var(--ok) !important;
 }
 .mini {
   position: fixed;
   z-index: 2147483647;
   width: max-content;
-  min-width: 180px;
-  max-width: min(380px, calc(100vw - 16px));
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 8px 6px 6px 12px;
+  min-width: 200px;
+  max-width: min(400px, calc(100vw - 16px));
+  border-radius: 16px;
+  padding: 8px 6px 7px 14px;
   display: grid;
   gap: 4px;
-  animation: rise 0.1s ease-out;
 }
 .mini .row {
   display: flex;
@@ -124,7 +143,9 @@ progress {
   padding-top: 7px;
   max-height: 220px;
   overflow: auto;
-  font-size: 14px;
+  overflow-x: hidden;
+  font-size: 14.5px;
+  line-height: 1.5;
 }
 .mini .tools {
   display: flex;
@@ -141,17 +162,13 @@ progress {
   right: 16px;
   bottom: 16px;
   max-width: calc(100vw - 32px);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 8px 8px 8px 14px;
+  border-radius: 16px;
+  padding: 8px 8px 8px 16px;
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
   font-size: 13px;
-  animation: rise 0.12s ease-out;
 }
 .toolbar .msg {
   max-width: 360px;
@@ -168,11 +185,5 @@ progress {
 @keyframes fade {
   from {
     opacity: 0;
-  }
-}
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
   }
 }

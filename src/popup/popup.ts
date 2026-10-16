@@ -4,6 +4,7 @@ import { isRetryable, TError, toTError } from '../core/errors';
 import { applyI18n, t, uiLocale, type MsgKey } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
 import { fillLangSelect } from '../ui/langs';
+import { enter, pop, reveal, setPair, spin } from '../ui/fx';
 import { applyTheme, ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 
@@ -31,7 +32,11 @@ function fillLangs() {
   const ui = uiLocale();
   fillLangSelect(source, ui, settings, source.value || 'auto', true);
   fillLangSelect(target, ui, settings, settings.target);
+  paint();
 }
+
+/** The whole popup takes the colours of the current language pair (source: chosen, else last detected). */
+const paint = () => setPair(document.documentElement, source.value !== 'auto' ? source.value : (last?.source ?? null), target.value);
 
 function engineLabel(): string {
   if (settings.engine === 'local') return t('engineLocal');
@@ -84,11 +89,25 @@ function render(r: TranslateResult) {
   last = r;
   const ui = uiLocale();
   status.replaceChildren();
-  result.textContent = r.text; // plain text only, never HTML (spec §6)
+  reveal(result, r.text, input.value); // plain text only, never HTML (spec §6); the decode effect is visual only
+  paint();
   btnCopy.disabled = !r.text;
-  if (r.retarget) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
+  if (r.retarget && !r.needsDownload) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
   const m: (string | Node)[] = [];
-  if (r.sameLanguage && r.source) {
+  if (r.needsDownload && r.source) {
+    // Guessed direction without a model on the device: download only on request, or let the user pick the guessed side.
+    const to = r.retarget ?? target.value;
+    const from = langName(r.source, ui);
+    showStatus(!r.retarget && r.detection?.uncertain ? t('needDownloadUnsure', from, langName(to, ui)) : t('needDownload', from, langName(to, ui)));
+    const pick = r.retarget ? target : source;
+    const ask = document.createElement('div');
+    ask.className = 'ask';
+    ask.append(
+      Object.assign(document.createElement('button'), { type: 'button', className: 'btn primary', textContent: t('downloadModel'), onclick: () => (r.retarget ? setTarget(to) : run(false, true)) }),
+      Object.assign(document.createElement('button'), { type: 'button', className: 'btn', textContent: t('chooseTarget'), onclick: () => (pick.focus(), pick.showPicker?.()) }),
+    );
+    status.append(ask);
+  } else if (r.sameLanguage && r.source) {
     const alt = retargetFor(r.source, settings.recentLangs);
     showStatus(t('sameLanguage', langName(r.source, ui)));
     // Nothing sensible to switch to (e.g. English-only browser, English text): ask instead of guessing.
@@ -102,7 +121,7 @@ function render(r: TranslateResult) {
 }
 
 function showError(e: TError) {
-  result.textContent = '';
+  reveal(result, '');
   btnCopy.disabled = true;
   showStatus(t(`err_${e.code}` as MsgKey), { error: true, retry: isRetryable(e.code) });
   if (e.code === 'unknown_language' || e.code === 'unsupported_pair') source.focus();
@@ -110,14 +129,14 @@ function showError(e: TError) {
     status.append(linkButton(t('settings'), () => chrome.runtime.openOptionsPage()));
 }
 
-async function run(fixedTarget = false) {
+async function run(fixedTarget = false, allowDownload = false) {
   clearTimeout(debounce);
   cancelCurrent?.();
   const my = ++gen;
   const text = input.value;
   if (!text.trim()) {
     last = null;
-    result.textContent = '';
+    reveal(result, '');
     btnCopy.disabled = true;
     setMeta([]);
     showStatus(t('emptyHint'));
@@ -128,7 +147,7 @@ async function run(fixedTarget = false) {
   }
   setBusy(true);
   showStatus(t('translating'), { dots: true });
-  const req = { text, source: source.value, target: target.value, mode: 'text' as const, fixedTarget };
+  const req = { text, source: source.value, target: target.value, mode: 'text' as const, fixedTarget, allowDownload };
   const onProgress = (loaded: number) => my === gen && showStatus(t('downloading', Math.round(loaded * 100)), { progress: loaded });
   try {
     const p = request({ type: 'translate', req }, onProgress);
@@ -171,6 +190,8 @@ async function init() {
   applyTheme(settings);
   applyI18n();
   if (isWindow) document.body.classList.add('window');
+  enter([...document.querySelectorAll('.app > *')]);
+  setTimeout(() => document.documentElement.classList.add('ready'), 60); // first colours instantly, later ones glide
   fillLangs();
   $('engine').textContent = engineLabel();
 
@@ -205,6 +226,7 @@ async function init() {
   btnCopy.onclick = async () => {
     if (!last?.text) return;
     await navigator.clipboard.writeText(last.text);
+    pop(btnCopy);
     btnCopy.textContent = t('copied');
     btnCopy.classList.add('copied');
     setTimeout(() => {
@@ -217,12 +239,14 @@ async function init() {
       settings = await rememberLang(source.value);
       fillLangs();
     }
+    paint();
     void run();
   };
   target.onchange = () => setTarget(target.value);
   $('swap').onclick = () => {
     const from = source.value === 'auto' ? last?.source : source.value;
     if (!from) return;
+    spin($('swap').firstElementChild!);
     const to = target.value;
     if (source.value !== 'auto') source.value = to; // auto stays auto: detection + retarget handle both directions
     void rememberLang(to).then(() => setTarget(from));

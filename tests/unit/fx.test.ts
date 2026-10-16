@@ -9,15 +9,18 @@ describe('fx', () => {
   it('stable, distinct language hues; unknown codes hash, auto is neutral', () => {
     expect(langHue('en')).toBe(langHue('en-US'));
     expect(langHue('en')).not.toBe(langHue('ru'));
+    expect(Math.abs(langHue('en') - langHue('ru'))).toBeGreaterThan(90); // the most common pair stays contrasting
     expect(langHue('auto')).toBe(langHue(null));
     expect(langHue('xx')).toBeGreaterThanOrEqual(0);
   });
 
   it('hue glides the short way round the wheel', () => {
     const el = document.createElement('div');
-    setPair(el, 'en', 'auto'); // --hb 290
-    setPair(el, 'en', 'ru'); // ru 12 → nearest equivalent to 290 is 372, not 12
-    expect(Number(el.style.getPropertyValue('--hb'))).toBe(372);
+    setPair(el, 'auto', 'de'); // de 350
+    setPair(el, 'auto', 'en'); // en 25 → nearest equivalent to 350 is 385, not 25 (no trip through green)
+    expect(Number(el.style.getPropertyValue('--hb'))).toBe(385);
+    expect(el.style.getPropertyValue('--ka')).toBe('0.05'); // auto is neutral
+    expect(el.style.getPropertyValue('--kb')).toBe('1');
   });
 
   it('scramble glyphs come from the source writing system', () => {

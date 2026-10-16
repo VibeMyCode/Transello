@@ -11,10 +11,23 @@
   inherits: true;
   initial-value: 290;
 }
+/* Colour strength per side: 1 for a language, ~0 for "auto" (neutral, almost white). */
+@property --ka {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+@property --kb {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
 :root,
 :host {
   --ha: 290;
   --hb: 290;
+  --ka: 1;
+  --kb: 1;
   --bg: #fbfbfd;
   --surface: #f2f3f7;
   --surface-2: #e9ebf1;
@@ -25,20 +38,20 @@
   --highlight: inset 0 1px 0 rgb(255 255 255 / 0.75);
   --text: #14161c;
   --muted: #5a6170;
-  --accent: oklch(0.52 0.17 var(--hb));
-  --accent-hover: oklch(0.47 0.17 var(--hb));
+  --accent: oklch(0.52 calc(0.17 * var(--kb)) var(--hb));
+  --accent-hover: oklch(0.47 calc(0.17 * var(--kb)) var(--hb));
   --accent-text: #ffffff;
-  --accent-soft: oklch(0.95 0.035 var(--hb));
-  --glow-a: oklch(0.74 0.17 var(--ha) / 0.5);
-  --glow-b: oklch(0.74 0.17 var(--hb) / 0.5);
-  --grad: linear-gradient(115deg in oklch, oklch(0.56 0.19 var(--ha)), oklch(0.56 0.19 var(--hb)));
+  --accent-soft: oklch(0.95 calc(0.035 * var(--kb)) var(--hb));
+  --glow-a: oklch(0.74 calc(0.17 * var(--ka)) var(--ha) / 0.5);
+  --glow-b: oklch(0.74 calc(0.17 * var(--kb)) var(--hb) / 0.5);
+  --grad: linear-gradient(115deg in oklch, oklch(0.56 calc(0.19 * var(--ka)) var(--ha)), oklch(0.56 calc(0.19 * var(--kb)) var(--hb)));
   --danger: #b4232a;
   --danger-soft: #fdecec;
   --ok: #1d7a46;
   --shadow: 0 18px 50px -12px rgb(20 24 50 / 0.28), 0 2px 8px rgb(20 24 50 / 0.08);
   --radius: 14px;
   --radius-sm: 10px;
-  --ring: 0 0 0 3px oklch(0.6 0.17 var(--hb) / 0.35);
+  --ring: 0 0 0 3px oklch(0.6 calc(0.17 * var(--kb)) var(--hb) / 0.35);
   --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color-scheme: light;
 }
@@ -55,18 +68,18 @@
     --highlight: inset 0 1px 0 rgb(255 255 255 / 0.06);
     --text: #eceef3;
     --muted: #9ea5b3;
-    --accent: oklch(0.8 0.13 var(--hb));
-    --accent-hover: oklch(0.86 0.11 var(--hb));
+    --accent: oklch(0.8 calc(0.13 * var(--kb)) var(--hb));
+    --accent-hover: oklch(0.86 calc(0.11 * var(--kb)) var(--hb));
     --accent-text: #0b0d12;
-    --accent-soft: oklch(0.3 0.06 var(--hb));
-    --glow-a: oklch(0.55 0.17 var(--ha) / 0.45);
-    --glow-b: oklch(0.55 0.17 var(--hb) / 0.45);
-    --grad: linear-gradient(115deg in oklch, oklch(0.62 0.17 var(--ha)), oklch(0.62 0.17 var(--hb)));
+    --accent-soft: oklch(0.3 calc(0.06 * var(--kb)) var(--hb));
+    --glow-a: oklch(0.55 calc(0.17 * var(--ka)) var(--ha) / 0.45);
+    --glow-b: oklch(0.55 calc(0.17 * var(--kb)) var(--hb) / 0.45);
+    --grad: linear-gradient(115deg in oklch, oklch(0.62 calc(0.17 * var(--ka)) var(--ha)), oklch(0.62 calc(0.17 * var(--kb)) var(--hb)));
     --danger: #ff8a8a;
     --danger-soft: #3a2224;
     --ok: #6fd39b;
     --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px rgb(0 0 0 / 0.4);
-    --ring: 0 0 0 3px oklch(0.75 0.14 var(--hb) / 0.45);
+    --ring: 0 0 0 3px oklch(0.75 calc(0.14 * var(--kb)) var(--hb) / 0.45);
     color-scheme: dark;
   }
 }
@@ -82,18 +95,18 @@
   --highlight: inset 0 1px 0 rgb(255 255 255 / 0.06);
   --text: #eceef3;
   --muted: #9ea5b3;
-  --accent: oklch(0.8 0.13 var(--hb));
-  --accent-hover: oklch(0.86 0.11 var(--hb));
+  --accent: oklch(0.8 calc(0.13 * var(--kb)) var(--hb));
+  --accent-hover: oklch(0.86 calc(0.11 * var(--kb)) var(--hb));
   --accent-text: #0b0d12;
-  --accent-soft: oklch(0.3 0.06 var(--hb));
-  --glow-a: oklch(0.55 0.17 var(--ha) / 0.45);
-  --glow-b: oklch(0.55 0.17 var(--hb) / 0.45);
-  --grad: linear-gradient(115deg in oklch, oklch(0.62 0.17 var(--ha)), oklch(0.62 0.17 var(--hb)));
+  --accent-soft: oklch(0.3 calc(0.06 * var(--kb)) var(--hb));
+  --glow-a: oklch(0.55 calc(0.17 * var(--ka)) var(--ha) / 0.45);
+  --glow-b: oklch(0.55 calc(0.17 * var(--kb)) var(--hb) / 0.45);
+  --grad: linear-gradient(115deg in oklch, oklch(0.62 calc(0.17 * var(--ka)) var(--ha)), oklch(0.62 calc(0.17 * var(--kb)) var(--hb)));
   --danger: #ff8a8a;
   --danger-soft: #3a2224;
   --ok: #6fd39b;
   --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px rgb(0 0 0 / 0.4);
-  --ring: 0 0 0 3px oklch(0.75 0.14 var(--hb) / 0.45);
+  --ring: 0 0 0 3px oklch(0.75 calc(0.14 * var(--kb)) var(--hb) / 0.45);
   color-scheme: dark;
 }
 
@@ -102,7 +115,7 @@
   background:
     radial-gradient(55% 45% at 8% 0%, var(--glow-a), transparent 70%),
     radial-gradient(55% 45% at 100% 8%, var(--glow-b), transparent 70%),
-    radial-gradient(70% 50% at 50% 115%, oklch(0.75 0.12 calc((var(--ha) + var(--hb)) / 2) / 0.22), transparent 70%),
+    radial-gradient(70% 50% at 50% 115%, oklch(0.75 calc(0.06 * (var(--ka) + var(--kb))) calc((var(--ha) + var(--hb)) / 2) / 0.22), transparent 70%),
     var(--bg);
 }
 /* Frosted glass card. */
@@ -136,7 +149,7 @@
   width: 160%;
   aspect-ratio: 1;
   translate: -50% -50%;
-  background: conic-gradient(from 0deg, transparent 0 62%, oklch(0.7 0.2 var(--ha)) 76%, oklch(0.75 0.2 var(--hb)) 88%, transparent 100%);
+  background: conic-gradient(from 0deg, transparent 0 62%, oklch(0.7 calc(0.2 * var(--ka)) var(--ha)) 76%, oklch(0.75 calc(0.2 * var(--kb)) var(--hb)) 88%, transparent 100%);
   animation: beam 1.7s linear infinite;
 }
 .busy > .beam,
@@ -196,7 +209,7 @@ select:hover {
   background: var(--grad);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 8px 20px -8px oklch(0.55 0.19 var(--hb) / 0.75), inset 0 1px 0 rgb(255 255 255 / 0.25);
+  box-shadow: 0 8px 20px -8px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.75), inset 0 1px 0 rgb(255 255 255 / 0.25);
   text-shadow: 0 1px 1px rgb(0 0 0 / 0.15);
 }
 .btn.primary:hover {
@@ -244,11 +257,11 @@ select:hover {
   height: 7px;
   border-radius: 50%;
   background: var(--grad);
-  box-shadow: 0 0 8px oklch(0.7 0.18 var(--hb) / 0.8);
+  box-shadow: 0 0 8px oklch(0.7 calc(0.18 * var(--kb)) var(--hb) / 0.8);
 }
 .chip:hover {
   background: var(--glass-strong);
-  border-color: oklch(0.6 0.15 var(--hb) / 0.4);
+  border-color: oklch(0.6 calc(0.15 * var(--kb)) var(--hb) / 0.4);
 }
 select {
   padding: 0 28px 0 11px;

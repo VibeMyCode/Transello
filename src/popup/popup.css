@@ -14,7 +14,7 @@ html {
 }
 html.ready {
   /* Language colours glide when the pair changes (registered --ha/--hb); not on open (see popup.ts). */
-  transition: --ha 0.9s ease, --hb 0.9s ease;
+  transition: --ha 0.9s ease, --hb 0.9s ease, --ka 0.9s ease, --kb 0.9s ease;
 }
 body {
   min-height: 100%;
@@ -53,10 +53,10 @@ body.window .app {
 }
 .brand img {
   border-radius: 6px;
-  box-shadow: 0 4px 12px -4px oklch(0.55 0.19 var(--hb) / 0.7);
+  box-shadow: 0 4px 12px -4px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.7);
 }
 .word {
-  background: linear-gradient(100deg in oklch, var(--text) 35%, oklch(0.55 0.19 var(--hb)));
+  background: linear-gradient(100deg in oklch, var(--text) 35%, oklch(0.55 calc(0.19 * var(--kb)) var(--hb)));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -65,40 +65,50 @@ body.window .app {
   flex: 1;
 }
 
-/* Language pair capsule: [● source] ⇄ [● target]. */
+/* Language pair capsule: [● source ▾] ⇄ [● target ▾]. The dot is part of the select (background), so the
+   pill, hover and focus ring cover it. Neutral "auto" dot is near-white with a hairline ring. */
 .langs {
   display: grid;
-  grid-template-columns: auto 1fr auto auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: 2px;
-  padding: 3px 4px 3px 10px;
+  gap: 3px;
+  padding: 3px;
   border-radius: 999px;
 }
 .langs select {
+  --dx: 13px;
   width: 100%;
   min-width: 0;
   border: none;
   background-color: transparent;
-  min-height: 32px;
+  min-height: 34px;
   border-radius: 999px;
-  font-weight: 600;
-  padding-inline: 6px 22px;
+  font-weight: 580;
+  padding-inline: 25px 19px;
   text-overflow: ellipsis;
+  background-image:
+    radial-gradient(circle at var(--dx) 50%, var(--dot) 0 4.5px, var(--line) 4.5px 5.5px, transparent 6px),
+    radial-gradient(circle at var(--dx) 50%, var(--dot-glow) 0, transparent 12px),
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: 0 0, 0 0, calc(100% - 13px) 50%, calc(100% - 8px) 50%;
+  background-size: auto, auto, 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.langs select:dir(rtl) {
+  --dx: calc(100% - 13px);
+  background-position: 0 0, 0 0, 8px 50%, 13px 50%;
 }
 .langs select:hover {
   background-color: var(--surface);
 }
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: oklch(0.65 0.19 var(--ha));
-  box-shadow: 0 0 10px oklch(0.7 0.19 var(--ha) / 0.9);
+#source {
+  --dot: oklch(calc(0.97 - 0.32 * var(--ka)) calc(0.19 * var(--ka)) var(--ha));
+  --dot-glow: oklch(0.72 calc(0.19 * var(--ka)) var(--ha) / 0.55);
 }
-.dot.b {
-  margin-inline-start: 6px;
-  background: oklch(0.65 0.19 var(--hb));
-  box-shadow: 0 0 10px oklch(0.7 0.19 var(--hb) / 0.9);
+#target {
+  --dot: oklch(calc(0.97 - 0.32 * var(--kb)) calc(0.19 * var(--kb)) var(--hb));
+  --dot-glow: oklch(0.72 calc(0.19 * var(--kb)) var(--hb) / 0.55);
 }
 #swap {
   width: 32px;
@@ -125,8 +135,8 @@ textarea {
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 textarea:focus-visible {
-  border-color: oklch(0.6 0.15 var(--ha) / 0.6);
-  box-shadow: var(--highlight), 0 0 0 3px oklch(0.6 0.17 var(--ha) / 0.22);
+  border-color: oklch(0.6 calc(0.15 * var(--ka)) var(--ha) / 0.6);
+  box-shadow: var(--highlight), 0 0 0 3px oklch(0.6 calc(0.17 * var(--ka)) var(--ha) / 0.22);
 }
 body.window textarea {
   flex-basis: 35vh;

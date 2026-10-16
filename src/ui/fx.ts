@@ -6,28 +6,34 @@ import { spring, stagger } from 'motion';
 
 export const reducedMotion = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? true;
 
-// Every language gets its own colour (OKLCH hue angle), so a language pair has a recognisable look: en blue → ru rose.
+// Every language gets its own colour (OKLCH hue angle), so a language pair has a recognisable look:
+// ru blue ↔ en coral, de pink, nl orange (user picks). "auto" is neutral, almost white, until detection.
 const HUES: Record<string, number> = {
-  en: 255, ru: 12, zh: 32, ja: 350, ko: 300, de: 80, fr: 275, es: 52, it: 150, pt: 172, ar: 185, hi: 62, bn: 140,
-  id: 215, tr: 25, uk: 95, pl: 5, nl: 58, sv: 235, fi: 225, no: 245, da: 20, cs: 262, el: 230, he: 268, th: 320, vi: 135,
+  ru: 255, en: 25, de: 350, nl: 55, fr: 300, es: 75, it: 145, pt: 165, zh: 40, ja: 330, ko: 280, ar: 185, hi: 95,
+  bn: 135, id: 210, tr: 15, uk: 230, pl: 5, sv: 235, fi: 220, no: 245, da: 20, cs: 265, el: 200, he: 270, th: 315, vi: 125,
 };
+const NEUTRAL = 0.05; // colour strength for "auto"
+const base = (code?: string | null) => (code ?? '').split('-')[0]!.toLowerCase();
+const isAuto = (code?: string | null) => !base(code) || base(code) === 'auto';
 export function langHue(code?: string | null): number {
-  const base = (code ?? '').split('-')[0]!.toLowerCase();
-  if (!base || base === 'auto') return 290;
-  if (base in HUES) return HUES[base]!;
+  const b = base(code);
+  if (isAuto(code)) return 255;
+  if (b in HUES) return HUES[b]!;
   let h = 0;
-  for (const c of base) h = (h * 31 + c.charCodeAt(0)) % 360;
+  for (const c of b) h = (h * 31 + c.charCodeAt(0)) % 360;
   return h;
 }
 
-/** Paint a language pair onto an element as --ha / --hb (registered properties, so CSS transitions them). */
+/** Paint a language pair onto an element as --ha/--hb (hue) and --ka/--kb (strength); registered, so CSS glides them. */
 export function setPair(el: HTMLElement, from?: string | null, to?: string | null) {
-  for (const [name, code] of [['--ha', from], ['--hb', to]] as const) {
+  for (const [side, code] of [['a', from], ['b', to]] as const) {
     // Hue angles are plain numbers to CSS: pick the equivalent angle nearest to the current one, so the colour
-    // glides the short way round the wheel (violet → rose, not violet → green → rose). OKLCH accepts any angle.
+    // glides the short way round the wheel (blue → coral, not blue → green → coral). OKLCH accepts any angle.
+    const name = `--h${side}`;
     const cur = parseFloat(el.style.getPropertyValue(name) || getComputedStyle(el).getPropertyValue(name));
     const h = langHue(code);
     el.style.setProperty(name, String(Number.isFinite(cur) ? h + 360 * Math.round((cur - h) / 360) : h));
+    el.style.setProperty(`--k${side}`, String(isAuto(code) ? NEUTRAL : 1));
   }
 }
 

@@ -39,7 +39,7 @@ h1 {
 }
 .head img {
   border-radius: 10px;
-  box-shadow: 0 8px 22px -8px oklch(0.55 0.19 var(--hb) / 0.7);
+  box-shadow: 0 8px 22px -8px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.7);
 }
 h2 {
   margin: 0 0 12px;
@@ -137,7 +137,7 @@ kbd {
   /* Gradient ring in the pair colours around the chosen engine. */
   border-color: transparent;
   background: linear-gradient(var(--accent-soft), var(--accent-soft)) padding-box, var(--grad) border-box;
-  box-shadow: 0 8px 20px -10px oklch(0.55 0.19 var(--hb) / 0.6);
+  box-shadow: 0 8px 20px -10px oklch(0.55 calc(0.19 * var(--kb)) var(--hb) / 0.6);
 }
 .engine:has(input:focus-visible) {
   box-shadow: var(--ring);

@@ -38,9 +38,14 @@ export function defaultTarget(prefs: readonly string[]): Lang {
   return 'ru';
 }
 
-/** Text is already in the target: the most recent other language, else another browser language; null → ask the user (user request). */
+/**
+ * Text is already in the target. Go to the user's own language first (the browser UI language: en text → ru for a
+ * Russian browser), then the most recent other language, then other browser languages; null → ask the user.
+ * Home first, because recents also hold sources and stray picks (user report: en text went to Lithuanian).
+ */
 export function retargetFor(src: string, recents: readonly string[]): Lang | null {
-  for (const p of [...recents, ...(globalThis.navigator?.languages ?? [])]) {
+  const home = globalThis.chrome?.i18n?.getUILanguage?.();
+  for (const p of [...(home ? [home] : []), ...recents, ...(globalThis.navigator?.languages ?? [])]) {
     const l = normalizeLang(p);
     if (l && l !== src) return l;
   }

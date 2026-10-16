@@ -15,6 +15,8 @@ export interface TranslateRequest {
   mode: Mode;
   /** The user just picked this target: never switch it, report sameLanguage instead. */
   fixedTarget?: boolean;
+  /** The user agreed to download the model for this direction (the "Download" button). */
+  allowDownload?: boolean;
 }
 
 export interface TranslateResult {
@@ -24,7 +26,8 @@ export interface TranslateResult {
   sameLanguage?: boolean;
   /** Set when the detected language equalled the target and another target was used instead. */
   retarget?: string;
-  /** The auto-chosen `retarget` needs a model download (~80 MB): nothing was translated, ask the user first. */
+  /** The direction was chosen automatically and its model (~80 MB) is not on the device: nothing was translated,
+   *  ask the user first (download, or pick the language). `retarget` is set when the target was the guess. */
   needsDownload?: boolean;
   truncated?: boolean;
   engine: EngineId;
@@ -73,10 +76,12 @@ export async function translate(req: TranslateRequest, ctx: Ctx): Promise<Transl
   if (src === tgt) {
     const alt = req.source === 'auto' && !req.fixedTarget ? retargetFor(src, ctx.settings.recentLangs) : null;
     if (!alt) return { text: '', source: src, detection, sameLanguage: true, engine };
-    // Never download a model for a language the user didn't pick (user report: a stray pick pulled 76 MB of Lithuanian).
-    if (!(await pairReady(src, alt))) return { text: '', source: src, detection, engine, retarget: alt, needsDownload: true };
     tgt = retarget = alt;
   }
+  // Never download a model (~80 MB) for a direction the user didn't choose: a guessed source (user report: a URL
+  // "looked like Czech") or a guessed target (a stray recent pulled Lithuanian). Picking a language is consent.
+  const chosen = req.allowDownload || req.fixedTarget || req.source !== 'auto';
+  if (!chosen && !(await pairReady(src, tgt))) return { text: '', source: src, detection, engine, retarget, needsDownload: true };
 
   const out = await translatePieces(
     splitText(text),

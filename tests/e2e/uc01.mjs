@@ -167,7 +167,7 @@ export async function uc01({ browser, extId, sw, swTarget }) {
     await page.reload();
     await page.waitForSelector('#input');
     const r = await translateVia(page, 'Привет! Как у тебя дела сегодня?'); // ru text, target ru, home ru → recent lt (no model)
-    const buttons = await page.$$eval('#meta button', (b) => b.map((x) => x.textContent));
+    const buttons = await page.$$eval('#status .ask button', (b) => b.map((x) => x.textContent));
     const after = await stored();
     await page.evaluate(async (s) => chrome.storage.sync.set({ settings: s }), before);
     await page.reload();
@@ -176,7 +176,19 @@ export async function uc01({ browser, extId, sw, swTarget }) {
     return `"${r.status}" [${buttons.join(' | ')}]`;
   });
 
+  await check('detected source without a model on the device asks first (user report: a URL "looked like Czech")', async () => {
+    await page.select('#target', 'ru');
+    await settled(page);
+    const r = await translateVia(page, 'Labas rytas! Kaip sekasi šiandien? Šiandien labai graži diena.'); // lt, no lt model here
+    const buttons = await page.$$eval('#status .ask button', (b) => b.map((x) => x.textContent));
+    const progress = await page.$('#status progress');
+    assert(/80/.test(r.status) && !r.result && buttons.length === 2 && !progress, JSON.stringify({ r, buttons }));
+    return `"${r.status}" [${buttons.join(' | ')}]`;
+  });
+
   await check('explicit source == target → honest message + swap action', async () => {
+    await page.select('#target', 'ru');
+    await settled(page);
     await page.select('#source', 'ru');
     const r = await translateVia(page, 'Привет! Как у тебя дела сегодня?');
     assert(/русск|russian/i.test(r.status), r.status);

@@ -214,6 +214,12 @@ textarea::placeholder {
 .status.error button {
   margin-top: 8px;
 }
+.ask {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
 .dots::after {
   content: '';
   display: inline-block;

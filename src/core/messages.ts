@@ -8,7 +8,7 @@ export const PORT_TRANSLATE = 'translate';
 /** Client → SW over a `translate` port. Disconnecting the port cancels the request. */
 export type PortRequest =
   | { type: 'translate'; req: TranslateRequest }
-  | { type: 'batch'; segments: string[]; source: string; target: string; consent?: boolean };
+  | { type: 'batch'; segments: string[]; source: string; target: string; consent?: boolean; allowDownload?: boolean };
 
 /** SW → client. */
 export type PortReply =
@@ -39,14 +39,14 @@ export function parsePortRequest(m: unknown): PortRequest | null {
     const r = o.req as Record<string, unknown> | undefined;
     if (!r || typeof r.text !== 'string' || r.text.length > LIMITS.text) return null;
     if (!isLang(r.source) || !isLang(r.target) || !MODES.includes(r.mode as Mode)) return null;
-    return { type: 'translate', req: { text: r.text, source: r.source, target: r.target, mode: r.mode as Mode, ...(r.fixedTarget === true && { fixedTarget: true }) } };
+    return { type: 'translate', req: { text: r.text, source: r.source, target: r.target, mode: r.mode as Mode, ...(r.fixedTarget === true && { fixedTarget: true }), ...(r.allowDownload === true && { allowDownload: true }) } };
   }
   if (o.type === 'batch') {
     const s = o.segments;
     if (!Array.isArray(s) || s.length === 0 || s.length > LIMITS.segments) return null;
     if (!s.every((x) => typeof x === 'string' && x.length <= LIMITS.segment)) return null;
     if (!isLang(o.source) || !isLang(o.target)) return null;
-    return { type: 'batch', segments: s as string[], source: o.source, target: o.target, consent: o.consent === true };
+    return { type: 'batch', segments: s as string[], source: o.source, target: o.target, consent: o.consent === true, ...(o.allowDownload === true && { allowDownload: true }) };
   }
   return null;
 }

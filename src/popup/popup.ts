@@ -94,11 +94,19 @@ function render(r: TranslateResult) {
   btnCopy.disabled = !r.text;
   if (r.retarget && !r.needsDownload) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
   const m: (string | Node)[] = [];
-  if (r.needsDownload && r.source && r.retarget) {
-    // Auto-chosen language without a model on the device: download only on request, or let the user pick.
-    const alt = r.retarget;
-    showStatus(t('needDownload', langName(r.source, ui), langName(alt, ui)));
-    m.push(linkButton(t('downloadModel'), () => setTarget(alt)), linkButton(t('chooseTarget'), () => (target.focus(), target.showPicker?.())));
+  if (r.needsDownload && r.source) {
+    // Guessed direction without a model on the device: download only on request, or let the user pick the guessed side.
+    const to = r.retarget ?? target.value;
+    const from = langName(r.source, ui);
+    showStatus(!r.retarget && r.detection?.uncertain ? t('needDownloadUnsure', from, langName(to, ui)) : t('needDownload', from, langName(to, ui)));
+    const pick = r.retarget ? target : source;
+    const ask = document.createElement('div');
+    ask.className = 'ask';
+    ask.append(
+      Object.assign(document.createElement('button'), { type: 'button', className: 'btn primary', textContent: t('downloadModel'), onclick: () => (r.retarget ? setTarget(to) : run(false, true)) }),
+      Object.assign(document.createElement('button'), { type: 'button', className: 'btn', textContent: t('chooseTarget'), onclick: () => (pick.focus(), pick.showPicker?.()) }),
+    );
+    status.append(ask);
   } else if (r.sameLanguage && r.source) {
     const alt = retargetFor(r.source, settings.recentLangs);
     showStatus(t('sameLanguage', langName(r.source, ui)));
@@ -121,7 +129,7 @@ function showError(e: TError) {
     status.append(linkButton(t('settings'), () => chrome.runtime.openOptionsPage()));
 }
 
-async function run(fixedTarget = false) {
+async function run(fixedTarget = false, allowDownload = false) {
   clearTimeout(debounce);
   cancelCurrent?.();
   const my = ++gen;
@@ -139,7 +147,7 @@ async function run(fixedTarget = false) {
   }
   setBusy(true);
   showStatus(t('translating'), { dots: true });
-  const req = { text, source: source.value, target: target.value, mode: 'text' as const, fixedTarget };
+  const req = { text, source: source.value, target: target.value, mode: 'text' as const, fixedTarget, allowDownload };
   const onProgress = (loaded: number) => my === gen && showStatus(t('downloading', Math.round(loaded * 100)), { progress: loaded });
   try {
     const p = request({ type: 'translate', req }, onProgress);

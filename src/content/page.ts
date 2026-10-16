@@ -1,7 +1,8 @@
 // UC-04 page translation controller: toolbar, batches, progress, cancel, restore. No observers, no auto-translate.
 import { request } from '../core/client';
 import { TError, toTError } from '../core/errors';
-import { t, type MsgKey } from '../core/i18n';
+import { t, uiLocale, type MsgKey } from '../core/i18n';
+import { langName } from '../core/lang';
 import { isSensitiveHost } from '../core/sensitive';
 import { ENGINE_NAMES, setSettings, type Settings } from '../core/settings';
 import { el, iconButton } from './dom';
@@ -87,7 +88,7 @@ async function confirmCloud(settings: Settings, chars: number): Promise<boolean>
   });
 }
 
-async function start() {
+async function start(allowDownload = false) {
   restore(applied);
   const { settings } = await toolbar();
   const { segments, total } = collectSegments();
@@ -119,7 +120,7 @@ async function start() {
     for (const batch of batches(ordered)) {
       if (stopped) throw new TError('cancelled');
       const p = request(
-        { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud },
+        { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload },
         (loaded) => void show(t('downloading', Math.round(loaded * 100)), [button(t('cancel'), () => cancel?.())], loaded),
       );
       pending = p;
@@ -141,6 +142,11 @@ async function start() {
   } catch (e) {
     const te = e instanceof TError ? e : toTError(e);
     state = applied.size ? 'translated' : 'idle';
+    if (te.code === 'needs_download') {
+      // Detected page language has no model on the device: download only on request.
+      const [a = '', b = ''] = (te.detail ?? '').split('>');
+      return void show(t('needDownload', langName(a, uiLocale()), langName(b, uiLocale())), [button(t('downloadModel'), () => void start(true), true), button(t('cancel'), closeBar)]);
+    }
     const msg = te.code === 'cancelled' ? t('err_cancelled') : t(`err_${te.code}` as MsgKey);
     const actions = [button(t('translateAgain'), () => void start())];
     if (applied.size) actions.unshift(button(t('showOriginal'), showOriginal, true));

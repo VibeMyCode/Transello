@@ -54,6 +54,7 @@ function translateInto(
   onDone?: (r: TranslateResult) => void,
   target = s.target,
   fixedTarget = false,
+  allowDownload = false,
 ): () => void {
   const ui = uiLocale();
   const setStatus = (msg: string, error = false, progress?: number) => {
@@ -69,7 +70,7 @@ function translateInto(
   if (view.copy) view.copy.disabled = true;
   setStatus(t('translating'));
   busy(true);
-  const p = request({ type: 'translate', req: { text, source: 'auto', target, mode: 'selection', fixedTarget } }, (loaded) =>
+  const p = request({ type: 'translate', req: { text, source: 'auto', target, mode: 'selection', fixedTarget, allowDownload } }, (loaded) =>
     setStatus(t('downloading', Math.round(loaded * 100)), false, loaded),
   );
   p.promise
@@ -80,16 +81,20 @@ function translateInto(
       // Ask the user: the modal has a language select; the mini popup hands over to the modal.
       const choose = () => (view.target ? (view.target.focus(), view.target.showPicker?.()) : void showModal(text));
       const button = (label: string, onclick: () => void, primary = false) => el('button', { type: 'button', class: primary ? 'btn primary' : 'btn', text: label, onclick });
-      if (r.needsDownload && r.source && r.retarget) {
-        // Auto-chosen language without a model on the device: download only on request, or let the user pick.
-        const alt = r.retarget;
-        setStatus(t('needDownload', langName(r.source, ui), langName(alt, ui)));
+      if (r.needsDownload && r.source) {
+        // Guessed direction without a model on the device: download only on request, or let the user pick.
+        const to = r.retarget ?? target;
+        const from = langName(r.source, ui);
+        setStatus(!r.retarget && r.detection?.uncertain ? t('needDownloadUnsure', from, langName(to, ui)) : t('needDownload', from, langName(to, ui)));
         const download = async () => {
-          await rememberLang(alt, { target: alt });
-          if (view.target) fillLangSelect(view.target, ui, await getSettings(), alt);
-          translateInto(text, s, view, onDone, alt, true);
+          if (!r.retarget) return void translateInto(text, s, view, onDone, target, fixedTarget, true);
+          await rememberLang(to, { target: to });
+          if (view.target) fillLangSelect(view.target, ui, await getSettings(), to);
+          translateInto(text, s, view, onDone, to, true);
         };
-        view.status.append(el('div', { class: 'ask' }, button(t('downloadModel'), () => void download(), true), button(t('chooseTarget'), choose)));
+        // A guessed target is picked here (modal select); a guessed source only in the Transello window (source select).
+        const pick = r.retarget ? choose : () => void chrome.runtime.sendMessage({ type: 'open_window', text });
+        view.status.append(el('div', { class: 'ask' }, button(t('downloadModel'), () => void download(), true), button(t('chooseTarget'), pick)));
         return;
       }
       if (r.sameLanguage && r.source) {

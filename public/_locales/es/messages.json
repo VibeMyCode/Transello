@@ -104,6 +104,9 @@
  "needDownload": {
   "message": "Para traducir $1 → $2 hay que descargar un modelo de idioma (unos 80 MB)."
  },
+ "needDownloadUnsure": {
+  "message": "No está clara la dirección: parece $1. Descarga el modelo $1 → $2 (unos 80 MB) o elige el idioma tú mismo."
+ },
  "downloadModel": {
   "message": "Descargar"
  },
@@ -178,6 +181,9 @@
  },
  "err_unknown_language": {
   "message": "No se pudo detectar el idioma. Elige el idioma de origen."
+ },
+ "err_needs_download": {
+  "message": "Para esta dirección primero hay que descargar un modelo de idioma (unos 80 MB)."
  },
  "err_download_failed": {
   "message": "No se pudo descargar el modelo de idioma (¿sin conexión o sin espacio en disco?)."

@@ -137,6 +137,18 @@ describe('translate orchestrator (local)', () => {
     expect(r).toMatchObject({ text: '', source: 'en', retarget: 'lt', needsDownload: true });
     expect((g.Translator as { create: ReturnType<typeof vi.fn> }).create).not.toHaveBeenCalled();
   });
+  it('auto-detected direction, model not on the device → asks; Download (allowDownload) or a manual source downloads', async () => {
+    mock.avail = 'downloadable';
+    mock.detect = [{ detectedLanguage: 'cs', confidence: 0.3 }]; // user report: a URL looked like Czech
+    const create = (g.Translator as { create: ReturnType<typeof vi.fn> }).create;
+    const r = await translate(req('Brave://on-device-translation-internals'), { settings });
+    expect(r).toMatchObject({ text: '', source: 'cs', needsDownload: true });
+    expect(r.detection?.uncertain).toBe(true);
+    expect(create).not.toHaveBeenCalled();
+    expect((await translate({ ...req('Brave://x'), allowDownload: true }, { settings })).needsDownload).toBeFalsy();
+    expect((await translate(req('Ahoj, jak se máš?', 'cs'), { settings })).needsDownload).toBeFalsy();
+    expect(create).toHaveBeenCalled();
+  });
   it('a target the user picked explicitly still downloads as before', async () => {
     mock.avail = 'downloadable';
     const r = await translate({ ...req('Hello there', 'auto', 'lt'), fixedTarget: true }, { settings });
@@ -190,6 +202,12 @@ describe('translateBatch', () => {
     const s = sanitize({ target: 'ru', recentLangs: ['ru', 'de'] });
     expect(await translateBatch(['Привет'], 'auto', 'ru', { settings: s })).toMatchObject({ segments: ['RU:Привет'], retarget: 'de' });
     expect((await translateBatch(['Привет'], 'ru', 'ru', { settings: s })).segments).toEqual(['Привет']);
+  });
+  it('page in a language without a model on the device → needs_download; allowDownload proceeds', async () => {
+    mock.avail = 'downloadable';
+    mock.detect = [{ detectedLanguage: 'de', confidence: 0.99 }];
+    await expect(translateBatch(['Hallo Welt'], 'auto', 'ru', { settings })).rejects.toMatchObject({ code: 'needs_download', detail: 'de>ru' });
+    expect((await translateBatch(['Hallo Welt'], 'auto', 'ru', { settings, allowDownload: true })).segments).toEqual(['RU:Hallo Welt']);
   });
   it('cloud page already in target → retargets using the free local detector', async () => {
     mock.detect = [{ detectedLanguage: 'en', confidence: 0.99 }];

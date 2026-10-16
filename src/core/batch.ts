@@ -7,6 +7,8 @@ import type { Ctx } from './translate';
 
 export interface BatchCtx extends Ctx {
   consent?: boolean;
+  /** The user agreed to download the model for the detected direction. */
+  allowDownload?: boolean;
   cloudBatch?: (segments: string[], target: string, ctx: Ctx) => Promise<{ segments: string[]; model?: string }>;
 }
 
@@ -40,6 +42,8 @@ export async function translateBatch(segments: string[], source: string, target:
     if (!alt || !(await pairReady(src, alt))) return { segments, engine };
     tgt = retarget = alt;
   }
+  // Same rule as single translations: no surprise model download for a detected direction.
+  if (source === 'auto' && !ctx.allowDownload && !(await pairReady(src, tgt))) throw new TError('needs_download', `${src}>${tgt}`);
   const out: string[] = [];
   for (const s of segments) out.push(await translatePieces(splitText(s), (p) => localTranslate(p, src!, tgt, ctx.signal, ctx.onProgress), ctx.signal));
   return { segments: out, engine, retarget };

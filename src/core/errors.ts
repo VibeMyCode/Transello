@@ -5,6 +5,7 @@ export const ERROR_CODES = [
   'local_unavailable_here', // exposed elsewhere, but not in this context (see ADR-001 fallback)
   'unsupported_pair',
   'unknown_language', // detector could not tell; user must pick the source
+  'needs_download', // detected direction has no model on the device; ask before downloading (detail "src>tgt")
   'download_failed',
   'download_stalled',
   'too_long',

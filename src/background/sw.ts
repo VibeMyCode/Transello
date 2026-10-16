@@ -57,7 +57,7 @@ chrome.runtime.onConnect.addListener((port) => {
         if (!result.needsDownload) await adopt(result.retarget); // not before the user agrees to the download
         post({ type: 'result', result });
       } else {
-        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, cloudBatch });
+        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, allowDownload: m.allowDownload, cloudBatch });
         await adopt(r.retarget);
         post({ type: 'batch_result', ...r });
       }

@@ -2,7 +2,7 @@
 import { splitText, translatePieces } from './chunk';
 import { TError } from './errors';
 import { normalizeLang, retargetFor } from './lang';
-import { detectLanguage, localApiPresent, localTranslate } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairReady } from './local';
 import type { Ctx } from './translate';
 
 export interface BatchCtx extends Ctx {
@@ -36,7 +36,8 @@ export async function translateBatch(segments: string[], source: string, target:
   let retarget: string | undefined;
   if (src === tgt) {
     const alt = source === 'auto' ? retargetFor(src, ctx.settings.recentLangs) : null;
-    if (!alt) return { segments, engine }; // already in the target language, nothing else to go to
+    // Already in the target and no ready alternative: leave the page as is (no surprise model downloads).
+    if (!alt || !(await pairReady(src, alt))) return { segments, engine };
     tgt = retarget = alt;
   }
   const out: string[] = [];

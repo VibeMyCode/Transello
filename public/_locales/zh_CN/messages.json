@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "选择语言"
  },
+ "needDownload": {
+  "message": "翻译 $1 → $2 需要下载语言模型（约 80 MB）。"
+ },
+ "downloadModel": {
+  "message": "下载"
+ },
  "truncated": {
   "message": "仅翻译了前 $1 个字符。请单独翻译其余部分。"
  },

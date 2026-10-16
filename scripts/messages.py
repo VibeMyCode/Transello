@@ -36,6 +36,8 @@ M = {
  "sameLanguage": ("The text is already in $1.", "Текст уже на языке: $1."),
  "translateTo": ("Translate to $1", "Перевести на $1"),
  "chooseTarget": ("Choose language", "Выбрать язык"),
+ "needDownload": ("Translating $1 → $2 needs a language model download (about 80 MB).", "Чтобы перевести $1 → $2, нужно скачать языковую модель (около 80 МБ)."),
+ "downloadModel": ("Download", "Скачать"),
  "truncated": ("Only the first $1 characters were translated. Translate the rest separately.", "Переведены только первые $1 символов. Остаток переведите отдельно."),
  "emptyHint": ("Paste text - the translation appears automatically.", "Вставьте текст - перевод появится автоматически."),
  "original": ("Original", "Оригинал"),

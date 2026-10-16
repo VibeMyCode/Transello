@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "Choose language"
  },
+ "needDownload": {
+  "message": "Translating $1 → $2 needs a language model download (about 80 MB)."
+ },
+ "downloadModel": {
+  "message": "Download"
+ },
  "truncated": {
   "message": "Only the first $1 characters were translated. Translate the rest separately."
  },

@@ -54,7 +54,7 @@ chrome.runtime.onConnect.addListener((port) => {
       const adopt = async (l?: string) => void (l && l !== settings.target && (await rememberLang(l, { target: l })));
       if (m.type === 'translate') {
         const result = await translate(m.req, ctx);
-        await adopt(result.retarget);
+        if (!result.needsDownload) await adopt(result.retarget); // not before the user agrees to the download
         post({ type: 'result', result });
       } else {
         const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, cloudBatch });

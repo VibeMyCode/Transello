@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "言語を選択"
  },
+ "needDownload": {
+  "message": "$1 → $2 の翻訳には言語モデルのダウンロードが必要です（約 80 MB）。"
+ },
+ "downloadModel": {
+  "message": "ダウンロード"
+ },
  "truncated": {
   "message": "最初の $1 文字のみ翻訳されました。残りは別途翻訳してください。"
  },

@@ -93,6 +93,12 @@
 .status.error {
   color: var(--danger);
 }
+.ask {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
 progress {
   display: block;
   width: 100%;

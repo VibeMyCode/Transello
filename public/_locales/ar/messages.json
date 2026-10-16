@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "اختر اللغة"
  },
+ "needDownload": {
+  "message": "تتطلب الترجمة $1 → $2 تنزيل نموذج لغوي (نحو 80 ميغابايت)."
+ },
+ "downloadModel": {
+  "message": "تنزيل"
+ },
  "truncated": {
   "message": "تمت ترجمة أول $1 حرفًا فقط. ترجم الباقي على حدة."
  },

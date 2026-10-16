@@ -3,7 +3,7 @@ import { limitText, MAX_TEXT, splitText, translatePieces } from './chunk';
 import { CLOUD_TEXT_MAX } from './cloud';
 import { TError } from './errors';
 import { normalizeLang, retargetFor, type Detection } from './lang';
-import { detectLanguage, localApiPresent, localTranslate, type OnProgress } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairReady, type OnProgress } from './local';
 import type { EngineId, Settings } from './settings';
 
 export type Mode = 'text' | 'selection' | 'page_chunk';
@@ -24,6 +24,8 @@ export interface TranslateResult {
   sameLanguage?: boolean;
   /** Set when the detected language equalled the target and another target was used instead. */
   retarget?: string;
+  /** The auto-chosen `retarget` needs a model download (~80 MB): nothing was translated, ask the user first. */
+  needsDownload?: boolean;
   truncated?: boolean;
   engine: EngineId;
   model?: string;
@@ -71,6 +73,8 @@ export async function translate(req: TranslateRequest, ctx: Ctx): Promise<Transl
   if (src === tgt) {
     const alt = req.source === 'auto' && !req.fixedTarget ? retargetFor(src, ctx.settings.recentLangs) : null;
     if (!alt) return { text: '', source: src, detection, sameLanguage: true, engine };
+    // Never download a model for a language the user didn't pick (user report: a stray pick pulled 76 MB of Lithuanian).
+    if (!(await pairReady(src, alt))) return { text: '', source: src, detection, engine, retarget: alt, needsDownload: true };
     tgt = retarget = alt;
   }
 

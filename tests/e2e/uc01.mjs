@@ -63,7 +63,8 @@ export async function settled(page, timeout = 180_000) {
 async function translateVia(page, text) {
   if (!text.trim()) {
     await paste(page, text);
-    await new Promise((r) => setTimeout(r, 500));
+    // Wait for the debounced clear instead of a fixed delay (a previous long reveal may keep the page busy).
+    await page.waitForFunction(() => document.getElementById('result').textContent === '', { timeout: 3_000 }).catch(() => {});
     return snapshot(page);
   }
   return cycle(page, { input: text });
@@ -157,6 +158,22 @@ export async function uc01({ browser, extId, sw, swTarget }) {
     const t2 = await page.$eval('#target', (s) => s.value);
     assert(!r2.error && CYR.test(r2.result) && t2 === 'ru' && (await stored()) === 'ru', JSON.stringify({ r2, t2 }));
     return `ru→${t1}: "${r.result}"; en→ru: "${r2.result}"`;
+  });
+
+  await check('auto-switch to a language without a model asks first (Download / Choose), downloads nothing', async () => {
+    const stored = () => page.evaluate(async () => (await chrome.storage.sync.get('settings')).settings);
+    const before = await stored();
+    await page.evaluate(async (s) => chrome.storage.sync.set({ settings: { ...s, target: 'ru', recentLangs: ['lt', 'ru'] } }), before);
+    await page.reload();
+    await page.waitForSelector('#input');
+    const r = await translateVia(page, 'Привет! Как у тебя дела сегодня?'); // ru text, target ru, home ru → recent lt (no model)
+    const buttons = await page.$$eval('#meta button', (b) => b.map((x) => x.textContent));
+    const after = await stored();
+    await page.evaluate(async (s) => chrome.storage.sync.set({ settings: s }), before);
+    await page.reload();
+    await page.waitForSelector('#input');
+    assert(/80/.test(r.status) && !r.result && buttons.length === 2 && after.target === 'ru', JSON.stringify({ r, buttons, target: after.target }));
+    return `"${r.status}" [${buttons.join(' | ')}]`;
   });
 
   await check('explicit source == target → honest message + swap action', async () => {

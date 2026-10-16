@@ -76,12 +76,25 @@ function translateInto(
     .then((m) => {
       const r = (m as { result: TranslateResult }).result;
       busy(false);
-      paintPair(r.source, r.retarget ?? target);
+      paintPair(r.source, r.needsDownload ? target : (r.retarget ?? target));
+      // Ask the user: the modal has a language select; the mini popup hands over to the modal.
+      const choose = () => (view.target ? (view.target.focus(), view.target.showPicker?.()) : void showModal(text));
+      const button = (label: string, onclick: () => void, primary = false) => el('button', { type: 'button', class: primary ? 'btn primary' : 'btn', text: label, onclick });
+      if (r.needsDownload && r.source && r.retarget) {
+        // Auto-chosen language without a model on the device: download only on request, or let the user pick.
+        const alt = r.retarget;
+        setStatus(t('needDownload', langName(r.source, ui), langName(alt, ui)));
+        const download = async () => {
+          await rememberLang(alt, { target: alt });
+          if (view.target) fillLangSelect(view.target, ui, await getSettings(), alt);
+          translateInto(text, s, view, onDone, alt, true);
+        };
+        view.status.append(el('div', { class: 'ask' }, button(t('downloadModel'), () => void download(), true), button(t('chooseTarget'), choose)));
+        return;
+      }
       if (r.sameLanguage && r.source) {
         const alt = retargetFor(r.source, s.recentLangs);
         setStatus(t('sameLanguage', langName(r.source, ui)));
-        // No sensible alternative: ask. The modal has a language select; the mini popup hands over to the modal.
-        const choose = () => (view.target ? (view.target.focus(), view.target.showPicker?.()) : void showModal(text));
         view.status.append(' ', alt ? el('button', { type: 'button', class: 'btn', text: t('translateTo', langName(alt, ui)), onclick: () => translateInto(text, s, view, onDone, alt, true) }) : el('button', { type: 'button', class: 'btn', text: t('chooseTarget'), onclick: choose }));
         return;
       }

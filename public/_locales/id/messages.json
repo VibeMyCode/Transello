@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "Pilih bahasa"
  },
+ "needDownload": {
+  "message": "Untuk menerjemahkan $1 → $2, model bahasa perlu diunduh (sekitar 80 MB)."
+ },
+ "downloadModel": {
+  "message": "Unduh"
+ },
  "truncated": {
   "message": "Hanya $1 karakter pertama yang diterjemahkan. Terjemahkan sisanya secara terpisah."
  },

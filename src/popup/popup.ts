@@ -92,9 +92,14 @@ function render(r: TranslateResult) {
   reveal(result, r.text, input.value); // plain text only, never HTML (spec §6); the decode effect is visual only
   paint();
   btnCopy.disabled = !r.text;
-  if (r.retarget) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
+  if (r.retarget && !r.needsDownload) void getSettings().then((s) => ((settings = s), fillLangs())); // SW already saved the switched target
   const m: (string | Node)[] = [];
-  if (r.sameLanguage && r.source) {
+  if (r.needsDownload && r.source && r.retarget) {
+    // Auto-chosen language without a model on the device: download only on request, or let the user pick.
+    const alt = r.retarget;
+    showStatus(t('needDownload', langName(r.source, ui), langName(alt, ui)));
+    m.push(linkButton(t('downloadModel'), () => setTarget(alt)), linkButton(t('chooseTarget'), () => (target.focus(), target.showPicker?.())));
+  } else if (r.sameLanguage && r.source) {
     const alt = retargetFor(r.source, settings.recentLangs);
     showStatus(t('sameLanguage', langName(r.source, ui)));
     // Nothing sensible to switch to (e.g. English-only browser, English text): ask instead of guessing.

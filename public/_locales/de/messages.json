@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "Sprache wählen"
  },
+ "needDownload": {
+  "message": "Für $1 → $2 muss ein Sprachmodell heruntergeladen werden (etwa 80 MB)."
+ },
+ "downloadModel": {
+  "message": "Herunterladen"
+ },
  "truncated": {
   "message": "Nur die ersten $1 Zeichen wurden übersetzt. Übersetzen Sie den Rest separat."
  },

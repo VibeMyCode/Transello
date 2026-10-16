@@ -101,6 +101,12 @@
  "chooseTarget": {
   "message": "Elegir idioma"
  },
+ "needDownload": {
+  "message": "Para traducir $1 → $2 hay que descargar un modelo de idioma (unos 80 MB)."
+ },
+ "downloadModel": {
+  "message": "Descargar"
+ },
  "truncated": {
   "message": "Solo se tradujeron los primeros $1 caracteres. Traduce el resto por separado."
  },

@@ -131,6 +131,18 @@ describe('translate orchestrator (local)', () => {
     expect(r).toMatchObject({ text: 'RU:Hello there', source: 'en', retarget: 'ru' });
     expect(r.sameLanguage).toBeFalsy();
   });
+  it('auto-switched pair without a downloaded model → asks first, downloads nothing (user report: Lithuanian pack)', async () => {
+    mock.avail = 'downloadable';
+    const r = await translate(req('Hello there', 'auto', 'en'), { settings: sanitize({ target: 'en', recentLangs: ['en', 'lt'] }) });
+    expect(r).toMatchObject({ text: '', source: 'en', retarget: 'lt', needsDownload: true });
+    expect((g.Translator as { create: ReturnType<typeof vi.fn> }).create).not.toHaveBeenCalled();
+  });
+  it('a target the user picked explicitly still downloads as before', async () => {
+    mock.avail = 'downloadable';
+    const r = await translate({ ...req('Hello there', 'auto', 'lt'), fixedTarget: true }, { settings });
+    expect(r.needsDownload).toBeFalsy();
+    expect((g.Translator as { create: ReturnType<typeof vi.fn> }).create).toHaveBeenCalled();
+  });
   it('target the user just picked is kept: sameLanguage instead of switching', async () => {
     const r = await translate({ ...req('Hello there', 'auto', 'en'), fixedTarget: true }, { settings: sanitize({ target: 'en', recentLangs: ['en', 'ru'] }) });
     expect(r).toMatchObject({ sameLanguage: true, text: '' });

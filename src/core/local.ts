@@ -190,11 +190,13 @@ function evict(key: string, p: Pending<Translator>) {
   p.promise.then((t) => t.destroy()).catch(() => {});
 }
 
-/** True when this pair's model is already on the device (no download needed). */
-export async function pairReady(source: string, target: string): Promise<boolean> {
-  if (!localApiPresent()) return false;
-  return (await Translator.availability({ sourceLanguage: source, targetLanguage: target }).catch(() => 'unavailable')) === 'available';
+/** Whether this pair's model is on the device, can be downloaded, or is not offered by this browser at all. */
+export async function pairState(source: string, target: string): Promise<'ready' | 'download' | 'unavailable'> {
+  if (!localApiPresent()) return 'unavailable';
+  const a = await Translator.availability({ sourceLanguage: source, targetLanguage: target }).catch(() => 'unavailable');
+  return a === 'available' ? 'ready' : a === 'unavailable' ? 'unavailable' : 'download';
 }
+export const pairReady = async (source: string, target: string) => (await pairState(source, target)) === 'ready';
 
 export async function localTranslate(text: string, source: string, target: string, signal?: AbortSignal, onProgress?: OnProgress): Promise<string> {
   // Live finding: installing another language pack can invalidate an already-created Translator

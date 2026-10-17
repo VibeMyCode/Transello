@@ -2,7 +2,7 @@
 import { splitText, translatePieces } from './chunk';
 import { TError } from './errors';
 import { normalizeLang, retargetFor } from './lang';
-import { detectLanguage, localApiPresent, localTranslate, pairReady } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairReady, pairState } from './local';
 import type { Ctx } from './translate';
 
 export interface BatchCtx extends Ctx {
@@ -43,7 +43,11 @@ export async function translateBatch(segments: string[], source: string, target:
     tgt = retarget = alt;
   }
   // Same rule as single translations: no surprise model download for a detected direction.
-  if (source === 'auto' && !ctx.allowDownload && !(await pairReady(src, tgt))) throw new TError('needs_download', `${src}>${tgt}`);
+  if (source === 'auto' && !ctx.allowDownload) {
+    const state = await pairState(src, tgt);
+    if (state === 'unavailable') throw new TError('unsupported_pair', `${src}>${tgt}`);
+    if (state === 'download') throw new TError('needs_download', `${src}>${tgt}`);
+  }
   const out: string[] = [];
   for (const s of segments) out.push(await translatePieces(splitText(s), (p) => localTranslate(p, src!, tgt, ctx.signal, ctx.onProgress), ctx.signal));
   return { segments: out, engine, retarget };

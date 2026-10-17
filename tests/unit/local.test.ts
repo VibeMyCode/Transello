@@ -149,6 +149,10 @@ describe('translate orchestrator (local)', () => {
     expect((await translate(req('Ahoj, jak se máš?', 'cs'), { settings })).needsDownload).toBeFalsy();
     expect(create).toHaveBeenCalled();
   });
+  it('pair the browser does not offer → unsupported_pair naming it, no Download offer (user report: en→ru, Windows ARM)', async () => {
+    mock.avail = 'unavailable';
+    await expect(translate(req('Hello there, my friend.'), { settings })).rejects.toMatchObject({ code: 'unsupported_pair', detail: 'en>ru' });
+  });
   it('a target the user picked explicitly still downloads as before', async () => {
     mock.avail = 'downloadable';
     const r = await translate({ ...req('Hello there', 'auto', 'lt'), fixedTarget: true }, { settings });

@@ -30,7 +30,7 @@ export async function uc04({ browser, sw, swTarget }) {
   const tab = await tabOf(sw, `${BASE}/docs.html`);
   const before = await pageSnapshot(page);
 
-  await check('docs page: prose translated; code/pre/forms/translate=no untouched; structure kept', async () => {
+  await check('docs page: prose and form labels translated; code/pre/field values/translate=no untouched; structure kept', async () => {
     const net = await recordNetwork([swTarget, await page.target()]);
     await menuPage(sw, tab);
     await waitBar(page, /Переведено блоков|Translated \d/);
@@ -42,7 +42,7 @@ export async function uc04({ browser, sw, swTarget }) {
     const after = await pageSnapshot(page);
     for (const k of ['h1', 'intro', 'td1', 'li1', 'nav1']) assert(CYR.test(v[k]), `${k} not translated: ${v[k]}`);
     assert(v.pre === 'npm install example-package --save' && v.code === 'createClient', 'code changed');
-    assert(v.flabel === 'Email address' && v.submit === 'Subscribe now' && v.email === 'person@example.com', 'form changed');
+    assert(CYR.test(v.flabel) && CYR.test(v.submit) && v.email === 'person@example.com', `form: ${JSON.stringify(v)}`); // labels yes, values never
     assert(v.tn === 'Example Cloud' && v.href === '#install', 'translate=no / href changed');
     assert(after.elements === before.elements, `element count ${before.elements} → ${after.elements}`);
     const ext = net.seen.filter((u) => !u.startsWith('chrome-extension://') && !u.startsWith(BASE));

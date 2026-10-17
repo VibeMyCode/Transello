@@ -13,18 +13,18 @@ function html(markup: string) {
 }
 
 describe('collectSegments', () => {
-  it('takes visible prose, skips code/scripts/forms/editable/hidden/notranslate', () => {
+  it('takes visible prose and static form text; skips code/scripts/fields/editable/hidden/notranslate', () => {
     html(`
       <h1>Title here</h1><p>Hello <b>bold</b> world <a href="#">link text</a></p>
       <pre>keep pre</pre><code>keep code</code><script>var x = "no"</script><style>p{}</style>
-      <form><label>Form label</label><input value="v"></form>
+      <form><label>Form label</label><input value="v"><button>Send it</button><select><option>no option</option></select></form>
       <textarea>no textarea</textarea><div contenteditable="true">no editable</div>
       <div style="display:none">no hidden</div><div hidden>no hidden attr</div>
       <span translate="no">no brand</span><span class="notranslate">no class</span>
       <p aria-hidden="true">no aria hidden</p><p>   </p><p>12345 — 678</p>
       <svg><text>no svg</text></svg><transello-overlay>no overlay</transello-overlay>`);
     const texts = collectSegments().segments.map((s) => s.core);
-    expect(texts).toEqual(['Title here', 'Hello', 'bold', 'world', 'link text']);
+    expect(texts).toEqual(['Title here', 'Hello', 'bold', 'world', 'link text', 'Form label', 'Send it']);
   });
 
   it('preserves surrounding whitespace separately', () => {

@@ -1,11 +1,12 @@
 // UC-04 page translation controller: toolbar, batches, progress, cancel, restore. No observers, no auto-translate.
 import { request } from '../core/client';
 import { TError, toTError } from '../core/errors';
-import { t, uiLocale, type MsgKey } from '../core/i18n';
+import { t, uiLocale } from '../core/i18n';
 import { langName } from '../core/lang';
 import { isSensitiveHost } from '../core/sensitive';
 import { ENGINE_NAMES, setSettings, type Settings } from '../core/settings';
 import { el, iconButton } from './dom';
+import { errorText } from '../ui/langs';
 import { springIn } from '../ui/fx';
 import { ctx, paintPair } from './overlay';
 import { apply, batches, collectSegments, MAX_NODES, restore, type Segment } from './segments';
@@ -15,6 +16,7 @@ let state: State = 'idle';
 let cancel: (() => void) | null = null;
 const applied = new Map<Text, { original: string; translated: string }>();
 let bar: HTMLElement | null = null;
+const memo = new Map<string, string>(); // this page's translations, memory only (see start())
 const CLOUD_PAGE_MAX = 40_000; // chars per cloud page run
 
 async function toolbar(): Promise<{ msg: HTMLElement; actions: HTMLElement; settings: Settings }> {
@@ -107,37 +109,73 @@ async function start(allowDownload = false) {
 
   state = 'running';
   let stopped = false;
-  let pending: { cancel(): void } | null = null;
+  const pendings = new Set<{ cancel(): void }>();
   cancel = () => {
     stopped = true;
-    pending?.cancel();
+    for (const p of pendings) p.cancel();
   };
   let done = 0;
   let ok = 0;
   const progress = () => show(t('pageTranslating', done, ordered.length), [button(t('cancel'), () => cancel?.())], done / ordered.length);
+  // Translations of this page stay in memory until it is closed: "Translate again" re-applies them at once, with no
+  // second (paid) cloud call (user report). Keyed by engine + target + text; never written to storage.
+  const keyOf = (core: string) => `${settings.engine}|${settings.target}|${core}`;
+  const put = (s: Segment, tr: string) => {
+    if (!apply(s, tr)) return;
+    applied.set(s.node, { original: s.original, translated: s.node.data });
+    ok++;
+  };
+  const todo: Segment[] = [];
+  for (const s of ordered) {
+    const hit = memo.get(keyOf(s.core));
+    if (hit === undefined) {
+      todo.push(s);
+      continue;
+    }
+    put(s, hit);
+    done++;
+  }
   await progress();
-  try {
-    for (const batch of batches(ordered)) {
-      if (stopped) throw new TError('cancelled');
-      const p = request(
-        { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload },
-        (loaded) => void show(t('downloading', Math.round(loaded * 100)), [button(t('cancel'), () => cancel?.())], loaded),
-      );
-      pending = p;
+  const run = async (batch: Segment[]) => {
+    if (stopped) throw new TError('cancelled');
+    const p = request(
+      { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload },
+      (loaded) => void show(t('downloading', Math.round(loaded * 100)), [button(t('cancel'), () => cancel?.())], loaded),
+    );
+    pendings.add(p);
+    try {
       const r = (await p.promise) as { segments: string[] };
       batch.forEach((s, i) => {
         const tr = r.segments[i];
-        if (typeof tr === 'string' && tr && apply(s, tr)) {
-          applied.set(s.node, { original: s.original, translated: s.node.data });
-          ok++;
-        }
+        if (typeof tr !== 'string' || !tr) return;
+        memo.set(keyOf(s.core), tr);
+        put(s, tr);
       });
-      done += batch.length;
-      await progress();
+    } finally {
+      pendings.delete(p);
     }
-    state = 'translated';
+    done += batch.length;
+    await progress();
+  };
+  try {
+    // Cloud calls are network-bound: up to 3 in flight (user report: a DeepSeek page took a minute). Local stays
+    // sequential: the on-device model is the bottleneck there.
+    const queue = batches(todo);
+    const worker = async () => {
+      for (let b = queue.shift(); b; b = queue.shift()) await run(b);
+    };
+    await Promise.all(Array.from({ length: cloud ? 3 : 1 }, worker)).catch((e: unknown) => {
+      cancel?.(); // one failed batch stops the others
+      throw e;
+    });
     const summary = [t('pageDone', ok, total)];
     if (total > MAX_NODES || capped) summary.push(t('pageLimited', ordered.length));
+    if (!ok) {
+      // Nothing landed (e.g. the page re-rendered): don't pretend there is a translation to hide.
+      state = 'idle';
+      return void (await show(summary.join(' '), [button(t('translateAgain'), () => void start(), true)]));
+    }
+    state = 'translated';
     await show(summary.join(' '), [button(t('showOriginal'), showOriginal, true)]);
   } catch (e) {
     const te = e instanceof TError ? e : toTError(e);
@@ -147,7 +185,7 @@ async function start(allowDownload = false) {
       const [a = '', b = ''] = (te.detail ?? '').split('>');
       return void show(t('needDownload', langName(a, uiLocale()), langName(b, uiLocale())), [button(t('downloadModel'), () => void start(true), true), button(t('cancel'), closeBar)]);
     }
-    const msg = te.code === 'cancelled' ? t('err_cancelled') : t(`err_${te.code}` as MsgKey);
+    const msg = errorText(te);
     const actions = [button(t('translateAgain'), () => void start())];
     if (applied.size) actions.unshift(button(t('showOriginal'), showOriginal, true));
     await show(`${msg} ${t('pageDone', ok, total)}`, actions);
@@ -159,4 +197,5 @@ async function start(allowDownload = false) {
 addEventListener('pagehide', () => {
   cancel?.();
   applied.clear(); // bfcache/navigation: drop references to old nodes
+  memo.clear();
 });

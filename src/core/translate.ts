@@ -3,7 +3,7 @@ import { limitText, MAX_TEXT, splitText, translatePieces } from './chunk';
 import { CLOUD_TEXT_MAX } from './cloud';
 import { TError } from './errors';
 import { normalizeLang, retargetFor, type Detection } from './lang';
-import { detectLanguage, localApiPresent, localTranslate, pairReady, type OnProgress } from './local';
+import { detectLanguage, localApiPresent, localTranslate, pairState, type OnProgress } from './local';
 import type { EngineId, Settings } from './settings';
 
 export type Mode = 'text' | 'selection' | 'page_chunk';
@@ -81,7 +81,12 @@ export async function translate(req: TranslateRequest, ctx: Ctx): Promise<Transl
   // Never download a model (~80 MB) for a direction the user didn't choose: a guessed source (user report: a URL
   // "looked like Czech") or a guessed target (a stray recent pulled Lithuanian). Picking a language is consent.
   const chosen = req.allowDownload || req.fixedTarget || req.source !== 'auto';
-  if (!chosen && !(await pairReady(src, tgt))) return { text: '', source: src, detection, engine, retarget, needsDownload: true };
+  if (!chosen) {
+    const state = await pairState(src, tgt);
+    // Not offered by this browser at all (user report: en→ru on Chrome, Windows 11 ARM): say so, don't offer a download.
+    if (state === 'unavailable') throw new TError('unsupported_pair', `${src}>${tgt}`);
+    if (state === 'download') return { text: '', source: src, detection, engine, retarget, needsDownload: true };
+  }
 
   const out = await translatePieces(
     splitText(text),

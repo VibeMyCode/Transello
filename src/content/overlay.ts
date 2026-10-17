@@ -1,9 +1,9 @@
 // UC-02 page modal and UC-03 mini popover, rendered in a closed Shadow DOM.
 import { request } from '../core/client';
 import { isRetryable, TError, toTError } from '../core/errors';
-import { isRtl, t, uiLocale, type MsgKey } from '../core/i18n';
+import { isRtl, t, uiLocale } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
-import { fillLangSelect } from '../ui/langs';
+import { errorText, fillLangSelect } from '../ui/langs';
 import { ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 import { el, iconButton } from './dom';
@@ -115,7 +115,7 @@ function translateInto(
       busy(false);
       const te = e instanceof TError ? e : toTError(e);
       if (te.code === 'cancelled') return;
-      setStatus(t(`err_${te.code}` as MsgKey), true);
+      setStatus(errorText(te), true);
       if (isRetryable(te.code)) view.status.append(' ', el('button', { type: 'button', class: 'btn', text: t('retry'), onclick: () => translateInto(text, s, view, onDone, target, fixedTarget) }));
       if (te.code === 'local_unavailable_here' || te.code === 'unknown_language' || te.code === 'unsupported_pair')
         view.status.append(' ', el('button', { type: 'button', class: 'btn', text: t('openTransello'), onclick: () => chrome.runtime.sendMessage({ type: 'open_window', text }) }));

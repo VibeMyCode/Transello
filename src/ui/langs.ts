@@ -1,5 +1,6 @@
 // Language <select> with recently used languages first, then all languages alphabetically (user request).
-import { t } from '../core/i18n';
+import type { TError } from '../core/errors';
+import { t, uiLocale } from '../core/i18n';
 import { LANGS, langName } from '../core/lang';
 import type { Settings } from '../core/settings';
 
@@ -16,4 +17,11 @@ export function fillLangSelect(sel: HTMLSelectElement, ui: string, s: Settings, 
   if (recent.length) group(t('recentLangs'), recent);
   group(t('allLangs'), [...LANGS].sort((a, b) => langName(a, ui).localeCompare(langName(b, ui), ui)));
   sel.value = value;
+}
+
+/** Localized error text; an unsupported pair also names it ("… (English → Russian)"). */
+export function errorText(e: TError): string {
+  const msg = t(`err_${e.code}`);
+  const pair = e.code === 'unsupported_pair' && /^([a-zA-Z-]+)>([a-zA-Z-]+)$/.exec(e.detail ?? '');
+  return pair ? `${msg} (${langName(pair[1]!, uiLocale())} → ${langName(pair[2]!, uiLocale())})` : msg;
 }

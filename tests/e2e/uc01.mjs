@@ -179,7 +179,20 @@ export async function uc01({ browser, extId, sw, swTarget }) {
   await check('detected source without a model on the device asks first (user report: a URL "looked like Czech")', async () => {
     await page.select('#target', 'ru');
     await settled(page);
-    const r = await translateVia(page, 'Labas rytas! Kaip sekasi šiandien? Šiandien labai graži diena.'); // lt, no lt model here
+    // Pick a language whose model this profile doesn't have yet (earlier explicit picks may have downloaded some).
+    const SAMPLES = {
+      lt: 'Labas rytas! Kaip sekasi šiandien? Šiandien labai graži diena.',
+      sl: 'Dobro jutro! Kako si danes? Danes je zelo lep dan.',
+      sk: 'Dobré ráno! Ako sa dnes máš? Dnes je veľmi pekný deň.',
+      fi: 'Hyvää huomenta! Mitä sinulle kuuluu tänään? Tänään on todella kaunis päivä.',
+      da: 'Godmorgen! Hvordan har du det i dag? I dag er en meget smuk dag.',
+    };
+    const lang = await page.evaluate(async (codes) => {
+      for (const c of codes) if ((await Translator.availability({ sourceLanguage: c, targetLanguage: 'ru' })) === 'downloadable') return c;
+      return null;
+    }, Object.keys(SAMPLES));
+    if (!lang) return 'skipped: every sample language is already downloaded in this profile';
+    const r = await translateVia(page, SAMPLES[lang]);
     const buttons = await page.$$eval('#status .ask button', (b) => b.map((x) => x.textContent));
     const progress = await page.$('#status progress');
     assert(/80/.test(r.status) && !r.result && buttons.length === 2 && !progress, JSON.stringify({ r, buttons }));

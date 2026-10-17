@@ -2,10 +2,12 @@
 
 const SKIP_TAGS = new Set([
   'SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE', 'CODE', 'PRE', 'KBD', 'SAMP', 'VAR', 'TEXTAREA', 'INPUT', 'SELECT',
-  'OPTION', 'BUTTON', 'SVG', 'MATH', 'CANVAS', 'IFRAME', 'OBJECT', 'EMBED', 'TRANSELLO-OVERLAY', 'HEAD', 'TITLE',
+  'OPTION', 'DATALIST', 'SVG', 'MATH', 'CANVAS', 'IFRAME', 'OBJECT', 'EMBED', 'TRANSELLO-OVERLAY', 'HEAD', 'TITLE',
 ]);
-// Form fields and anything personal/secret stay untouched; translating UI chrome inside forms can break apps.
-const SKIP_CLOSEST = 'form, [contenteditable=""], [contenteditable="true"], [contenteditable="plaintext-only"], [translate="no"], .notranslate, [aria-hidden="true"], [hidden]';
+// What users type (field values, editable areas) is never touched; attributes (aria-label, placeholder) neither.
+// Static text inside a <form> is translated: real sites wrap whole hero sections in forms (user report: brave.com
+// card waitlist stayed English while only the menu was translated). Only text nodes change, so forms still submit.
+const SKIP_CLOSEST = '[contenteditable=""], [contenteditable="true"], [contenteditable="plaintext-only"], [translate="no"], .notranslate, [aria-hidden="true"], [hidden]';
 
 export const MAX_NODES = 2_000; // ponytail: hard cap on very large pages; partial result is reported honestly
 

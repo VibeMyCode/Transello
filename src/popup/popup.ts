@@ -1,9 +1,9 @@
 // UC-01: action popup (and the same page as a standalone window with ?window=1).
 import { request } from '../core/client';
 import { isRetryable, TError, toTError } from '../core/errors';
-import { applyI18n, t, uiLocale, type MsgKey } from '../core/i18n';
+import { applyI18n, t, uiLocale } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
-import { fillLangSelect } from '../ui/langs';
+import { errorText, fillLangSelect } from '../ui/langs';
 import { enter, pop, reveal, setPair, spin } from '../ui/fx';
 import { applyTheme, ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
@@ -123,7 +123,7 @@ function render(r: TranslateResult) {
 function showError(e: TError) {
   reveal(result, '');
   btnCopy.disabled = true;
-  showStatus(t(`err_${e.code}` as MsgKey), { error: true, retry: isRetryable(e.code) });
+  showStatus(errorText(e), { error: true, retry: isRetryable(e.code) });
   if (e.code === 'unknown_language' || e.code === 'unsupported_pair') source.focus();
   if (e.code === 'no_key' || e.code === 'api_missing' || e.code === 'no_permission')
     status.append(linkButton(t('settings'), () => chrome.runtime.openOptionsPage()));

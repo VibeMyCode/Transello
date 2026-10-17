@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "Model bahasa tidak dapat diunduh (offline atau ruang disk tidak cukup?)."
  },
+ "err_local_failed": {
+  "message": "Penerjemah bawaan Chrome tidak dapat berjalan di perangkat ini, meskipun model bahasanya sudah terpasang. Periksa chrome://components (TranslateKit) dan ruang disk kosong, atau hubungkan penyedia cloud di Pengaturan."
+ },
  "err_download_stalled": {
   "message": "Unduhan model bahasa tidak berjalan. Periksa koneksi Anda lalu coba lagi."
  },

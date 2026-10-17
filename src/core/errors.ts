@@ -7,6 +7,7 @@ export const ERROR_CODES = [
   'unknown_language', // detector could not tell; user must pick the source
   'needs_download', // detected direction has no model on the device; ask before downloading (detail "src>tgt")
   'download_failed',
+  'local_failed', // the pair is offered and its model is on disk, but Chrome's translator would not start (detail: Chrome's error)
   'download_stalled',
   'too_long',
   'restricted_page',

@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "言語モデルをダウンロードできませんでした（オフライン、またはディスク容量不足の可能性があります）。"
  },
+ "err_local_failed": {
+  "message": "言語モデルはインストール済みですが、Chrome の組み込み翻訳機能をこのデバイスで起動できませんでした。chrome://components（TranslateKit）とディスクの空き容量を確認するか、設定でクラウドプロバイダを接続してください。"
+ },
  "err_download_stalled": {
   "message": "言語モデルのダウンロードが進んでいません。接続を確認して再試行してください。"
  },

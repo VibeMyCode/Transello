@@ -125,7 +125,7 @@ function showError(e: TError) {
   btnCopy.disabled = true;
   showStatus(errorText(e), { error: true, retry: isRetryable(e.code) });
   if (e.code === 'unknown_language' || e.code === 'unsupported_pair') source.focus();
-  if (e.code === 'no_key' || e.code === 'api_missing' || e.code === 'no_permission')
+  if (e.code === 'no_key' || e.code === 'api_missing' || e.code === 'local_failed' || e.code === 'no_permission')
     status.append(linkButton(t('settings'), () => chrome.runtime.openOptionsPage()));
 }
 

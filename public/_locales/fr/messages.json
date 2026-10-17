@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "Le modèle de langue n'a pas pu être téléchargé (hors ligne ou espace disque insuffisant ?)."
  },
+ "err_local_failed": {
+  "message": "Le traducteur intégré de Chrome n'a pas pu démarrer sur cet appareil, bien que le modèle de langue soit installé. Vérifiez chrome://components (TranslateKit) et l'espace disque libre, ou connectez un fournisseur cloud dans les Paramètres."
+ },
  "err_download_stalled": {
   "message": "Le téléchargement du modèle de langue n'avance pas. Vérifiez votre connexion et réessayez."
  },

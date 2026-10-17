@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "Das Sprachmodell konnte nicht heruntergeladen werden (offline oder zu wenig Speicherplatz?)."
  },
+ "err_local_failed": {
+  "message": "Der integrierte Übersetzer von Chrome konnte auf diesem Gerät nicht starten, obwohl das Sprachmodell installiert ist. Prüfen Sie chrome://components (TranslateKit) und den freien Speicherplatz oder verbinden Sie in den Einstellungen einen Cloud-Anbieter."
+ },
  "err_download_stalled": {
   "message": "Der Download des Sprachmodells kommt nicht voran. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut."
  },

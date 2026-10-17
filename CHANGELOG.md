@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.0.0 - unreleased
+- When Chrome's translator will not start although the model is installed (seen on Chrome, Windows 11 ARM: NotSupportedError after download), the message says exactly that, shows Chrome's reason, and points to chrome://components, disk space or a cloud provider. Settings → About runs a one-word self-test of the installed en→ru pair.
 - Page translation also translates static text inside forms (headings, labels, button text); field values and editable areas are never touched (user report: brave.com card waitlist stayed English because its hero is a form).
 - Page translations are kept in memory until the page is closed: "Translate again" re-applies them instantly, with no second cloud call. Cloud pages send up to 3 batches at once. If nothing could be applied, the toolbar says so instead of offering "Show original".
 - A pair the browser does not offer (seen: English → Russian on Chrome, Windows 11 ARM) now fails clearly with the pair named, instead of offering a download that cannot work.

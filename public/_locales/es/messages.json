@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "No se pudo descargar el modelo de idioma (¿sin conexión o sin espacio en disco?)."
  },
+ "err_local_failed": {
+  "message": "El traductor integrado de Chrome no pudo iniciarse en este dispositivo, aunque el modelo de idioma está instalado. Revisa chrome://components (TranslateKit) y el espacio libre en disco, o conecta un proveedor en la nube en Ajustes."
+ },
  "err_download_stalled": {
   "message": "La descarga del modelo de idioma no avanza. Comprueba tu conexión y vuelve a intentarlo."
  },

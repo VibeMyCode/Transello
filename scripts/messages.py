@@ -65,6 +65,7 @@ M = {
  "err_unknown_language": ("Could not detect the language. Pick the source language.", "Не удалось определить язык. Выберите исходный язык."),
  "err_needs_download": ("This direction needs a language model download first (about 80 MB).", "Для этого направления сначала нужно скачать языковую модель (около 80 МБ)."),
  "err_download_failed": ("The language model could not be downloaded (offline or not enough disk space?).", "Не удалось загрузить языковую модель (нет сети или места на диске?)."),
+ "err_local_failed": ("Chrome's built-in translator could not start on this device, although the language model is installed. Check chrome://components (TranslateKit) and free disk space, or connect a cloud provider in Settings.", "Встроенный переводчик Chrome не запустился на этом устройстве, хотя языковая модель установлена. Проверьте chrome://components (TranslateKit) и свободное место на диске или подключите облачного провайдера в настройках."),
  "err_download_stalled": ("The language model download is not progressing. Check your connection and retry.", "Загрузка языковой модели не продвигается. Проверьте соединение и повторите."),
  "err_too_long": ("The text is too long for one request.", "Текст слишком длинный для одного запроса."),
  "err_restricted_page": ("Chrome does not allow extensions on this page.", "Chrome не разрешает расширениям работать на этой странице."),

@@ -159,7 +159,23 @@ export async function localDiagnostics(): Promise<string> {
   const tr = typeof globalThis.Translator === 'undefined' ? 'missing' : await Translator.availability({ sourceLanguage: 'en', targetLanguage: 'ru' }).catch((e) => 'error ' + (e as Error).name);
   const ld = typeof globalThis.LanguageDetector === 'undefined' ? 'missing' : await LanguageDetector.availability().catch((e) => 'error ' + (e as Error).name);
   const cld = typeof globalThis.chrome?.i18n?.detectLanguage === 'function' ? 'ok' : 'missing';
-  return `Translator(en→ru): ${tr} · LanguageDetector: ${ld} · CLD: ${cld}`;
+  return `Translator(en→ru): ${tr}${tr === 'available' ? ` (${await selfTest()})` : ''} · LanguageDetector: ${ld} · CLD: ${cld}`;
+}
+
+/** Translate one word with an installed pair: shows whether Chrome's translator actually starts here. Never downloads. */
+async function selfTest(): Promise<string> {
+  try {
+    const tr = await Promise.race([
+      Translator.create({ sourceLanguage: 'en', targetLanguage: 'ru' }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 15_000)),
+    ]);
+    const out = await tr.translate('Hello');
+    tr.destroy();
+    return out ? 'test ok' : 'test: empty';
+  } catch (e) {
+    const err = e as { name?: string; message?: string };
+    return `test: ${err.name ?? 'Error'}: ${err.message ?? ''}`.slice(0, 160);
+  }
 }
 
 export const MAX_TRANSLATORS = 4; // NFR-04: bounded cache; evicted instances are destroyed
@@ -174,7 +190,15 @@ async function getTranslator(source: string, target: string, signal?: AbortSigna
   } else {
     const avail = await Translator.availability({ sourceLanguage: source, targetLanguage: target });
     if (avail === 'unavailable') throw new TError('unsupported_pair', key);
-    const created = create((s, monitor) => Translator.create({ sourceLanguage: source, targetLanguage: target, signal: s, monitor }));
+    const created = create((s, monitor) =>
+      Translator.create({ sourceLanguage: source, targetLanguage: target, signal: s, monitor }).catch((e: unknown) => {
+        // The pair is offered (not 'unavailable'), so NotSupportedError here means Chrome's translator itself would not
+        // start (user report: Windows 11 ARM, model installed). Keep Chrome's words for the user and for diagnostics.
+        const err = e as { name?: string; message?: string };
+        if (err?.name === 'NotSupportedError') throw new TError('local_failed', `${err.name}: ${err.message ?? ''}`.slice(0, 200));
+        throw e;
+      }),
+    );
     created.promise.catch(() => translators.get(key) === created && translators.delete(key)); // NFR-05: retry after failure
     translators.set(key, (p = created));
     for (const [k, old] of translators) {

@@ -119,7 +119,7 @@ function translateInto(
       if (isRetryable(te.code)) view.status.append(' ', el('button', { type: 'button', class: 'btn', text: t('retry'), onclick: () => translateInto(text, s, view, onDone, target, fixedTarget) }));
       if (te.code === 'local_unavailable_here' || te.code === 'unknown_language' || te.code === 'unsupported_pair')
         view.status.append(' ', el('button', { type: 'button', class: 'btn', text: t('openTransello'), onclick: () => chrome.runtime.sendMessage({ type: 'open_window', text }) }));
-      if (te.code === 'no_key' || te.code === 'no_permission' || te.code === 'api_missing')
+      if (te.code === 'no_key' || te.code === 'no_permission' || te.code === 'api_missing' || te.code === 'local_failed')
         view.status.append(' ', el('button', { type: 'button', class: 'btn', text: t('settings'), onclick: () => chrome.runtime.sendMessage({ type: 'open_options' }) }));
     });
   return p.cancel;

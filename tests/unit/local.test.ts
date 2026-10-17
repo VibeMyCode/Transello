@@ -153,6 +153,11 @@ describe('translate orchestrator (local)', () => {
     mock.avail = 'unavailable';
     await expect(translate(req('Hello there, my friend.'), { settings })).rejects.toMatchObject({ code: 'unsupported_pair', detail: 'en>ru' });
   });
+  it('model downloaded but the translator cannot start → local_failed with Chrome\'s reason (user report: Windows 11 ARM)', async () => {
+    mock.avail = 'available';
+    mock.createImpl = async () => Promise.reject(new DOMException('Unable to create translator for the given source and target language.', 'NotSupportedError'));
+    await expect(translate(req('Hello there, my friend.'), { settings })).rejects.toMatchObject({ code: 'local_failed', detail: expect.stringContaining('NotSupportedError') });
+  });
   it('a target the user picked explicitly still downloads as before', async () => {
     mock.avail = 'downloadable';
     const r = await translate({ ...req('Hello there', 'auto', 'lt'), fixedTarget: true }, { settings });

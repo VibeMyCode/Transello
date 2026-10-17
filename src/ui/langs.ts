@@ -23,5 +23,6 @@ export function fillLangSelect(sel: HTMLSelectElement, ui: string, s: Settings, 
 export function errorText(e: TError): string {
   const msg = t(`err_${e.code}`);
   const pair = e.code === 'unsupported_pair' && /^([a-zA-Z-]+)>([a-zA-Z-]+)$/.exec(e.detail ?? '');
-  return pair ? `${msg} (${langName(pair[1]!, uiLocale())} → ${langName(pair[2]!, uiLocale())})` : msg;
+  if (pair) return `${msg} (${langName(pair[1]!, uiLocale())} → ${langName(pair[2]!, uiLocale())})`;
+  return e.code === 'local_failed' && e.detail ? `${msg} [${e.detail}]` : msg; // Chrome's own words help support
 }

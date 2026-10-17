@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "The language model could not be downloaded (offline or not enough disk space?)."
  },
+ "err_local_failed": {
+  "message": "Chrome's built-in translator could not start on this device, although the language model is installed. Check chrome://components (TranslateKit) and free disk space, or connect a cloud provider in Settings."
+ },
  "err_download_stalled": {
   "message": "The language model download is not progressing. Check your connection and retry."
  },

@@ -188,6 +188,9 @@
  "err_download_failed": {
   "message": "无法下载语言模型（可能已离线或磁盘空间不足）。"
  },
+ "err_local_failed": {
+  "message": "Chrome 内置翻译器无法在此设备上启动，尽管语言模型已安装。请检查 chrome://components（TranslateKit）和磁盘可用空间，或在设置中连接云端服务。"
+ },
  "err_download_stalled": {
   "message": "语言模型下载没有进展。请检查网络连接后重试。"
  },

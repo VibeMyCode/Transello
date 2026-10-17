@@ -40,4 +40,4 @@ npm 10.9 crashes on vitest's peer-dependency set, so `.npmrc` sets `legacy-peer-
 
 ## License
 
-MIT
+Source-available, all rights reserved: you may read and audit the code, and use the official extension. Copying, modifying or redistributing it needs written permission. See [LICENSE](LICENSE). Versions up to commit `abb1465` were published under MIT and remain so.

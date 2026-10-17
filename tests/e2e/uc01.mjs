@@ -199,6 +199,15 @@ export async function uc01({ browser, extId, sw, swTarget }) {
     return `"${r.status}" [${buttons.join(' | ')}]`;
   });
 
+  await check('local engine remembered as broken on this Chrome → clear message at once, no download offer', async () => {
+    await page.evaluate(() => chrome.storage.local.set({ localBroken: { chrome: /Chrome\/([\d.]+)/.exec(navigator.userAgent)[1], at: Date.now(), detail: 'NotSupportedError: test' } }));
+    const r = await translateVia(page, 'The weather is lovely today, and we are going to the park.');
+    await page.evaluate(() => chrome.storage.local.remove('localBroken'));
+    const ask = await page.$('#status .ask');
+    assert(r.error && /chrome:\/\/components/.test(r.status) && /NotSupportedError/.test(r.status) && !ask, JSON.stringify(r));
+    return r.status.slice(0, 120);
+  });
+
   await check('explicit source == target → honest message + swap action', async () => {
     await page.select('#target', 'ru');
     await settled(page);

@@ -49,6 +49,10 @@ chrome.runtime.onConnect.addListener((port) => {
       const settings = await getSettings();
       // No Translator in the SW means none in this browser at all (live: Brave on Windows has it off everywhere; ADR-001 amendment).
       if (settings.engine === 'local' && !localApiPresent()) throw new TError('api_missing');
+      if (settings.engine === 'local') {
+        const broken = await localBroken();
+        if (broken !== null) throw new TError('local_failed', broken);
+      }
       const ctx = { settings, signal: ctl.signal, onProgress: (loaded: number) => post({ type: 'progress', loaded }), cloud: cloudTranslate };
       // Text was already in the target language: the language we switched to becomes the new default.
       const adopt = async (l?: string) => void (l && l !== settings.target && (await rememberLang(l, { target: l })));
@@ -63,11 +67,21 @@ chrome.runtime.onConnect.addListener((port) => {
       }
     } catch (e) {
       const te = toTError(e);
+      if (te.code === 'local_failed') void chrome.storage.local.set({ [BROKEN_KEY]: { chrome: CHROME_VERSION, at: Date.now(), detail: te.detail ?? '' } });
       if (te.code !== 'cancelled') console.warn('[transello]', te.code, te.detail ?? ''); // codes only, never text/keys
       post({ type: 'error', code: isErrorCode(te.code) ? te.code : 'internal', detail: te.detail });
     }
   });
 });
+
+// Chrome's translator would not start on this device although models install (Windows on ARM: the TranslateKit engine
+// component stays 0.0.0.0). Remember it per Chrome version for a day, so nobody is offered 80 MB downloads that cannot work.
+const BROKEN_KEY = 'localBroken';
+const CHROME_VERSION = /Chrome\/([\d.]+)/.exec(navigator.userAgent)?.[1] ?? '';
+async function localBroken(): Promise<string | null> {
+  const { localBroken: b } = (await chrome.storage.local.get(BROKEN_KEY)) as { localBroken?: { chrome: string; at: number; detail: string } };
+  return b && b.chrome === CHROME_VERSION && Date.now() - b.at < 86_400_000 ? b.detail : null;
+}
 
 // ---------- one-shot messages (extension pages and our content scripts) ----------
 chrome.runtime.onMessage.addListener((raw, sender, send) => {

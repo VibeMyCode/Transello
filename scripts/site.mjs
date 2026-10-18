@@ -1,4 +1,4 @@
-// Build the public site (GitHub Pages): privacy policy from docs/PRIVACY_POLICY.md + support page. No deps.
+// Build the public site (GitHub Pages): privacy policy from docs/PRIVACY_POLICY.md (+ _RU) + support page. No deps.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -57,5 +57,9 @@ const tpl = fs.readFileSync(path.join(out, '_page.html'), 'utf8');
 fs.rmSync(path.join(out, '_page.html'));
 const page = (title, body) => tpl.replace('{{TITLE}}', title).replace('{{BODY}}', body);
 fs.writeFileSync(path.join(out, 'privacy.html'), page('Privacy Policy', md(fs.readFileSync(path.join(root, 'docs/PRIVACY_POLICY.md'), 'utf8'))));
+fs.writeFileSync(
+  path.join(out, 'privacy-ru.html'),
+  page('Политика конфиденциальности', md(fs.readFileSync(path.join(root, 'docs/PRIVACY_POLICY_RU.md'), 'utf8'))).replace('<html lang="en">', '<html lang="ru">'),
+);
 for (const f of ['index.html', 'support.html']) fs.writeFileSync(path.join(out, f), page(f === 'index.html' ? 'Transello' : 'Support Transello', fs.readFileSync(path.join(out, f), 'utf8')));
 console.log('site built →', path.relative(root, out), fs.readdirSync(out).join(', '));

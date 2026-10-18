@@ -59,7 +59,7 @@ async function renderAll() {
   $<HTMLSelectElement>('theme').value = settings.theme;
   $<HTMLInputElement>('keepDraft').checked = settings.keepDraft;
   $('version').textContent = t('optVersion', chrome.runtime.getManifest().version);
-  for (const [id, url] of [['sourceLink', LINKS.feedback], ['privacyLink', LINKS.privacy], ['supportLink', LINKS.support]] as const) {
+  for (const [id, url] of [['sourceLink', LINKS.feedback], ['privacyLink', uiLocale().startsWith('ru') ? LINKS.privacyRu : LINKS.privacy], ['supportLink', LINKS.support]] as const) {
     const a = $<HTMLAnchorElement>(id);
     a.hidden = !url;
     if (url) a.href = url;

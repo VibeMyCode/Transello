@@ -1,6 +1,8 @@
 # Changelog
 
 ## 1.1.0 - unreleased
+- Page language is detected once per page from its longest texts, and the page's own lang attribute decides when the detector is unsure (user report: an English site's menu words "looked Swedish" and Transello offered a Swedish model).
+- Follow-up translation also works on single-page sites that change the address without reloading (Next.js and similar).
 - Follow-up pages: after a page is translated with the built-in translator, the next pages you open on the same site in that tab are translated automatically. A page already in your language is left alone. "Show original", another site or closing the tab stops it. No new permissions.
 - New shortcut to translate the whole page: Ctrl+. (Mac: Control+.). Press it again to show the original. Works with cloud providers too (they are never automatic, since each page costs money).
 - The selection shortcut is now Ctrl+Q (Mac: Control+Q). Both shortcuts can be changed at chrome://extensions/shortcuts.

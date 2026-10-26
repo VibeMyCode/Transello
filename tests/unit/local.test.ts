@@ -212,6 +212,13 @@ describe('translateBatch', () => {
     expect(await translateBatch(['Привет'], 'auto', 'ru', { settings: s })).toMatchObject({ segments: ['RU:Привет'], retarget: 'de' });
     expect((await translateBatch(['Привет'], 'ru', 'ru', { settings: s })).segments).toEqual(['Привет']);
   });
+  it('page language: one page-wide sample; an unsure guess yields to <html lang> (user report: menu words looked Swedish)', async () => {
+    mock.detect = [{ detectedLanguage: 'sv', confidence: 0.2 }];
+    const r = await translateBatch(['Docs', 'Blog'], 'auto', 'ru', { settings, sample: 'Docs Blog Careers', hint: 'en' });
+    expect(r.segments).toEqual(['RU:Docs', 'RU:Blog']);
+    const create = (g.Translator as { create: ReturnType<typeof vi.fn> }).create;
+    expect(create.mock.calls[0]![0]).toMatchObject({ sourceLanguage: 'en', targetLanguage: 'ru' });
+  });
   it('auto (follow-up page) already in the target → left as is, never retargeted', async () => {
     mock.detect = [{ detectedLanguage: 'ru', confidence: 0.99 }];
     const s = sanitize({ target: 'ru', recentLangs: ['ru', 'de'] });

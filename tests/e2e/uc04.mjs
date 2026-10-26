@@ -70,7 +70,7 @@ export async function uc04({ browser, sw, swTarget }) {
     await clickBar(page, 'оригинал|original');
   });
 
-  await check('SPA view change: no errors, new content untouched, restore safe', async () => {
+  await check('SPA view change: new view translated by itself (follow-up), restore safe', async () => {
     const p = await browser.newPage();
     const errors = [];
     p.on('pageerror', (e) => errors.push(String(e)));
@@ -79,7 +79,9 @@ export async function uc04({ browser, sw, swTarget }) {
     await menuPage(sw, t);
     await waitBar(p, /Переведено блоков|Translated \d/);
     assert(CYR.test(await p.$eval('#view-text', (e) => e.textContent)), 'first view not translated');
-    await p.click('#nav');
+    await p.click('#nav'); // pushState: the URL changes without a reload
+    await p.waitForFunction(() => /[а-яё]/i.test(document.getElementById('view-text')?.textContent ?? ''), { timeout: 30_000 });
+    await waitBar(p, /Показать оригинал|Show original/);
     await clickBar(p, 'оригинал|original');
     await waitBar(p, /Восстановлен|restored/);
     const txt = await p.$eval('#view-text', (e) => e.textContent);

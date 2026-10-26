@@ -8,7 +8,7 @@ export const PORT_TRANSLATE = 'translate';
 /** Client → SW over a `translate` port. Disconnecting the port cancels the request. */
 export type PortRequest =
   | { type: 'translate'; req: TranslateRequest }
-  | { type: 'batch'; segments: string[]; source: string; target: string; consent?: boolean; allowDownload?: boolean; auto?: boolean };
+  | { type: 'batch'; segments: string[]; source: string; target: string; consent?: boolean; allowDownload?: boolean; auto?: boolean; sample?: string; hint?: string };
 
 /** SW → client. */
 export type PortReply =
@@ -50,7 +50,10 @@ export function parsePortRequest(m: unknown): PortRequest | null {
     if (!Array.isArray(s) || s.length === 0 || s.length > LIMITS.segments) return null;
     if (!s.every((x) => typeof x === 'string' && x.length <= LIMITS.segment)) return null;
     if (!isLang(o.source) || !isLang(o.target)) return null;
-    return { type: 'batch', segments: s as string[], source: o.source, target: o.target, consent: o.consent === true, ...(o.allowDownload === true && { allowDownload: true }), ...(o.auto === true && { auto: true }) };
+    return { type: 'batch', segments: s as string[], source: o.source, target: o.target, consent: o.consent === true, ...(o.allowDownload === true && { allowDownload: true }), ...(o.auto === true && { auto: true }),
+      ...(typeof o.sample === 'string' && { sample: o.sample.slice(0, 2_000) }),
+      ...(isLang(o.hint) && { hint: o.hint }),
+    };
   }
   return null;
 }

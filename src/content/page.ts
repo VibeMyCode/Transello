@@ -52,7 +52,8 @@ async function show(text: string, buttons: HTMLButtonElement[] = [], progress?: 
 /** Entry point from the context menu / page shortcut. Re-invoking while running cancels; after translation toggles
  *  views. `auto`: a follow-up page on the same site (SW), translated without asking and silent if already in target. */
 export async function togglePage(auto = false) {
-  if (auto) return state === 'idle' ? start(false, true) : undefined;
+  // A single-page site changes views without reloading: re-run over the new content (memo makes old text instant).
+  if (auto) return state === 'idle' || state === 'translated' ? start(false, true) : undefined;
   if (state === 'running') return cancel?.();
   if (state === 'translated') return showOriginal();
   return start();
@@ -120,6 +121,9 @@ async function start(allowDownload = false, auto = false) {
   let done = 0;
   let ok = 0;
   let same = 0;
+  // One language for the whole page: detect on its longest texts, not on each batch's menu words.
+  const sample = [...ordered].sort((a, b) => b.core.length - a.core.length).map((s) => s.core).join('\n').slice(0, 2_000);
+  const hint = document.documentElement.lang || undefined;
   const progress = () => show(t('pageTranslating', done, ordered.length), [button(t('cancel'), () => cancel?.())], done / ordered.length);
   // Translations of this page stay in memory until it is closed: "Translate again" re-applies them at once, with no
   // second (paid) cloud call (user report). Keyed by engine + target + text; never written to storage.
@@ -143,7 +147,7 @@ async function start(allowDownload = false, auto = false) {
   const run = async (batch: Segment[]) => {
     if (stopped) throw new TError('cancelled');
     const p = request(
-      { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload, auto },
+      { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload, auto, sample, hint },
       (loaded) => void show(t('downloading', Math.round(loaded * 100)), [button(t('cancel'), () => cancel?.())], loaded),
     );
     pendings.add(p);

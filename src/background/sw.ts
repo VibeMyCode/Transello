@@ -61,7 +61,7 @@ chrome.runtime.onConnect.addListener((port) => {
         if (!result.needsDownload) await adopt(result.retarget); // not before the user agrees to the download
         post({ type: 'result', result });
       } else {
-        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, allowDownload: m.allowDownload, auto: m.auto, cloudBatch });
+        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, allowDownload: m.allowDownload, auto: m.auto, sample: m.sample, hint: m.hint, cloudBatch });
         await adopt(r.retarget);
         post({ type: 'batch_result', ...r });
       }
@@ -158,16 +158,21 @@ async function dropAutoPage(tabId: number) {
   delete pages[tabId];
   await chrome.storage.session.set({ [AUTO_KEY]: pages });
 }
-chrome.tabs.onUpdated.addListener((tabId, info, tab) => {
-  if (info.status !== 'complete') return;
-  void (async () => {
-    const origin = (await autoPages())[tabId];
-    if (!origin) return;
-    const url = tab.url ? new URL(tab.url).origin : null; // readable only while we still have access to this tab
-    if (url !== origin || (await getSettings()).engine !== 'local' || !(await inject(tabId, 0))) return dropAutoPage(tabId);
-    await send(tabId, 0, { type: 'translate_page', auto: true }).catch(() => dropAutoPage(tabId));
-  })();
+const autoTimers = new Map<number, ReturnType<typeof setTimeout>>();
+chrome.tabs.onUpdated.addListener((tabId, info) => {
+  // Full loads end with status "complete"; single-page sites only change the URL and render the new view a moment later.
+  if (info.status !== 'complete' && !info.url) return;
+  clearTimeout(autoTimers.get(tabId));
+  autoTimers.set(tabId, setTimeout(() => (autoTimers.delete(tabId), void autoTranslate(tabId)), info.status === 'complete' ? 300 : 1_200));
 });
+async function autoTranslate(tabId: number) {
+  const origin = (await autoPages())[tabId];
+  if (!origin) return;
+  const tab = await chrome.tabs.get(tabId).catch(() => null);
+  const url = tab?.url ? new URL(tab.url).origin : null; // readable only while we still have access to this tab
+  if (url !== origin || (await getSettings()).engine !== 'local' || !(await inject(tabId, 0))) return dropAutoPage(tabId);
+  await send(tabId, 0, { type: 'translate_page', auto: true }).catch(() => dropAutoPage(tabId));
+}
 chrome.tabs.onRemoved.addListener((tabId) => void dropAutoPage(tabId));
 
 chrome.contextMenus.onClicked.addListener((info, tab) => void onMenuClick(info, tab));

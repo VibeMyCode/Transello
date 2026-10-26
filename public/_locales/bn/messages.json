@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "নির্বাচিত অংশ অনুবাদ করুন (মিনি পপআপ)"
  },
+ "cmdTranslatePage": {
+  "message": "পুরো পেজ অনুবাদ করুন"
+ },
  "menuTranslateSelection": {
   "message": "Transello-তে অনুবাদ করুন"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "$2টির মধ্যে $1টি টেক্সট ব্লক অনুবাদ হয়েছে।"
+ },
+ "pageAutoOn": {
+  "message": "এই সাইটের পরের পেজগুলো স্বয়ংক্রিয়ভাবে অনুবাদ হবে।"
  },
  "pageLimited": {
   "message": "বড় পেজ: শুধু প্রথম $1টি ব্লক অনুবাদ হয়েছে।"

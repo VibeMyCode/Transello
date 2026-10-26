@@ -212,6 +212,13 @@ describe('translateBatch', () => {
     expect(await translateBatch(['Привет'], 'auto', 'ru', { settings: s })).toMatchObject({ segments: ['RU:Привет'], retarget: 'de' });
     expect((await translateBatch(['Привет'], 'ru', 'ru', { settings: s })).segments).toEqual(['Привет']);
   });
+  it('auto (follow-up page) already in the target → left as is, never retargeted', async () => {
+    mock.detect = [{ detectedLanguage: 'ru', confidence: 0.99 }];
+    const s = sanitize({ target: 'ru', recentLangs: ['ru', 'de'] });
+    const r = await translateBatch(['Привет, мир'], 'auto', 'ru', { settings: s, auto: true });
+    expect(r).toMatchObject({ segments: ['Привет, мир'], same: true });
+    expect(r.retarget).toBeUndefined();
+  });
   it('page in a language without a model on the device → needs_download; allowDownload proceeds', async () => {
     mock.avail = 'downloadable';
     mock.detect = [{ detectedLanguage: 'de', confidence: 0.99 }];

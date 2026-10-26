@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 - unreleased
+- Follow-up pages: after a page is translated with the built-in translator, the next pages you open on the same site in that tab are translated automatically. A page already in your language is left alone. "Show original", another site or closing the tab stops it. No new permissions.
+- New shortcut to translate the whole page: Ctrl+. (Mac: Control+.). Press it again to show the original. Works with cloud providers too (they are never automatic, since each page costs money).
+- The selection shortcut is now Ctrl+Q (Mac: Control+Q). Both shortcuts can be changed at chrome://extensions/shortcuts.
+
 ## 1.0.0 - unreleased
 - After Chrome's translator fails to start once, Transello remembers it for this Chrome version (one day) and shows the explanation at once instead of offering ~80 MB downloads that cannot work (Windows on ARM: the TranslateKit engine component stays 0.0.0.0).
 - When Chrome's translator will not start although the model is installed (seen on Chrome, Windows 11 ARM: NotSupportedError after download), the message says exactly that, shows Chrome's reason, and points to chrome://components, disk space or a cloud provider. Settings → About runs a one-word self-test of the installed en→ru pair.
@@ -11,7 +16,7 @@
 - Local engine runs in the extension service worker (ADR-001) with stall guard, bounded cache and recovery from invalidated models.
 - UC-02: context menu "Translate in Transello" → Shadow-DOM modal (focus trap, Esc, backdrop, CSP-safe styles, iframes, fallback window on restricted pages, honest length limit).
 - UC-03: shortcut (Alt+Shift+Y / ⌃⇧Y) → mini popover under the selection; toggle, update, scroll-follow, viewport clamp, no-selection hint, never reads password fields.
-- UC-04: "Translate page with Transello" — TreeWalker text nodes (skips code/pre/forms/editable/hidden/translate=no), viewport-first batches, progress + cancel, exact restore, SPA-safe, 2000-node cap reported honestly.
+- UC-04: "Translate page with Transello" - TreeWalker text nodes (skips code/pre/forms/editable/hidden/translate=no), viewport-first batches, progress + cancel, exact restore, SPA-safe, 2000-node cap reported honestly.
 - Cloud BYOK: OpenAI (Responses API), Claude (Messages API), DeepSeek, OpenRouter; model lists, custom model ID, free key validation, test request, masked keys, disconnect, bounded retries, consent before full-page cloud sends (40k chars cap, sensitive sites always ask).
 - OAuth: OpenRouter PKCE sign-in; ChatGPT/Claude sign-in shown as unavailable with the reason.
 - UAT fixes: language detection works in Brave (no LanguageDetector model there): CLD fallback with a writing-system check, then a script heuristic; fixed-size popup; diagnostics in Settings → About.

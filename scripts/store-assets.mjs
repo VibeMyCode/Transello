@@ -35,7 +35,7 @@ const select = (p, id) =>
   await pop.goto(`chrome-extension://${extId}/popup.html`);
   await pop.evaluate(() => {
     const i = document.getElementById('input');
-    i.value = 'Transello translates text, selections and whole pages right in your browser.\n\nNo account, no API key.';
+    i.value = 'Transello translates text, selections and whole pages right in your browser.\n\nPrivate by default. No account needed.';
     i.dispatchEvent(new Event('input', { bubbles: true }));
   });
   await sleep(600);

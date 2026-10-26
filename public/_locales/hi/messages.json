@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "चयनित टेक्स्ट का अनुवाद करें (मिनी पॉपअप)"
  },
+ "cmdTranslatePage": {
+  "message": "पूरा पेज अनुवाद करें"
+ },
  "menuTranslateSelection": {
   "message": "Transello में अनुवाद करें"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "$2 में से $1 टेक्स्ट ब्लॉक का अनुवाद हुआ।"
+ },
+ "pageAutoOn": {
+  "message": "इस साइट के अगले पेज अपने-आप अनुवादित होंगे।"
  },
  "pageLimited": {
   "message": "बड़ा पेज: केवल पहले $1 ब्लॉक का अनुवाद हुआ।"

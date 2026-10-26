@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "Translate selection (mini popup)"
  },
+ "cmdTranslatePage": {
+  "message": "Translate the whole page"
+ },
  "menuTranslateSelection": {
   "message": "Translate in Transello"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "Translated $1 of $2 text blocks."
+ },
+ "pageAutoOn": {
+  "message": "Next pages on this site will be translated automatically."
  },
  "pageLimited": {
   "message": "Large page: only the first $1 blocks are translated."

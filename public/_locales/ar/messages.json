@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "ترجمة النص المحدد (نافذة مصغرة)"
  },
+ "cmdTranslatePage": {
+  "message": "ترجمة الصفحة كاملة"
+ },
  "menuTranslateSelection": {
   "message": "الترجمة في Transello"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "تمت ترجمة $1 من $2 من كتل النص."
+ },
+ "pageAutoOn": {
+  "message": "ستُترجم الصفحات التالية من هذا الموقع تلقائيًا."
  },
  "pageLimited": {
   "message": "صفحة كبيرة: تمت ترجمة أول $1 كتلة فقط."

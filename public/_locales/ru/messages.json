@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "Перевести выделение (мини-попап)"
  },
+ "cmdTranslatePage": {
+  "message": "Перевести всю страницу"
+ },
  "menuTranslateSelection": {
   "message": "Перевести в Transello"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "Переведено блоков: $1 из $2."
+ },
+ "pageAutoOn": {
+  "message": "Следующие страницы этого сайта переведутся автоматически."
  },
  "pageLimited": {
   "message": "Большая страница: переведены только первые $1 блоков."

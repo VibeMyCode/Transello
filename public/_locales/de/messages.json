@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "Auswahl übersetzen (Mini-Popup)"
  },
+ "cmdTranslatePage": {
+  "message": "Ganze Seite übersetzen"
+ },
  "menuTranslateSelection": {
   "message": "Mit Transello übersetzen"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "$1 von $2 Textblöcken übersetzt."
+ },
+ "pageAutoOn": {
+  "message": "Weitere Seiten dieser Website werden automatisch übersetzt."
  },
  "pageLimited": {
   "message": "Große Seite: Nur die ersten $1 Blöcke werden übersetzt."

@@ -12,8 +12,9 @@
 |---|---|
 | Translate pasted text | Click the toolbar icon and paste. The translation appears automatically. |
 | Translate a selection in a modal | Select text, right-click, then choose **Translate in Transello**. |
-| Translate a selection in a mini popup | Select text and press **Alt+Shift+Y** (macOS: **Ctrl+Shift+Y**). You can change the shortcut at `chrome://extensions/shortcuts`. |
-| Translate the whole page | Right-click the page, then choose **Translate page with Transello**. **Show original** restores the page. |
+| Translate a selection in a mini popup | Select text and press **Ctrl+Q** (macOS: **Control+Q**). Shortcuts can be changed at `chrome://extensions/shortcuts`. |
+| Translate the whole page by shortcut | Press **Ctrl+.** (macOS: **Control+.**); press again to show the original. Works with cloud providers too. |
+| Translate the whole page | Right-click the page, then choose **Translate page with Transello**. **Show original** restores the page. With the built-in translator, the next pages you open on the same site are translated automatically until you choose **Show original**. |
 
 Requirements: desktop Chrome **138+**. Chromium browsers such as **Brave** are supported and tested: Brave lacks Chrome's language-detection model, so Transello uses Chrome's bundled detector there instead. Local translation depends on Chrome having the language pair available; the extension checks this at runtime. Chrome on Android is not supported.
 

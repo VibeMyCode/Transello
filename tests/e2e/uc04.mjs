@@ -138,6 +138,44 @@ export async function uc04({ browser, sw, swTarget }) {
     await p.close();
   });
 
+  await check('follow-up pages on the same site translate by themselves; a page already in the target stays; Show original stops it', async () => {
+    const p = await browser.newPage();
+    await p.goto(`${BASE}/simple.html`);
+    const t = await tabOf(sw, `${BASE}/simple.html`);
+    await menuPage(sw, t);
+    await waitBar(p, /Переведено блоков|Translated \d/);
+    const note = await barText(p);
+    await p.goto(`${BASE}/article.html`); // same origin, plain link navigation
+    await p.waitForFunction(() => /[а-яё]/i.test(document.getElementById('title')?.textContent ?? ''), { timeout: 120_000 });
+    await p.goto(`${BASE}/ru.html`); // already Russian: nothing happens, no toolbar
+    await sleep(2500);
+    const ruBar = await barText(p);
+    const ruTitle = await p.$eval('#title', (e) => e.textContent);
+    await p.goto(`${BASE}/article.html`);
+    await p.waitForFunction(() => /[а-яё]/i.test(document.getElementById('title')?.textContent ?? ''), { timeout: 120_000 });
+    await waitBar(p, /Показать оригинал|Show original/);
+    await clickBar(p, 'Показать оригинал|Show original');
+    await p.goto(`${BASE}/simple.html`);
+    await sleep(2500);
+    const after = await p.evaluate(() => document.body.innerText);
+    await p.close();
+    assert(/автоматически|automatically/.test(note) && ruTitle === 'Прогноз погоды' && !ruBar && !/[а-яё]/i.test(after), JSON.stringify({ note, ruBar, ruTitle, after: after.slice(0, 80) }));
+    return note;
+  });
+
+  await check('page shortcut translates the page, pressing again shows the original', async () => {
+    const p = await browser.newPage();
+    await p.goto(`${BASE}/article.html`);
+    const t = await tabOf(sw, `${BASE}/article.html`);
+    const cmd = () => sw.evaluate((tab) => self.__transelloTest.onCommand('translate-page', tab), t);
+    await cmd();
+    await p.waitForFunction(() => /[а-яё]/i.test(document.getElementById('title')?.textContent ?? ''), { timeout: 120_000 });
+    await waitBar(p, /Показать оригинал|Show original/);
+    await cmd();
+    await p.waitForFunction(() => document.getElementById('title').textContent === 'Weather report', { timeout: 10_000 });
+    await p.close();
+  });
+
   await check('restricted page → Transello window with explanation', async () => {
     const p = await browser.newPage();
     await p.goto('chrome://version');

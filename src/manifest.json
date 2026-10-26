@@ -32,10 +32,17 @@
   "commands": {
     "translate-selection": {
       "suggested_key": {
-        "default": "Alt+Shift+Y",
-        "mac": "MacCtrl+Shift+Y"
+        "default": "Ctrl+Q",
+        "mac": "MacCtrl+Q"
       },
       "description": "__MSG_cmdTranslateSelection__"
+    },
+    "translate-page": {
+      "suggested_key": {
+        "default": "Ctrl+Period",
+        "mac": "MacCtrl+Period"
+      },
+      "description": "__MSG_cmdTranslatePage__"
     }
   },
   "optional_permissions": [

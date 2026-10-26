@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "翻译所选内容（迷你弹窗）"
  },
+ "cmdTranslatePage": {
+  "message": "翻译整个页面"
+ },
  "menuTranslateSelection": {
   "message": "用 Transello 翻译"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "已翻译 $2 个文本块中的 $1 个。"
+ },
+ "pageAutoOn": {
+  "message": "此网站的后续页面将自动翻译。"
  },
  "pageLimited": {
   "message": "网页较大：仅翻译前 $1 个文本块。"

@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "選択範囲を翻訳（ミニポップアップ）"
  },
+ "cmdTranslatePage": {
+  "message": "ページ全体を翻訳"
+ },
  "menuTranslateSelection": {
   "message": "Transello で翻訳"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "$2 個のテキストブロックのうち $1 個を翻訳しました。"
+ },
+ "pageAutoOn": {
+  "message": "このサイトの次のページも自動で翻訳されます。"
  },
  "pageLimited": {
   "message": "大きなページです。最初の $1 ブロックのみ翻訳されます。"

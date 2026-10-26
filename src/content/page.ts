@@ -49,8 +49,10 @@ async function show(text: string, buttons: HTMLButtonElement[] = [], progress?: 
   actions.replaceChildren(...buttons);
 }
 
-/** Entry point from the context menu. Re-invoking while running cancels; after translation toggles views. */
-export async function togglePage() {
+/** Entry point from the context menu / page shortcut. Re-invoking while running cancels; after translation toggles
+ *  views. `auto`: a follow-up page on the same site (SW), translated without asking and silent if already in target. */
+export async function togglePage(auto = false) {
+  if (auto) return state === 'idle' ? start(false, true) : undefined;
   if (state === 'running') return cancel?.();
   if (state === 'translated') return showOriginal();
   return start();
@@ -59,6 +61,7 @@ export async function togglePage() {
 function showOriginal() {
   restore(applied);
   state = 'original';
+  void chrome.runtime.sendMessage({ type: 'page_auto', on: false }); // next pages stay original too
   void show(t('pageOriginal'), [button(t('translateAgain'), () => void start(), true)]);
 }
 
@@ -90,7 +93,7 @@ async function confirmCloud(settings: Settings, chars: number): Promise<boolean>
   });
 }
 
-async function start(allowDownload = false) {
+async function start(allowDownload = false, auto = false) {
   restore(applied);
   const { settings } = await toolbar();
   const { segments, total } = collectSegments();
@@ -116,6 +119,7 @@ async function start(allowDownload = false) {
   };
   let done = 0;
   let ok = 0;
+  let same = 0;
   const progress = () => show(t('pageTranslating', done, ordered.length), [button(t('cancel'), () => cancel?.())], done / ordered.length);
   // Translations of this page stay in memory until it is closed: "Translate again" re-applies them at once, with no
   // second (paid) cloud call (user report). Keyed by engine + target + text; never written to storage.
@@ -139,13 +143,14 @@ async function start(allowDownload = false) {
   const run = async (batch: Segment[]) => {
     if (stopped) throw new TError('cancelled');
     const p = request(
-      { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload },
+      { type: 'batch', segments: batch.map((s) => s.core), source: 'auto', target: settings.target, consent: cloud, allowDownload, auto },
       (loaded) => void show(t('downloading', Math.round(loaded * 100)), [button(t('cancel'), () => cancel?.())], loaded),
     );
     pendings.add(p);
     try {
-      const r = (await p.promise) as { segments: string[] };
-      batch.forEach((s, i) => {
+      const r = (await p.promise) as { segments: string[]; same?: boolean };
+      if (r.same) same += batch.length; // already in the target language: nothing to change
+      else batch.forEach((s, i) => {
         const tr = r.segments[i];
         if (typeof tr !== 'string' || !tr) return;
         memo.set(keyOf(s.core), tr);
@@ -168,6 +173,11 @@ async function start(allowDownload = false) {
       cancel?.(); // one failed batch stops the others
       throw e;
     });
+    if (same && !ok) {
+      // The page is already in the target language: a follow-up page stays quiet, a manual run says so.
+      state = 'idle';
+      return void (auto ? closeBar() : await show(t('sameLanguage', langName(settings.target, uiLocale()))));
+    }
     const summary = [t('pageDone', ok, total)];
     if (total > MAX_NODES || capped) summary.push(t('pageLimited', ordered.length));
     if (!ok) {
@@ -176,6 +186,10 @@ async function start(allowDownload = false) {
       return void (await show(summary.join(' '), [button(t('translateAgain'), () => void start(), true)]));
     }
     state = 'translated';
+    if (!cloud) {
+      summary.push(t('pageAutoOn'));
+      void chrome.runtime.sendMessage({ type: 'page_auto', on: true });
+    }
     await show(summary.join(' '), [button(t('showOriginal'), showOriginal, true)]);
   } catch (e) {
     const te = e instanceof TError ? e : toTError(e);

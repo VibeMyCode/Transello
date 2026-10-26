@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "Traducir selección (miniventana)"
  },
+ "cmdTranslatePage": {
+  "message": "Traducir toda la página"
+ },
  "menuTranslateSelection": {
   "message": "Traducir con Transello"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "Se tradujeron $1 de $2 bloques de texto."
+ },
+ "pageAutoOn": {
+  "message": "Las siguientes páginas de este sitio se traducirán automáticamente."
  },
  "pageLimited": {
   "message": "Página extensa: solo se traducen los primeros $1 bloques."

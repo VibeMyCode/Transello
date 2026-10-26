@@ -8,6 +8,9 @@
  "cmdTranslateSelection": {
   "message": "Terjemahkan teks terpilih (popup mini)"
  },
+ "cmdTranslatePage": {
+  "message": "Terjemahkan seluruh halaman"
+ },
  "menuTranslateSelection": {
   "message": "Terjemahkan di Transello"
  },
@@ -130,6 +133,9 @@
  },
  "pageDone": {
   "message": "$1 dari $2 blok teks diterjemahkan."
+ },
+ "pageAutoOn": {
+  "message": "Halaman berikutnya di situs ini akan diterjemahkan otomatis."
  },
  "pageLimited": {
   "message": "Halaman besar: hanya $1 blok pertama yang diterjemahkan."

@@ -61,7 +61,7 @@ chrome.runtime.onConnect.addListener((port) => {
         if (!result.needsDownload) await adopt(result.retarget); // not before the user agrees to the download
         post({ type: 'result', result });
       } else {
-        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, allowDownload: m.allowDownload, cloudBatch });
+        const r = await translateBatch(m.segments, m.source, m.target, { ...ctx, consent: m.consent, allowDownload: m.allowDownload, auto: m.auto, cloudBatch });
         await adopt(r.retarget);
         post({ type: 'batch_result', ...r });
       }
@@ -89,7 +89,8 @@ chrome.runtime.onMessage.addListener((raw, sender, send) => {
   if (!m || !isTrustedSender(sender)) return;
   if (m.type === 'open_window') void openWindow(m.text).then(() => send(true));
   else if (m.type === 'ui_strings') void loadMessages(m.lang).then(send); // for content scripts (no package fetch)
-  else void chrome.runtime.openOptionsPage().then(() => send(true));
+  else if (m.type === 'page_auto') void setAutoPage(sender, m.on).then(() => send(true));
+  else if (m.type === 'open_options') void chrome.runtime.openOptionsPage().then(() => send(true));
   return true;
 });
 
@@ -127,12 +128,47 @@ async function onMenuClick(info: chrome.contextMenus.OnClickData, tab?: chrome.t
 }
 
 async function onCommand(command: string, tab?: chrome.tabs.Tab) {
-  if (command !== 'translate-selection') return;
+  if (command !== 'translate-selection' && command !== 'translate-page') return;
   const t = tab ?? (await chrome.tabs.query({ active: true, lastFocusedWindow: true }))[0];
   if (!t?.id) return;
-  if (await inject(t.id, 0)) await send(t.id, 0, { type: 'show_mini' });
+  // translate-page: the whole page (any engine); pressing it again shows the original.
+  if (await inject(t.id, 0)) await send(t.id, 0, command === 'translate-page' ? { type: 'translate_page' } : { type: 'show_mini' });
   else await openWindow('', 'restricted_page');
 }
+
+// ---------- follow-up pages: keep translating this tab on the same site ----------
+// After a successful local page translation the tab is remembered with its origin. Its next page loads on that origin
+// are translated automatically; "Show original", another site or closing the tab ends it. No extra permissions:
+// activeTab lasts across same-origin navigations and ends on another origin, which is exactly the scope.
+// Cloud engines are never automatic (each page costs money): there the page shortcut does it on request.
+const AUTO_KEY = 'autoPages';
+type AutoPages = Record<string, string>; // tabId → origin
+const autoPages = async () => ((await chrome.storage.session.get(AUTO_KEY))[AUTO_KEY] ?? {}) as AutoPages;
+async function setAutoPage(sender: chrome.runtime.MessageSender, on: boolean) {
+  const id = sender.tab?.id;
+  if (id === undefined || !sender.url) return;
+  const pages = await autoPages();
+  if (on && (await getSettings()).engine === 'local') pages[id] = new URL(sender.url).origin;
+  else delete pages[id];
+  await chrome.storage.session.set({ [AUTO_KEY]: pages });
+}
+async function dropAutoPage(tabId: number) {
+  const pages = await autoPages();
+  if (!(tabId in pages)) return;
+  delete pages[tabId];
+  await chrome.storage.session.set({ [AUTO_KEY]: pages });
+}
+chrome.tabs.onUpdated.addListener((tabId, info, tab) => {
+  if (info.status !== 'complete') return;
+  void (async () => {
+    const origin = (await autoPages())[tabId];
+    if (!origin) return;
+    const url = tab.url ? new URL(tab.url).origin : null; // readable only while we still have access to this tab
+    if (url !== origin || (await getSettings()).engine !== 'local' || !(await inject(tabId, 0))) return dropAutoPage(tabId);
+    await send(tabId, 0, { type: 'translate_page', auto: true }).catch(() => dropAutoPage(tabId));
+  })();
+});
+chrome.tabs.onRemoved.addListener((tabId) => void dropAutoPage(tabId));
 
 chrome.contextMenus.onClicked.addListener((info, tab) => void onMenuClick(info, tab));
 chrome.commands.onCommand.addListener((command, tab) => void onCommand(command, tab));

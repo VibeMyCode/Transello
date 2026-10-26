@@ -9,10 +9,12 @@ export interface BatchCtx extends Ctx {
   consent?: boolean;
   /** The user agreed to download the model for the detected direction. */
   allowDownload?: boolean;
+  /** A follow-up page translated automatically: a page already in the target is left alone, never retargeted. */
+  auto?: boolean;
   cloudBatch?: (segments: string[], target: string, ctx: Ctx) => Promise<{ segments: string[]; model?: string }>;
 }
 
-export async function translateBatch(segments: string[], source: string, target: string, ctx: BatchCtx): Promise<{ segments: string[]; engine: string; model?: string; retarget?: string }> {
+export async function translateBatch(segments: string[], source: string, target: string, ctx: BatchCtx): Promise<{ segments: string[]; engine: string; model?: string; retarget?: string; same?: boolean }> {
   const engine = ctx.settings.engine;
   const sample = () => segments.join('\n').slice(0, 2_000);
   if (engine !== 'local') {
@@ -37,9 +39,9 @@ export async function translateBatch(segments: string[], source: string, target:
   }
   let retarget: string | undefined;
   if (src === tgt) {
-    const alt = source === 'auto' ? retargetFor(src, ctx.settings.recentLangs) : null;
+    const alt = source === 'auto' && !ctx.auto ? retargetFor(src, ctx.settings.recentLangs) : null;
     // Already in the target and no ready alternative: leave the page as is (no surprise model downloads).
-    if (!alt || !(await pairReady(src, alt))) return { segments, engine };
+    if (!alt || !(await pairReady(src, alt))) return { segments, engine, same: true };
     tgt = retarget = alt;
   }
   // Same rule as single translations: no surprise model download for a detected direction.

@@ -39,19 +39,9 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
     status.textContent = text;
   };
 
-  // Trust, stated as checkable facts (user feedback: "so you get my key and data? no way"), with a link to the code.
-  const host = new URL(p.origin.replace('/*', '')).host;
-  box.append(
-    el(
-      'div',
-      { class: 'trust' },
-      el('ul', {}, el('li', { text: t('pvTrustKey') }), el('li', { text: t('pvTrustDirect', p.name, host) }), el('li', { text: t('pvTrustNoServer') })),
-      el('a', { class: 'link', href: LINKS.cloudCode, target: '_blank', rel: 'noopener', text: t('pvTrustCheck') + ' ↗' }),
-    ),
-  );
-
   // Ask for host access in the click handler itself (needs the user gesture); returns false if refused.
   const askHost = () => chrome.permissions.request({ origins: [p.origin] });
+  const host = new URL(p.origin.replace('/*', '')).host;
 
   async function connected(key: string, kind: 'api_key' | 'oauth') {
     setStatus(t('pvChecking'));
@@ -62,13 +52,15 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
     if (info) box.querySelector('[role=status]')!.textContent = t('pvUsage', info.limit === null ? t('pvUnlimited') : `$${info.limit}`, `$${info.usage.toFixed(4)}`);
   }
 
+  // 1. Connection: key field (or the connected key with Disconnect).
+  const conn = el('div', { class: 'pv-conn' });
   if (!cred) {
     const input = el('input', { type: 'password', autocomplete: 'off', spellcheck: 'false', id: 'apiKey', 'aria-label': t('pvApiKey'), placeholder: 'sk-…' });
     const save = el('button', { type: 'button', class: 'btn primary', text: t('pvSave') });
     save.onclick = async () => {
       const key = input.value.trim();
       if (!key) return input.focus();
-      if (!(await askHost())) return setStatus(t('pvPermDenied', new URL(p.origin.replace('/*', '')).host), 'err');
+      if (!(await askHost())) return setStatus(t('pvPermDenied', host), 'err');
       try {
         await connected(key, 'api_key');
         input.value = '';
@@ -76,15 +68,29 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
         setStatus(errText(e), 'err');
       }
     };
-    box.append(
-      el('label', { class: 'field' }, el('span', { text: t('pvApiKey') }), el('span', { class: 'inline' }, input, save)),
-      el('a', { class: 'link', href: p.consoleUrl, target: '_blank', rel: 'noopener', text: t('pvGetKey') + ' ↗' }),
-    );
+    const sub = el('div', { class: 'pv-sub' }, el('a', { class: 'link', href: p.consoleUrl, target: '_blank', rel: 'noopener', text: t('pvGetKey') + ' ↗' }));
+    // OAuth only where an official flow works (OpenRouter PKCE); elsewhere one quiet line says why there is none.
+    if (id === 'openrouter') {
+      const b = el('button', { type: 'button', class: 'btn', text: t('pvOauthOpenRouter'), title: t(OAUTH_NOTE[id]) });
+      b.onclick = async () => {
+        if (!(await chrome.permissions.request({ permissions: ['identity'], origins: [p.origin] }))) return setStatus(t('pvPermDenied', 'openrouter.ai'), 'err');
+        try {
+          await connected(await signInOpenRouter(), 'oauth');
+        } catch (e) {
+          setStatus(errText(e), 'err');
+        }
+      };
+      sub.append(b);
+    }
+    conn.append(el('label', { class: 'field' }, el('span', { text: t('pvApiKey') }), el('span', { class: 'pv-key' }, input, save)), sub);
+    // Why there is no sign-in for OpenAI / Claude: folded, it is an answer to a question most users won't ask.
+    if (id === 'openai' || id === 'anthropic')
+      conn.append(el('details', { class: 'custom' }, el('summary', { text: t('pvOauthTitle') }), el('p', { class: 'disabled-opt', text: t(OAUTH_NOTE[id]) })));
   } else {
-    box.append(
+    conn.append(
       el(
         'div',
-        { class: 'inline' },
+        { class: 'pv-row' },
         el('span', { class: 'state ok', text: t(cred.kind === 'oauth' ? 'pvConnectedOauth' : 'pvConnected', maskKey(cred.key)) }),
         el('button', {
           type: 'button',
@@ -100,29 +106,24 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
           },
         }),
       ),
-      el('p', { class: 'muted', text: t('pvAuthorized') }),
     );
   }
 
-  // OAuth: an active button only where an official flow exists and works (OpenRouter PKCE; the others are shown disabled with the reason).
-  const oauth = el('div', { class: 'field' }, el('span', { text: t('pvOauthTitle') }));
-  if (id === 'openrouter' && !cred) {
-    const b = el('button', { type: 'button', class: 'btn', text: t('pvOauthOpenRouter') });
-    b.onclick = async () => {
-      if (!(await chrome.permissions.request({ permissions: ['identity'], origins: [p.origin] }))) return setStatus(t('pvPermDenied', 'openrouter.ai'), 'err');
-      try {
-        await connected(await signInOpenRouter(), 'oauth');
-      } catch (e) {
-        setStatus(errText(e), 'err');
-      }
-    };
-    oauth.append(b, el('small', { class: 'muted', text: t(OAUTH_NOTE[id]) }));
-  } else if (id !== 'openrouter') {
-    oauth.append(el('div', { class: 'disabled-opt', text: t(OAUTH_NOTE[id]) }));
-  }
-  if (oauth.childElementCount > 1) box.append(oauth);
-
-  box.append(el('p', { class: 'muted small', text: t('pvKeyStorage') }), status);
+  // 2. Trust, as checkable facts (user feedback: "so you get my key and data? no way"), with a link to the code.
+  // The honest storage detail (not an OS keychain) sits in the lock's tooltip instead of a second paragraph.
+  const trust = el(
+    'div',
+    { class: 'trust' },
+    el(
+      'ul',
+      {},
+      el('li', { class: 'lock', text: t('pvTrustKey'), title: t('pvKeyStorage') }),
+      el('li', { text: t('pvTrustDirect', p.name, host) }),
+      el('li', { text: t('pvTrustNoServer') }),
+    ),
+    el('a', { class: 'link', href: LINKS.cloudCode, target: '_blank', rel: 'noopener', text: t('pvTrustCheck') + ' ↗' }),
+  );
+  box.append(conn, trust, status);
   if (cred) await modelSection(box, settings, id, cred.key, setStatus, status);
   box.dataset.engine = id; // rendered (used by E2E to avoid races)
 }
@@ -180,27 +181,32 @@ async function modelSection(box: HTMLElement, settings: Settings, id: CloudId, k
     }
   };
 
+  const useCustom = el('button', {
+    type: 'button',
+    class: 'btn',
+    text: t('pvUseCustom'),
+    onclick: async () => {
+      const v = custom.value.trim();
+      if (!/^[\w.:/@-]{1,120}$/.test(v)) return custom.focus();
+      if (![...select.options].some((o) => o.value === v)) select.add(new Option(v, v));
+      select.value = v;
+      await choose(v);
+      custom.value = '';
+    },
+  });
+  const refresh = el('button', { type: 'button', class: 'btn icon', text: '↻', title: t('pvRefresh'), 'aria-label': t('pvRefresh'), onclick: () => void load() });
+  // 3. Model: list + refresh in one row, price under it; a custom model ID is the rare case, so it is folded away.
   before.before(
-    el('label', { class: 'field' }, el('span', { text: t('pvModel') }), el('span', { class: 'inline' }, select, el('button', { type: 'button', class: 'btn', text: t('pvRefresh'), onclick: () => void load() })), price),
     el(
       'div',
-      { class: 'inline' },
-      custom,
-      el('button', {
-        type: 'button',
-        class: 'btn',
-        text: t('pvUseCustom'),
-        onclick: async () => {
-          const v = custom.value.trim();
-          if (!/^[\w.:/@-]{1,120}$/.test(v)) return custom.focus();
-          if (![...select.options].some((o) => o.value === v)) select.add(new Option(v, v));
-          select.value = v;
-          await choose(v);
-          custom.value = '';
-        },
-      }),
+      { class: 'field' },
+      el('label', { for: 'model', text: t('pvModel') }),
+      el('span', { class: 'pv-key' }, select, refresh),
+      price,
+      el('details', { class: 'custom' }, el('summary', { text: t('pvCustomModel') }), el('span', { class: 'pv-key' }, custom, useCustom)),
     ),
-    el('div', { class: 'inline' }, test, el('small', { class: 'muted', text: t('pvTestNote') })),
+    // 4. Test: one paid-but-tiny request, with its note.
+    el('div', { class: 'pv-sub' }, test, el('small', { class: 'muted', text: t('pvTestNote') })),
   );
   await load();
 }

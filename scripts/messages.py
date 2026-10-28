@@ -86,7 +86,10 @@ M = {
  "err_no_permission": ("Allow Transello to access the provider's API in Settings.", "Разрешите Transello доступ к API провайдера в настройках."),
  "err_consent_required": ("Confirm sending text to the cloud provider first.", "Сначала подтвердите отправку текста облачному провайдеру."),
  "err_internal": ("Something went wrong.", "Что-то пошло не так."),
- "pvNotice": ("Text you translate is sent to $1 and billed to your own account. Transello has no server and stores nothing.", "Переводимый текст отправляется в $1 и оплачивается с вашего аккаунта у провайдера. У Transello нет сервера, он ничего не хранит."),
+ "pvTrustKey": ("Your key is stored only on this device.", "Ключ хранится только на этом устройстве."),
+ "pvTrustDirect": ("Text and key go from your browser straight to $1 ($2), and it bills your own account.", "Текст и ключ идут из вашего браузера напрямую в $1 ($2), оплата с вашего аккаунта."),
+ "pvTrustNoServer": ("Transello has no server: nothing is ever sent to us.", "У Transello нет сервера: нам ничего не отправляется, никогда."),
+ "pvTrustCheck": ("Check it yourself in the source code", "Проверьте сами в исходном коде"),
  "pvApiKey": ("API key", "API-ключ"),
  "pvGetKey": ("Get a key", "Получить ключ"),
  "pvSave": ("Save and check", "Сохранить и проверить"),
@@ -138,6 +141,7 @@ M = {
  "optSource": ("Feedback", "Обратная связь"),
  "optSupport": ("☕ Support Transello", "☕ Поддержать Transello"),
  "optLicenses": ("Licenses", "Лицензии"),
+ "optSourceCode": ("Source code", "Исходный код"),
 }
 for i, lang in enumerate(["en", "ru"]):
     out = {k: {"message": v[i]} for k, v in M.items()}

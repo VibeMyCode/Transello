@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "Terjadi kesalahan."
  },
- "pvNotice": {
-  "message": "Teks yang Anda terjemahkan dikirim ke $1 dan ditagihkan ke akun Anda sendiri. Transello tidak memiliki server dan tidak menyimpan apa pun."
+ "pvTrustKey": {
+  "message": "Kunci Anda hanya disimpan di perangkat ini."
+ },
+ "pvTrustDirect": {
+  "message": "Teks dan kunci dikirim dari browser Anda langsung ke $1 ($2), dan ditagihkan ke akun Anda sendiri."
+ },
+ "pvTrustNoServer": {
+  "message": "Transello tidak punya server: tidak ada yang pernah dikirim ke kami."
+ },
+ "pvTrustCheck": {
+  "message": "Periksa sendiri di kode sumber"
  },
  "pvApiKey": {
   "message": "Kunci API"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "Lisensi"
+ },
+ "optSourceCode": {
+  "message": "Kode sumber"
  }
 }

@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "出了点问题。"
  },
- "pvNotice": {
-  "message": "你翻译的文本会发送到 $1，费用由你自己的账户承担。Transello 没有服务器，也不存储任何内容。"
+ "pvTrustKey": {
+  "message": "你的密钥只保存在这台设备上。"
+ },
+ "pvTrustDirect": {
+  "message": "文本和密钥从你的浏览器直接发送到 $1（$2），费用记在你自己的账户上。"
+ },
+ "pvTrustNoServer": {
+  "message": "Transello 没有服务器：从不向我们发送任何内容。"
+ },
+ "pvTrustCheck": {
+  "message": "在源代码中亲自查看"
  },
  "pvApiKey": {
   "message": "API 密钥"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "许可"
+ },
+ "optSourceCode": {
+  "message": "源代码"
  }
 }

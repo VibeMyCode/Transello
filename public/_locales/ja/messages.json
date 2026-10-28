@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "問題が発生しました。"
  },
- "pvNotice": {
-  "message": "翻訳したテキストは $1 に送信され、料金はご自身のアカウントに請求されます。Transello にはサーバーがなく、何も保存しません。"
+ "pvTrustKey": {
+  "message": "キーはこのデバイスにのみ保存されます。"
+ },
+ "pvTrustDirect": {
+  "message": "テキストとキーはブラウザから直接 $1（$2）に送られ、料金はご自身のアカウントに請求されます。"
+ },
+ "pvTrustNoServer": {
+  "message": "Transello にはサーバーがありません。私たちに何かが送られることは一切ありません。"
+ },
+ "pvTrustCheck": {
+  "message": "ソースコードでご自身で確認"
  },
  "pvApiKey": {
   "message": "API キー"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "ライセンス"
+ },
+ "optSourceCode": {
+  "message": "ソースコード"
  }
 }

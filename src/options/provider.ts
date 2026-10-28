@@ -1,4 +1,5 @@
 // UC-05 provider panel: BYOK key, optional OAuth (where officially possible), model choice, test, disconnect.
+import { LINKS } from '../core/config';
 import { generate, PROVIDERS, systemPrompt, type ModelOption } from '../core/cloud';
 import { TError, toTError } from '../core/errors';
 import { t, type MsgKey } from '../core/i18n';
@@ -38,7 +39,16 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
     status.textContent = text;
   };
 
-  box.append(el('p', { class: 'notice', text: t('pvNotice', p.name) }));
+  // Trust, stated as checkable facts (user feedback: "so you get my key and data? no way"), with a link to the code.
+  const host = new URL(p.origin.replace('/*', '')).host;
+  box.append(
+    el(
+      'div',
+      { class: 'trust' },
+      el('ul', {}, el('li', { text: t('pvTrustKey') }), el('li', { text: t('pvTrustDirect', p.name, host) }), el('li', { text: t('pvTrustNoServer') })),
+      el('a', { class: 'link', href: LINKS.cloudCode, target: '_blank', rel: 'noopener', text: t('pvTrustCheck') + ' ↗' }),
+    ),
+  );
 
   // Ask for host access in the click handler itself (needs the user gesture); returns false if refused.
   const askHost = () => chrome.permissions.request({ origins: [p.origin] });

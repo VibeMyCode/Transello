@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "حدث خطأ ما."
  },
- "pvNotice": {
-  "message": "يُرسَل النص الذي تترجمه إلى $1 ويُحاسَب عليه حسابك الخاص. لا يملك Transello خادمًا ولا يخزّن أي شيء."
+ "pvTrustKey": {
+  "message": "يُحفظ مفتاحك على هذا الجهاز فقط."
+ },
+ "pvTrustDirect": {
+  "message": "يذهب النص والمفتاح من متصفحك مباشرة إلى $1 ($2)، والفوترة على حسابك أنت."
+ },
+ "pvTrustNoServer": {
+  "message": "ليس لدى Transello خادم: لا يُرسل إلينا أي شيء أبدًا."
+ },
+ "pvTrustCheck": {
+  "message": "تحقّق بنفسك في الشيفرة المصدرية"
  },
  "pvApiKey": {
   "message": "مفتاح API"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "التراخيص"
+ },
+ "optSourceCode": {
+  "message": "الشيفرة المصدرية"
  }
 }

@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "Une erreur s'est produite."
  },
- "pvNotice": {
-  "message": "Le texte que vous traduisez est envoyé à $1 et facturé sur votre propre compte. Transello n'a pas de serveur et ne conserve rien."
+ "pvTrustKey": {
+  "message": "Votre clé est stockée uniquement sur cet appareil."
+ },
+ "pvTrustDirect": {
+  "message": "Le texte et la clé vont directement de votre navigateur à $1 ($2), qui facture votre propre compte."
+ },
+ "pvTrustNoServer": {
+  "message": "Transello n'a pas de serveur : rien ne nous est jamais envoyé."
+ },
+ "pvTrustCheck": {
+  "message": "Vérifiez par vous-même dans le code source"
  },
  "pvApiKey": {
   "message": "Clé API"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "Licences"
+ },
+ "optSourceCode": {
+  "message": "Code source"
  }
 }

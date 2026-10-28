@@ -190,6 +190,37 @@ kbd {
 .state.err {
   color: var(--danger);
 }
+.trust {
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  background: oklch(0.6 calc(0.12 * var(--kb)) var(--hb) / 0.07);
+  border: 1px solid oklch(0.6 calc(0.12 * var(--kb)) var(--hb) / 0.18);
+}
+.trust ul {
+  margin: 0 0 6px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 3px;
+}
+.trust li {
+  padding-inline-start: 20px;
+  position: relative;
+}
+.trust li::before {
+  content: '✓';
+  position: absolute;
+  inset-inline-start: 2px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.trust li:first-child::before {
+  content: '🔒';
+  inset-inline-start: 0;
+  font-size: 11px;
+  top: 2px;
+}
 .notice {
   background: var(--surface);
   border-radius: var(--radius-sm);

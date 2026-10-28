@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.1.0 - unreleased
+- Cloud provider settings state plainly where your key and text go (stored only on this device, sent only to that provider, no Transello server), with a link to the exact source file that makes the requests. Settings → About links to the source code.
 - Page language is detected once per page from its longest texts, and the page's own lang attribute decides when the detector is unsure (user report: an English site's menu words "looked Swedish" and Transello offered a Swedish model).
 - Follow-up translation also works on single-page sites that change the address without reloading (Next.js and similar).
 - Follow-up pages: after a page is translated with the built-in translator, the next pages you open on the same site in that tab are translated automatically. A page already in your language is left alone. "Show original", another site or closing the tab stops it. No new permissions.

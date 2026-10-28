@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "Something went wrong."
  },
- "pvNotice": {
-  "message": "Text you translate is sent to $1 and billed to your own account. Transello has no server and stores nothing."
+ "pvTrustKey": {
+  "message": "Your key is stored only on this device."
+ },
+ "pvTrustDirect": {
+  "message": "Text and key go from your browser straight to $1 ($2), and it bills your own account."
+ },
+ "pvTrustNoServer": {
+  "message": "Transello has no server: nothing is ever sent to us."
+ },
+ "pvTrustCheck": {
+  "message": "Check it yourself in the source code"
  },
  "pvApiKey": {
   "message": "API key"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "Licenses"
+ },
+ "optSourceCode": {
+  "message": "Source code"
  }
 }

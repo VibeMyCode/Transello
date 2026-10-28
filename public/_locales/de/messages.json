@@ -251,8 +251,17 @@
  "err_internal": {
   "message": "Etwas ist schiefgelaufen."
  },
- "pvNotice": {
-  "message": "Der Text, den Sie übersetzen, wird an $1 gesendet und Ihrem eigenen Konto belastet. Transello hat keinen Server und speichert nichts."
+ "pvTrustKey": {
+  "message": "Ihr Schlüssel wird nur auf diesem Gerät gespeichert."
+ },
+ "pvTrustDirect": {
+  "message": "Text und Schlüssel gehen von Ihrem Browser direkt an $1 ($2), abgerechnet über Ihr eigenes Konto."
+ },
+ "pvTrustNoServer": {
+  "message": "Transello hat keinen Server: An uns wird nie etwas gesendet."
+ },
+ "pvTrustCheck": {
+  "message": "Prüfen Sie es selbst im Quellcode"
  },
  "pvApiKey": {
   "message": "API-Schlüssel"
@@ -406,5 +415,8 @@
  },
  "optLicenses": {
   "message": "Lizenzen"
+ },
+ "optSourceCode": {
+  "message": "Quellcode"
  }
 }

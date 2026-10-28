@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "Something went wrong."
  },
- "pvTrustKey": {
-  "message": "Your key is stored only on this device."
+ "privLocal": {
+  "message": "The built-in translator runs on your device: your text goes nowhere."
  },
- "pvTrustDirect": {
-  "message": "Text and key go from your browser straight to $1 ($2), and it bills your own account."
+ "privCloud": {
+  "message": "With a cloud AI, your text and key go from your browser straight to the provider you chose, and nowhere else."
  },
- "pvTrustNoServer": {
-  "message": "Transello has no server: nothing is ever sent to us."
+ "privKeys": {
+  "message": "Keys are stored only on this device and never synced."
+ },
+ "privNoServer": {
+  "message": "Transello has no server, no analytics and no ads."
+ },
+ "pvTrustInline": {
+  "message": "The key stays on this device and is sent only to $1."
+ },
+ "pvModelCount": {
+  "message": "Model ($1 available)"
  },
  "pvTrustCheck": {
   "message": "Check it yourself in the source code"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "Refresh list"
  },
- "pvModelsLoaded": {
-  "message": "$1 models available"
- },
  "pvPrice": {
   "message": "USD $1 / $2 per 1M tokens (in/out)"
  },
@@ -324,7 +330,7 @@
   "message": "Test translation"
  },
  "pvTestNote": {
-  "message": "Sends one short request; the provider may bill it (usually a fraction of a cent)."
+  "message": "One short request, usually a fraction of a cent."
  },
  "pvTestOk": {
   "message": "Model replied: $1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "Dark"
  },
- "optShortcut": {
-  "message": "Keyboard shortcut for the mini popup"
+ "optShortcuts": {
+  "message": "Keyboard shortcuts"
  },
  "optShortcutChange": {
-  "message": "Change in chrome://extensions/shortcuts"
+  "message": "Change"
  },
  "optEngine": {
   "message": "Translation engine"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "Privacy"
  },
- "optLocalOnly": {
-  "message": "By default everything is translated locally on your device. Nothing is sent anywhere."
- },
  "optKeepDraft": {
-  "message": "Keep the popup draft until the browser closes"
+  "message": "Keep the popup text until the browser closes"
  },
  "optClear": {
-  "message": "Clear drafts and cache"
+  "message": "Clear saved text"
  },
  "optCleared": {
   "message": "Cleared"

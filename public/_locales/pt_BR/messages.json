@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "Algo deu errado."
  },
- "pvTrustKey": {
-  "message": "Sua chave fica salva só neste dispositivo."
+ "privLocal": {
+  "message": "O tradutor integrado funciona no seu dispositivo: seu texto não vai a lugar nenhum."
  },
- "pvTrustDirect": {
-  "message": "O texto e a chave vão do seu navegador direto para $1 ($2), que cobra da sua própria conta."
+ "privCloud": {
+  "message": "Com uma IA na nuvem, seu texto e sua chave vão do navegador direto para o provedor que você escolheu, e para nenhum outro lugar."
  },
- "pvTrustNoServer": {
-  "message": "O Transello não tem servidor: nada é enviado para nós, nunca."
+ "privKeys": {
+  "message": "As chaves ficam salvas só neste dispositivo e nunca são sincronizadas."
+ },
+ "privNoServer": {
+  "message": "O Transello não tem servidor, nem análises, nem anúncios."
+ },
+ "pvTrustInline": {
+  "message": "A chave fica neste dispositivo e só é enviada para $1."
+ },
+ "pvModelCount": {
+  "message": "Modelo ($1 disponíveis)"
  },
  "pvTrustCheck": {
   "message": "Confira você mesmo no código-fonte"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "Atualizar lista"
  },
- "pvModelsLoaded": {
-  "message": "$1 modelos disponíveis"
- },
  "pvPrice": {
   "message": "USD $1 / $2 por 1 M de tokens (entrada/saída)"
  },
@@ -324,7 +330,7 @@
   "message": "Testar tradução"
  },
  "pvTestNote": {
-  "message": "Envia uma solicitação curta; o provedor pode cobrá-la (geralmente uma fração de centavo)."
+  "message": "Uma solicitação curta, geralmente uma fração de centavo."
  },
  "pvTestOk": {
   "message": "Resposta do modelo: $1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "Escuro"
  },
- "optShortcut": {
-  "message": "Atalho de teclado da minijanela"
+ "optShortcuts": {
+  "message": "Atalhos de teclado"
  },
  "optShortcutChange": {
-  "message": "Alterar em chrome://extensions/shortcuts"
+  "message": "Alterar"
  },
  "optEngine": {
   "message": "Mecanismo de tradução"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "Privacidade"
  },
- "optLocalOnly": {
-  "message": "Por padrão, tudo é traduzido localmente no seu dispositivo. Nada é enviado para lugar nenhum."
- },
  "optKeepDraft": {
-  "message": "Manter o rascunho da janela até o navegador ser fechado"
+  "message": "Lembrar o texto da janela até fechar o navegador"
  },
  "optClear": {
-  "message": "Limpar rascunhos e cache"
+  "message": "Apagar o texto salvo"
  },
  "optCleared": {
   "message": "Limpo"

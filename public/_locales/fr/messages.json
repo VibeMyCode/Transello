@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "Une erreur s'est produite."
  },
- "pvTrustKey": {
-  "message": "Votre clé est stockée uniquement sur cet appareil."
+ "privLocal": {
+  "message": "Le traducteur intégré fonctionne sur votre appareil : votre texte ne va nulle part."
  },
- "pvTrustDirect": {
-  "message": "Le texte et la clé vont directement de votre navigateur à $1 ($2), qui facture votre propre compte."
+ "privCloud": {
+  "message": "Avec une IA cloud, votre texte et votre clé vont directement de votre navigateur au fournisseur choisi, et nulle part ailleurs."
  },
- "pvTrustNoServer": {
-  "message": "Transello n'a pas de serveur : rien ne nous est jamais envoyé."
+ "privKeys": {
+  "message": "Les clés sont stockées uniquement sur cet appareil et jamais synchronisées."
+ },
+ "privNoServer": {
+  "message": "Transello n'a ni serveur, ni statistiques, ni publicité."
+ },
+ "pvTrustInline": {
+  "message": "La clé reste sur cet appareil et n'est envoyée qu'à $1."
+ },
+ "pvModelCount": {
+  "message": "Modèle ($1 disponibles)"
  },
  "pvTrustCheck": {
   "message": "Vérifiez par vous-même dans le code source"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "Actualiser la liste"
  },
- "pvModelsLoaded": {
-  "message": "$1 modèles disponibles"
- },
  "pvPrice": {
   "message": "USD $1 / $2 par million de jetons (entrée/sortie)"
  },
@@ -324,7 +330,7 @@
   "message": "Tester la traduction"
  },
  "pvTestNote": {
-  "message": "Envoie une courte requête ; le fournisseur peut la facturer (généralement une fraction de centime)."
+  "message": "Une courte requête, généralement une fraction de centime."
  },
  "pvTestOk": {
   "message": "Réponse du modèle : $1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "Sombre"
  },
- "optShortcut": {
-  "message": "Raccourci clavier du mini-popup"
+ "optShortcuts": {
+  "message": "Raccourcis clavier"
  },
  "optShortcutChange": {
-  "message": "Modifier dans chrome://extensions/shortcuts"
+  "message": "Modifier"
  },
  "optEngine": {
   "message": "Moteur de traduction"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "Confidentialité"
  },
- "optLocalOnly": {
-  "message": "Par défaut, tout est traduit localement sur votre appareil. Rien n'est envoyé ailleurs."
- },
  "optKeepDraft": {
-  "message": "Conserver le brouillon du popup jusqu'à la fermeture du navigateur"
+  "message": "Garder le texte de la fenêtre jusqu'à la fermeture du navigateur"
  },
  "optClear": {
-  "message": "Effacer les brouillons et le cache"
+  "message": "Effacer le texte enregistré"
  },
  "optCleared": {
   "message": "Effacé"

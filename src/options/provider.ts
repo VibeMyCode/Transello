@@ -1,5 +1,4 @@
 // UC-05 provider panel: BYOK key, optional OAuth (where officially possible), model choice, test, disconnect.
-import { LINKS } from '../core/config';
 import { generate, PROVIDERS, systemPrompt, type ModelOption } from '../core/cloud';
 import { TError, toTError } from '../core/errors';
 import { t, type MsgKey } from '../core/i18n';
@@ -109,21 +108,9 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
     );
   }
 
-  // 2. Trust, as checkable facts (user feedback: "so you get my key and data? no way"), with a link to the code.
-  // The honest storage detail (not an OS keychain) sits in the lock's tooltip instead of a second paragraph.
-  const trust = el(
-    'div',
-    { class: 'trust' },
-    el(
-      'ul',
-      {},
-      el('li', { class: 'lock', text: t('pvTrustKey'), title: t('pvKeyStorage') }),
-      el('li', { text: t('pvTrustDirect', p.name, host) }),
-      el('li', { text: t('pvTrustNoServer') }),
-    ),
-    el('a', { class: 'link', href: LINKS.cloudCode, target: '_blank', rel: 'noopener', text: t('pvTrustCheck') + ' ↗' }),
-  );
-  box.append(conn, trust, status);
+  // 2. One line of reassurance where the doubt arises (pasting a key); the full facts live in Settings → Privacy.
+  const lock = el('p', { class: 'pv-lock', text: t('pvTrustInline', host), title: t('pvKeyStorage') });
+  box.append(conn, lock, status);
   if (cred) await modelSection(box, settings, id, cred.key, setStatus, status);
   box.dataset.engine = id; // rendered (used by E2E to avoid races)
 }
@@ -139,6 +126,7 @@ async function modelSection(box: HTMLElement, settings: Settings, id: CloudId, k
   const price = el('small', { class: 'muted' });
   const custom = el('input', { type: 'text', id: 'customModel', spellcheck: 'false', placeholder: t('pvCustomModel'), 'aria-label': t('pvCustomModel') });
   let models: ModelOption[] = [];
+  const label = el('label', { for: 'model', text: t('pvModel') }); // becomes "Model (N available)" once loaded
 
   const showPrice = () => {
     const m = models.find((x) => x.id === select.value);
@@ -161,7 +149,8 @@ async function modelSection(box: HTMLElement, settings: Settings, id: CloudId, k
         if (!current) await choose(pick);
       }
       showPrice();
-      setStatus(t('pvModelsLoaded', models.length), 'ok');
+      label.textContent = t('pvModelCount', models.length);
+      setStatus('');
     } catch (e) {
       setStatus(errText(e), 'err');
     }
@@ -200,7 +189,7 @@ async function modelSection(box: HTMLElement, settings: Settings, id: CloudId, k
     el(
       'div',
       { class: 'field' },
-      el('label', { for: 'model', text: t('pvModel') }),
+      label,
       el('span', { class: 'pv-key' }, select, refresh),
       price,
       el('details', { class: 'custom' }, el('summary', { text: t('pvCustomModel') }), el('span', { class: 'pv-key' }, custom, useCustom)),

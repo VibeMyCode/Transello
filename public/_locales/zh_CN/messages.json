@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "出了点问题。"
  },
- "pvTrustKey": {
-  "message": "你的密钥只保存在这台设备上。"
+ "privLocal": {
+  "message": "内置翻译器在你的设备上运行：文本不会发送到任何地方。"
  },
- "pvTrustDirect": {
-  "message": "文本和密钥从你的浏览器直接发送到 $1（$2），费用记在你自己的账户上。"
+ "privCloud": {
+  "message": "使用云端 AI 时，文本和密钥从浏览器直接发送给你选择的服务商，不会发往其他任何地方。"
  },
- "pvTrustNoServer": {
-  "message": "Transello 没有服务器：从不向我们发送任何内容。"
+ "privKeys": {
+  "message": "密钥只保存在这台设备上，从不同步。"
+ },
+ "privNoServer": {
+  "message": "Transello 没有服务器、没有统计分析、没有广告。"
+ },
+ "pvTrustInline": {
+  "message": "密钥保存在这台设备上，只会发送到 $1。"
+ },
+ "pvModelCount": {
+  "message": "模型（可用 $1 个）"
  },
  "pvTrustCheck": {
   "message": "在源代码中亲自查看"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "刷新列表"
  },
- "pvModelsLoaded": {
-  "message": "可用模型：$1 个"
- },
  "pvPrice": {
   "message": "USD $1 / $2 每百万 token（输入/输出）"
  },
@@ -324,7 +330,7 @@
   "message": "测试翻译"
  },
  "pvTestNote": {
-  "message": "将发送一个简短请求；服务提供商可能会为此计费（通常不到一美分）。"
+  "message": "一次简短请求，通常不到一美分。"
  },
  "pvTestOk": {
   "message": "模型回复：$1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "深色"
  },
- "optShortcut": {
-  "message": "迷你弹窗的键盘快捷键"
+ "optShortcuts": {
+  "message": "快捷键"
  },
  "optShortcutChange": {
-  "message": "在 chrome://extensions/shortcuts 中更改"
+  "message": "更改"
  },
  "optEngine": {
   "message": "翻译引擎"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "隐私"
  },
- "optLocalOnly": {
-  "message": "默认情况下，所有内容都在你的设备上本地翻译。不会向任何地方发送任何内容。"
- },
  "optKeepDraft": {
-  "message": "在关闭浏览器前保留弹窗草稿"
+  "message": "在关闭浏览器前保留窗口中的文本"
  },
  "optClear": {
-  "message": "清除草稿和缓存"
+  "message": "清除已保存的文本"
  },
  "optCleared": {
   "message": "已清除"

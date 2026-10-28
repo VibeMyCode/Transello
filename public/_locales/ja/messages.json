@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "問題が発生しました。"
  },
- "pvTrustKey": {
-  "message": "キーはこのデバイスにのみ保存されます。"
+ "privLocal": {
+  "message": "組み込み翻訳はお使いのデバイス上で動作し、テキストはどこにも送信されません。"
  },
- "pvTrustDirect": {
-  "message": "テキストとキーはブラウザから直接 $1（$2）に送られ、料金はご自身のアカウントに請求されます。"
+ "privCloud": {
+  "message": "クラウド AI を使う場合、テキストとキーはブラウザから選んだプロバイダへ直接送られ、それ以外には送られません。"
  },
- "pvTrustNoServer": {
-  "message": "Transello にはサーバーがありません。私たちに何かが送られることは一切ありません。"
+ "privKeys": {
+  "message": "キーはこのデバイスにのみ保存され、同期されません。"
+ },
+ "privNoServer": {
+  "message": "Transello にはサーバーも分析も広告もありません。"
+ },
+ "pvTrustInline": {
+  "message": "キーはこのデバイスに保存され、$1 にのみ送信されます。"
+ },
+ "pvModelCount": {
+  "message": "モデル（利用可能: $1）"
  },
  "pvTrustCheck": {
   "message": "ソースコードでご自身で確認"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "リストを更新"
  },
- "pvModelsLoaded": {
-  "message": "利用可能なモデル：$1 件"
- },
  "pvPrice": {
   "message": "USD $1 / $2（100 万トークンあたり、入力/出力）"
  },
@@ -324,7 +330,7 @@
   "message": "翻訳をテスト"
  },
  "pvTestNote": {
-  "message": "短いリクエストを 1 件送信します。プロバイダーによって課金される場合があります（通常は 1 セント未満）。"
+  "message": "短いリクエスト1回分で、通常は1セント未満です。"
  },
  "pvTestOk": {
   "message": "モデルの応答：$1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "ダーク"
  },
- "optShortcut": {
-  "message": "ミニポップアップのキーボードショートカット"
+ "optShortcuts": {
+  "message": "キーボードショートカット"
  },
  "optShortcutChange": {
-  "message": "chrome://extensions/shortcuts で変更"
+  "message": "変更"
  },
  "optEngine": {
   "message": "翻訳エンジン"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "プライバシー"
  },
- "optLocalOnly": {
-  "message": "デフォルトでは、すべてお使いのデバイス上でローカルに翻訳されます。どこにも送信されません。"
- },
  "optKeepDraft": {
-  "message": "ブラウザを閉じるまでポップアップの下書きを保持する"
+  "message": "ブラウザを閉じるまでウィンドウのテキストを保持"
  },
  "optClear": {
-  "message": "下書きとキャッシュを消去"
+  "message": "保存したテキストを消去"
  },
  "optCleared": {
   "message": "消去しました"

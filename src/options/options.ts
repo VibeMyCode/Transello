@@ -72,8 +72,12 @@ async function init() {
   await renderAll();
   const chromeVer = /Chrome\/([\d.]+)/.exec(navigator.userAgent)?.[1] ?? '?';
   void localDiagnostics().then((d) => ($('diag').textContent = `Chrome ${chromeVer} · ${d}`));
-  const cmd = (await chrome.commands.getAll()).find((c) => c.name === 'translate-selection');
-  $('shortcut').textContent = cmd?.shortcut || t('shortcutNotSet');
+  const cmds = await chrome.commands.getAll();
+  const keyOf = (name: string) => cmds.find((c) => c.name === name)?.shortcut || t('shortcutNotSet');
+  $('shortcut').textContent = keyOf('translate-selection');
+  $('shortcutPage').textContent = keyOf('translate-page');
+  $<HTMLAnchorElement>('codeTrust').href = LINKS.cloudCode;
+  $('privKeys').title = t('pvKeyStorage'); // the honest detail (not an OS keychain), without a second paragraph
   // chrome:// URLs cannot be links; tabs.create is the supported way to open the shortcuts page.
   $('shortcutLink').onclick = () => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
   $<HTMLSelectElement>('uiLang').onchange = async (e) => {

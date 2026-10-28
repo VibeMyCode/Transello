@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "Etwas ist schiefgelaufen."
  },
- "pvTrustKey": {
-  "message": "Ihr Schlüssel wird nur auf diesem Gerät gespeichert."
+ "privLocal": {
+  "message": "Der integrierte Übersetzer läuft auf Ihrem Gerät: Ihr Text verlässt es nicht."
  },
- "pvTrustDirect": {
-  "message": "Text und Schlüssel gehen von Ihrem Browser direkt an $1 ($2), abgerechnet über Ihr eigenes Konto."
+ "privCloud": {
+  "message": "Mit einer Cloud-KI gehen Text und Schlüssel direkt von Ihrem Browser an den gewählten Anbieter und nirgendwo sonst hin."
  },
- "pvTrustNoServer": {
-  "message": "Transello hat keinen Server: An uns wird nie etwas gesendet."
+ "privKeys": {
+  "message": "Schlüssel werden nur auf diesem Gerät gespeichert und nie synchronisiert."
+ },
+ "privNoServer": {
+  "message": "Transello hat keinen Server, keine Analysen und keine Werbung."
+ },
+ "pvTrustInline": {
+  "message": "Der Schlüssel bleibt auf diesem Gerät und wird nur an $1 gesendet."
+ },
+ "pvModelCount": {
+  "message": "Modell ($1 verfügbar)"
  },
  "pvTrustCheck": {
   "message": "Prüfen Sie es selbst im Quellcode"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "Liste aktualisieren"
  },
- "pvModelsLoaded": {
-  "message": "$1 Modelle verfügbar"
- },
  "pvPrice": {
   "message": "USD $1 / $2 pro 1 Mio. Tokens (Eingabe/Ausgabe)"
  },
@@ -324,7 +330,7 @@
   "message": "Übersetzung testen"
  },
  "pvTestNote": {
-  "message": "Sendet eine kurze Anfrage; der Anbieter kann sie berechnen (meist ein Bruchteil eines Cents)."
+  "message": "Eine kurze Anfrage, meist ein Bruchteil eines Cents."
  },
  "pvTestOk": {
   "message": "Antwort des Modells: $1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "Dunkel"
  },
- "optShortcut": {
-  "message": "Tastenkürzel für das Mini-Popup"
+ "optShortcuts": {
+  "message": "Tastenkürzel"
  },
  "optShortcutChange": {
-  "message": "Ändern unter chrome://extensions/shortcuts"
+  "message": "Ändern"
  },
  "optEngine": {
   "message": "Übersetzungs-Engine"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "Datenschutz"
  },
- "optLocalOnly": {
-  "message": "Standardmäßig wird alles lokal auf Ihrem Gerät übersetzt. Es wird nichts irgendwohin gesendet."
- },
  "optKeepDraft": {
-  "message": "Popup-Entwurf bis zum Schließen des Browsers behalten"
+  "message": "Text im Fenster bis zum Schließen des Browsers behalten"
  },
  "optClear": {
-  "message": "Entwürfe und Cache löschen"
+  "message": "Gespeicherten Text löschen"
  },
  "optCleared": {
   "message": "Gelöscht"

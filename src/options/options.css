@@ -256,6 +256,7 @@ details.custom[open] summary {
 }
 /* Trust facts: quiet and neutral (green checks, no alarm colours), one link to the code. */
 .trust {
+  margin-bottom: 10px;
   border-radius: var(--radius-sm);
   padding: 10px 14px;
   font-size: 13px;
@@ -281,8 +282,24 @@ details.custom[open] summary {
   font-weight: 700;
   color: var(--ok);
 }
-.trust li.lock {
+.trust li[title],
+.pv-lock[title] {
   cursor: help;
+}
+.pv-lock {
+  margin: -2px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.pv-lock::before {
+  content: '🔒';
+  font-size: 11px;
+  margin-inline-end: 6px;
+}
+.row.sub {
+  padding: 2px 0 2px 14px;
+  color: var(--muted);
+  font-size: 13.5px;
 }
 .trust li.lock::before {
   content: '🔒';

@@ -251,14 +251,23 @@
  "err_internal": {
   "message": "Terjadi kesalahan."
  },
- "pvTrustKey": {
-  "message": "Kunci Anda hanya disimpan di perangkat ini."
+ "privLocal": {
+  "message": "Penerjemah bawaan berjalan di perangkat Anda: teks Anda tidak dikirim ke mana pun."
  },
- "pvTrustDirect": {
-  "message": "Teks dan kunci dikirim dari browser Anda langsung ke $1 ($2), dan ditagihkan ke akun Anda sendiri."
+ "privCloud": {
+  "message": "Dengan AI cloud, teks dan kunci Anda dikirim dari browser langsung ke penyedia pilihan Anda, dan tidak ke tempat lain."
  },
- "pvTrustNoServer": {
-  "message": "Transello tidak punya server: tidak ada yang pernah dikirim ke kami."
+ "privKeys": {
+  "message": "Kunci hanya disimpan di perangkat ini dan tidak pernah disinkronkan."
+ },
+ "privNoServer": {
+  "message": "Transello tidak punya server, analitik, maupun iklan."
+ },
+ "pvTrustInline": {
+  "message": "Kunci tetap di perangkat ini dan hanya dikirim ke $1."
+ },
+ "pvModelCount": {
+  "message": "Model ($1 tersedia)"
  },
  "pvTrustCheck": {
   "message": "Periksa sendiri di kode sumber"
@@ -314,9 +323,6 @@
  "pvRefresh": {
   "message": "Segarkan daftar"
  },
- "pvModelsLoaded": {
-  "message": "$1 model tersedia"
- },
  "pvPrice": {
   "message": "USD $1 / $2 per 1M token (masuk/keluar)"
  },
@@ -324,7 +330,7 @@
   "message": "Uji terjemahan"
  },
  "pvTestNote": {
-  "message": "Mengirim satu permintaan singkat; penyedia dapat menagihnya (biasanya sepersekian sen)."
+  "message": "Satu permintaan singkat, biasanya sepersekian sen."
  },
  "pvTestOk": {
   "message": "Model membalas: $1"
@@ -374,11 +380,11 @@
  "optThemeDark": {
   "message": "Gelap"
  },
- "optShortcut": {
-  "message": "Pintasan keyboard untuk popup mini"
+ "optShortcuts": {
+  "message": "Pintasan keyboard"
  },
  "optShortcutChange": {
-  "message": "Ubah di chrome://extensions/shortcuts"
+  "message": "Ubah"
  },
  "optEngine": {
   "message": "Mesin terjemahan"
@@ -386,14 +392,11 @@
  "optPrivacy": {
   "message": "Privasi"
  },
- "optLocalOnly": {
-  "message": "Secara default, semuanya diterjemahkan secara lokal di perangkat Anda. Tidak ada yang dikirim ke mana pun."
- },
  "optKeepDraft": {
-  "message": "Simpan draf popup sampai browser ditutup"
+  "message": "Ingat teks di jendela sampai browser ditutup"
  },
  "optClear": {
-  "message": "Hapus draf dan cache"
+  "message": "Hapus teks tersimpan"
  },
  "optCleared": {
   "message": "Dihapus"

@@ -30,8 +30,16 @@
           </select>
         </label>
         <div class="row">
-          <span data-i18n="optShortcut"></span>
-          <span class="right"><kbd id="shortcut"></kbd> <button id="shortcutLink" class="btn" type="button" data-i18n="optShortcutChange"></button></span>
+          <span data-i18n="optShortcuts"></span>
+          <button id="shortcutLink" class="btn" type="button" data-i18n="optShortcutChange" title="chrome://extensions/shortcuts"></button>
+        </div>
+        <div class="row sub">
+          <span data-i18n="cmdTranslateSelection"></span>
+          <kbd id="shortcut"></kbd>
+        </div>
+        <div class="row sub">
+          <span data-i18n="cmdTranslatePage"></span>
+          <kbd id="shortcutPage"></kbd>
         </div>
       </section>
 
@@ -43,7 +51,15 @@
 
       <section aria-labelledby="h-privacy">
         <h2 id="h-privacy" data-i18n="optPrivacy"></h2>
-        <p class="muted" data-i18n="optLocalOnly"></p>
+        <div class="trust">
+          <ul>
+            <li class="lock" data-i18n="privLocal"></li>
+            <li data-i18n="privCloud"></li>
+            <li id="privKeys" data-i18n="privKeys"></li>
+            <li data-i18n="privNoServer"></li>
+          </ul>
+          <a id="codeTrust" class="link" target="_blank" rel="noopener"><span data-i18n="pvTrustCheck"></span> ↗</a>
+        </div>
         <label class="check"><input id="keepDraft" type="checkbox" /> <span data-i18n="optKeepDraft"></span></label>
         <div class="row">
           <button id="clearData" class="btn" type="button" data-i18n="optClear"></button>

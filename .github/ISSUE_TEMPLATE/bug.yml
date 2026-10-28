@@ -37,9 +37,3 @@ body:
       placeholder: "Brave 1.97 on Windows 11"
     validations:
       required: true
-  - type: input
-    id: diag
-    attributes:
-      label: Diagnostics line
-      description: "Transello Settings → About, the small grey line starting with \"Chrome\". It contains no personal data."
-      placeholder: "Chrome 155.0 · Translator(en→ru): available · LanguageDetector: ... · CLD: ok"

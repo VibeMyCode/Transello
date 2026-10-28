@@ -154,30 +154,6 @@ export function scriptGuess(text: string): Detection | null {
   return s ? { lang: s[1], confidence: 0.3, uncertain: true } : null;
 }
 
-/** Diagnostics for Settings → About (what this Chrome actually offers). */
-export async function localDiagnostics(): Promise<string> {
-  const tr = typeof globalThis.Translator === 'undefined' ? 'missing' : await Translator.availability({ sourceLanguage: 'en', targetLanguage: 'ru' }).catch((e) => 'error ' + (e as Error).name);
-  const ld = typeof globalThis.LanguageDetector === 'undefined' ? 'missing' : await LanguageDetector.availability().catch((e) => 'error ' + (e as Error).name);
-  const cld = typeof globalThis.chrome?.i18n?.detectLanguage === 'function' ? 'ok' : 'missing';
-  return `Translator(en→ru): ${tr}${tr === 'available' ? ` (${await selfTest()})` : ''} · LanguageDetector: ${ld} · CLD: ${cld}`;
-}
-
-/** Translate one word with an installed pair: shows whether Chrome's translator actually starts here. Never downloads. */
-async function selfTest(): Promise<string> {
-  try {
-    const tr = await Promise.race([
-      Translator.create({ sourceLanguage: 'en', targetLanguage: 'ru' }),
-      new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 15_000)),
-    ]);
-    const out = await tr.translate('Hello');
-    tr.destroy();
-    return out ? 'test ok' : 'test: empty';
-  } catch (e) {
-    const err = e as { name?: string; message?: string };
-    return `test: ${err.name ?? 'Error'}: ${err.message ?? ''}`.slice(0, 160);
-  }
-}
-
 export const MAX_TRANSLATORS = 4; // NFR-04: bounded cache; evicted instances are destroyed
 
 async function getTranslator(source: string, target: string, signal?: AbortSignal, onProgress?: OnProgress) {

@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "Disconnected. The key was deleted from this device."
  },
- "pvKeyStorage": {
-  "message": "The key is kept only on this device (chrome.storage.local), is never synced and is not visible to web pages. It is not an OS keychain: anyone with access to this Chrome profile could read it."
- },
  "pvModel": {
   "message": "Model"
  },

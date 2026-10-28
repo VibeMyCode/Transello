@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "Terputus. Kunci telah dihapus dari perangkat ini."
  },
- "pvKeyStorage": {
-  "message": "Kunci hanya disimpan di perangkat ini (chrome.storage.local), tidak pernah disinkronkan, dan tidak terlihat oleh halaman web. Ini bukan keychain OS: siapa pun yang memiliki akses ke profil Chrome ini dapat membacanya."
- },
  "pvModel": {
   "message": "Model"
  },

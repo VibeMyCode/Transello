@@ -104,7 +104,6 @@ M = {
  "pvUnlimited": ("no limit", "без лимита"),
  "pvDisconnect": ("Disconnect", "Отключить"),
  "pvDisconnected": ("Disconnected. The key was deleted from this device.", "Отключено. Ключ удалён с этого устройства."),
- "pvKeyStorage": ("The key is kept only on this device (chrome.storage.local), is never synced and is not visible to web pages. It is not an OS keychain: anyone with access to this Chrome profile could read it.", "Ключ хранится только на этом устройстве (chrome.storage.local), не синхронизируется и недоступен веб-страницам. Это не системное защищённое хранилище: имеющий доступ к профилю Chrome сможет его прочитать."),
  "pvModel": ("Model", "Модель"),
  "pvChooseModel": ("Choose a model", "Выберите модель"),
  "pvCustomModel": ("Custom model ID", "Свой ID модели"),

@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "已断开连接。密钥已从此设备删除。"
  },
- "pvKeyStorage": {
-  "message": "密钥仅保存在此设备上 (chrome.storage.local)，不会同步，网页也无法看到。它不是操作系统钥匙串：任何能访问此 Chrome 个人资料的人都可以读取它。"
- },
  "pvModel": {
   "message": "模型"
  },

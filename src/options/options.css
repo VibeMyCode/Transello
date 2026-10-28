@@ -285,10 +285,6 @@ details.custom[open] summary {
   font-weight: 700;
   color: var(--ok);
 }
-.trust li[title],
-.pv-lock[title] {
-  cursor: help;
-}
 .pv-lock {
   margin: -2px 0 0;
   font-size: 12.5px;

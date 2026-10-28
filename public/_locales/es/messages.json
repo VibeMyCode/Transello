@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "Desconectado. La clave se eliminó de este dispositivo."
  },
- "pvKeyStorage": {
-  "message": "La clave se guarda solo en este dispositivo (chrome.storage.local), nunca se sincroniza y no es visible para las páginas web. No es un llavero del sistema operativo: cualquier persona con acceso a este perfil de Chrome podría leerla."
- },
  "pvModel": {
   "message": "Modelo"
  },

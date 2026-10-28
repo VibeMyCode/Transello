@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "接続を解除しました。キーはこのデバイスから削除されました。"
  },
- "pvKeyStorage": {
-  "message": "キーはこのデバイス (chrome.storage.local) にのみ保存され、同期されず、ウェブページからは見えません。OS のキーチェーンではないため、この Chrome プロファイルにアクセスできる人はキーを読み取れます。"
- },
  "pvModel": {
   "message": "モデル"
  },

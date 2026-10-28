@@ -90,7 +90,7 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
       el(
         'div',
         { class: 'pv-row' },
-        el('span', { class: 'state ok', text: t(cred.kind === 'oauth' ? 'pvConnectedOauth' : 'pvConnected', maskKey(cred.key)) }),
+        el('span', { class: 'state ok', text: t(cred.kind === 'oauth' ? 'pvConnectedOauth' : 'pvConnected', maskKey(cred.key)), title: t('pvTrustInline', host) }),
         el('button', {
           type: 'button',
           class: 'btn',
@@ -108,9 +108,10 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
     );
   }
 
-  // 2. One line of reassurance where the doubt arises (pasting a key); the full facts live in Settings → Privacy.
-  const lock = el('p', { class: 'pv-lock', text: t('pvTrustInline', host), title: t('pvKeyStorage') });
-  box.append(conn, lock, status);
+  // 2. One line of reassurance where the doubt arises (pasting a key); once connected it moves into the status tooltip.
+  // The full facts live in Settings → Privacy.
+  const lock = cred ? null : el('p', { class: 'pv-lock', text: t('pvTrustInline', host) });
+  box.append(conn, ...(lock ? [lock] : []), status);
   if (cred) await modelSection(box, settings, id, cred.key, setStatus, status);
   box.dataset.engine = id; // rendered (used by E2E to avoid races)
 }

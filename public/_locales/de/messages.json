@@ -305,9 +305,6 @@
  "pvDisconnected": {
   "message": "Getrennt. Der Schlüssel wurde von diesem Gerät gelöscht."
  },
- "pvKeyStorage": {
-  "message": "Der Schlüssel wird nur auf diesem Gerät gespeichert (chrome.storage.local), nie synchronisiert und ist für Webseiten nicht sichtbar. Es handelt sich nicht um einen Schlüsselbund des Betriebssystems: Jeder mit Zugriff auf dieses Chrome-Profil könnte ihn lesen."
- },
  "pvModel": {
   "message": "Modell"
  },

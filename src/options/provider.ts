@@ -90,7 +90,7 @@ export async function renderProvider(box: HTMLElement, settings: Settings): Prom
       el(
         'div',
         { class: 'pv-row' },
-        el('span', { class: 'state ok', text: t(cred.kind === 'oauth' ? 'pvConnectedOauth' : 'pvConnected', maskKey(cred.key)), title: t('pvTrustInline', host) }),
+        el('span', { text: t(cred.kind === 'oauth' ? 'pvConnectedOauth' : 'pvConnected', maskKey(cred.key)), class: 'state ok tip', 'data-tip': t('pvTrustInline', host), 'aria-description': t('pvTrustInline', host), tabindex: 0 }),
         el('button', {
           type: 'button',
           class: 'btn',

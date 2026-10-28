@@ -162,7 +162,7 @@
   "message": "Send and translate"
  },
  "cloudNotice": {
-  "message": "Selected text is sent to $1 for translation and may be billed by the provider."
+  "message": "Text is sent to $1 for translation, billed to your own account."
  },
  "restrictedHere": {
   "message": "Chrome does not allow extensions on this page. Paste the text into Transello instead."

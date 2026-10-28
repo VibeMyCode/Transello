@@ -98,6 +98,10 @@ export function applyTheme(s: Settings, root: HTMLElement = document.documentEle
   else root.dataset.theme = s.theme;
 }
 
+/** "OpenRouter · claude-haiku-5.5": the vendor prefix of a routed model ID ("anthropic/") is noise in a small chip. */
+export const engineLabel = (s: Settings, localLabel: string) =>
+  s.engine === 'local' ? localLabel : `${ENGINE_NAMES[s.engine]}${s.models[s.engine] ? ' · ' + s.models[s.engine]!.split('/').pop() : ''}`;
+
 export const ENGINE_NAMES: Record<EngineId, string> = {
   local: 'Local',
   openai: 'OpenAI',

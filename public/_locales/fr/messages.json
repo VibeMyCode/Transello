@@ -162,7 +162,7 @@
   "message": "Envoyer et traduire"
  },
  "cloudNotice": {
-  "message": "Le texte sélectionné est envoyé à $1 pour traduction et peut être facturé par le fournisseur."
+  "message": "Le texte est envoyé à $1 pour la traduction, facturée sur votre compte."
  },
  "restrictedHere": {
   "message": "Chrome n'autorise pas les extensions sur cette page. Collez plutôt le texte dans Transello."

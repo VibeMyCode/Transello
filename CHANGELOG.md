@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.1.0 - unreleased
+- Settings: privacy facts gathered in Privacy, one key line in the provider panel, "Model (N available)", both shortcuts listed, clearer wording. The popup header keeps its size with long cloud model names (shortened with an ellipsis).
 - Cloud provider settings state plainly where your key and text go (stored only on this device, sent only to that provider, no Transello server), with a link to the exact source file that makes the requests. Settings → About links to the source code.
 - Page language is detected once per page from its longest texts, and the page's own lang attribute decides when the detector is unsure (user report: an English site's menu words "looked Swedish" and Transello offered a Swedish model).
 - Follow-up translation also works on single-page sites that change the address without reloading (Next.js and similar).

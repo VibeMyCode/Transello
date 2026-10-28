@@ -5,7 +5,7 @@ import { applyI18n, t, uiLocale } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
 import { errorText, fillLangSelect } from '../ui/langs';
 import { enter, pop, reveal, setPair, spin } from '../ui/fx';
-import { applyTheme, ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
+import { applyTheme, engineLabel, ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -37,12 +37,6 @@ function fillLangs() {
 
 /** The whole popup takes the colours of the current language pair (source: chosen, else last detected). */
 const paint = () => setPair(document.documentElement, source.value !== 'auto' ? source.value : (last?.source ?? null), target.value);
-
-function engineLabel(): string {
-  if (settings.engine === 'local') return t('engineLocal');
-  const model = settings.models[settings.engine];
-  return `${ENGINE_NAMES[settings.engine]}${model ? ' · ' + model : ''}`;
-}
 
 function setBusy(busy: boolean) {
   output.setAttribute('aria-busy', String(busy));
@@ -193,7 +187,11 @@ async function init() {
   enter([...document.querySelectorAll('.app > *')]);
   setTimeout(() => document.documentElement.classList.add('ready'), 60); // first colours instantly, later ones glide
   fillLangs();
-  $('engine').textContent = engineLabel();
+  const chipText = document.createElement('span');
+  chipText.className = 'chip-text';
+  chipText.textContent = engineLabel(settings, t('engineLocal'));
+  $('engine').title = `${chipText.textContent} · ${t('settings')}`;
+  $('engine').replaceChildren(chipText);
 
   const { handoff, draft } = (await chrome.storage.session.get(['handoff', 'draft'])) as { handoff?: { text?: string; notice?: string | null }; draft?: unknown };
   if (isWindow && handoff) {

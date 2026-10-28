@@ -162,7 +162,7 @@
   "message": "Kirim dan terjemahkan"
  },
  "cloudNotice": {
-  "message": "Teks terpilih dikirim ke $1 untuk diterjemahkan dan dapat ditagih oleh penyedia."
+  "message": "Teks dikirim ke $1 untuk diterjemahkan dan ditagihkan ke akun Anda."
  },
  "restrictedHere": {
   "message": "Chrome tidak mengizinkan ekstensi di halaman ini. Tempel teks ke Transello sebagai gantinya."

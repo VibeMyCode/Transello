@@ -162,7 +162,7 @@
   "message": "发送并翻译"
  },
  "cloudNotice": {
-  "message": "所选文本将发送到 $1 进行翻译，服务提供商可能会为此计费。"
+  "message": "文本会发送到 $1 进行翻译，费用记在你的账户上。"
  },
  "restrictedHere": {
   "message": "Chrome 不允许扩展程序在此页面上运行。请改为将文本粘贴到 Transello 中。"

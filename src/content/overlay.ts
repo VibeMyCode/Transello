@@ -4,7 +4,7 @@ import { isRetryable, TError, toTError } from '../core/errors';
 import { isRtl, t, uiLocale } from '../core/i18n';
 import { langName, retargetFor } from '../core/lang';
 import { errorText, fillLangSelect } from '../ui/langs';
-import { ENGINE_NAMES, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
+import { engineLabel, getSettings, initUi, rememberLang, type Settings } from '../core/settings';
 import type { TranslateResult } from '../core/translate';
 import { el, iconButton } from './dom';
 import { pop, reveal, setPair, springIn } from '../ui/fx';
@@ -41,10 +41,6 @@ export const inOverlay = (e: Event) => !!host && e.composedPath().includes(host)
 
 /** Overlay colours follow the language pair. Set on the host: derived tokens (--glow-*, --accent) resolve at :host. */
 export const paintPair = (from?: string | null, to?: string | null) => host && setPair(host, from, to);
-
-function engineLabel(s: Settings) {
-  return s.engine === 'local' ? t('engineLocal') : `${ENGINE_NAMES[s.engine]}${s.models[s.engine] ? ' · ' + s.models[s.engine] : ''}`;
-}
 
 /** Run a translation into status/result elements. Returns cancel(). */
 function translateInto(
@@ -183,7 +179,7 @@ export async function showModal(text: string) {
       'div',
       { class: 'head' },
       el('span', { class: 'brand', text: 'Transello' }),
-      el('span', { class: 'chip', text: engineLabel(settings) }),
+      el('span', { class: 'chip', title: engineLabel(settings, t('engineLocal')) }, el('span', { class: 'chip-text', text: engineLabel(settings, t('engineLocal')) })),
       el('span', { class: 'spacer' }),
       copy,
       iconButton('expand', t('openWindow'), () => (chrome.runtime.sendMessage({ type: 'open_window', text }), close())),
@@ -310,7 +306,7 @@ export async function toggleMini() {
     tools.append(copy, iconButton('expand', t('expand'), () => (close(), void showModal(text))), iconButton('close', t('close'), close));
     // Mini shows the loading state immediately; result fills in when ready.
     cancel = translateInto(text, settings, { status, result }, () => {
-      status.textContent = engineLabel(settings);
+      status.textContent = engineLabel(settings, t('engineLocal'));
       reposition();
     });
   }

@@ -162,7 +162,7 @@
   "message": "Senden und übersetzen"
  },
  "cloudNotice": {
-  "message": "Der ausgewählte Text wird zur Übersetzung an $1 gesendet und kann vom Anbieter berechnet werden."
+  "message": "Der Text wird zur Übersetzung an $1 gesendet und über Ihr Konto abgerechnet."
  },
  "restrictedHere": {
   "message": "Chrome erlaubt auf dieser Seite keine Erweiterungen. Fügen Sie den Text stattdessen in Transello ein."

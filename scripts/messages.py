@@ -56,7 +56,7 @@ M = {
  "pageCloudConfirm": ("Send about $1 characters of this page to $2? The provider may charge for it.", "Отправить около $1 символов текста этой страницы в $2? Провайдер может взять за это плату."),
  "pageSensitive": ("This looks like a sensitive site (bank, mail, payments).", "Похоже на чувствительный сайт (банк, почта, платежи)."),
  "confirmSend": ("Send and translate", "Отправить и перевести"),
- "cloudNotice": ("Selected text is sent to $1 for translation and may be billed by the provider.", "Выделенный текст отправляется в $1 для перевода и может тарифицироваться провайдером."),
+ "cloudNotice": ("Text is sent to $1 for translation, billed to your own account.", "Текст отправляется в $1 для перевода, оплата с вашего аккаунта."),
  "restrictedHere": ("Chrome does not allow extensions on this page. Paste the text into Transello instead.", "Chrome не разрешает расширениям работать на этой странице. Вставьте текст в окно Transello."),
  "shortcutHint": ("Shortcut: $1", "Горячая клавиша: $1"),
  "shortcutNotSet": ("not set", "не назначена"),

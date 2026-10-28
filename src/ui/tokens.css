@@ -251,7 +251,18 @@ select:hover {
   min-height: 28px;
   white-space: nowrap;
 }
+.chip {
+  min-width: 0;
+  max-width: 100%;
+}
+.chip-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .chip::before {
+  flex: none;
   content: '';
   width: 7px;
   height: 7px;

@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - 私密 AI 翻译器"
  },
  "extDescription": {
   "message": "说一口流利的“互联网语”。文本、选中内容或整个网页，一键翻译，本机私密运行，或接入 AI：GPT、Claude、DeepSeek、OpenRouter。"
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "反馈"
+ },
+ "optRate": {
+  "message": "★ 为 Transello 评分"
  },
  "optSupport": {
   "message": "☕ 支持 Transello"

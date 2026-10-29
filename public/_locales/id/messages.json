@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - Penerjemah AI pribadi"
  },
  "extDescription": {
   "message": "Fasih bahasa internet. Teks, pilihan, atau seluruh halaman sekali klik, privat atau lewat AI: GPT, Claude, DeepSeek, OpenRouter."
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "Masukan"
+ },
+ "optRate": {
+  "message": "★ Beri nilai Transello"
  },
  "optSupport": {
   "message": "☕ Dukung Transello"

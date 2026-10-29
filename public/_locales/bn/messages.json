@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - ব্যক্তিগত AI অনুবাদক"
  },
  "extDescription": {
   "message": "ইন্টারনেটের ভাষায় সাবলীল হন। টেক্সট, নির্বাচন বা পুরো পেজ এক ক্লিকে, গোপনে বা AI দিয়ে: GPT, Claude, DeepSeek, OpenRouter।"
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "মতামত"
+ },
+ "optRate": {
+  "message": "★ Transello-কে রেটিং দিন"
  },
  "optSupport": {
   "message": "☕ Transello-কে সমর্থন করুন"

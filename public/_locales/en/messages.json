@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - Private AI Translator"
  },
  "extDescription": {
   "message": "Speak fluent internet. Text, selection, whole page in one click, privately or with AI: GPT, Claude, DeepSeek, OpenRouter."
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "Feedback"
+ },
+ "optRate": {
+  "message": "★ Rate Transello"
  },
  "optSupport": {
   "message": "☕ Support Transello"

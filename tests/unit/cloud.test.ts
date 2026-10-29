@@ -59,6 +59,15 @@ describe('provider request formats', () => {
     expect(calls[0]!.url).toBe(url);
   });
 
+  it('OpenRouter requests carry app attribution (name + site) for its public app rankings', async () => {
+    await setSecret('openrouter', 'key-123456789');
+    replies.push(ok({ choices: [{ message: { content: 'Привет' } }] }));
+    await cloudTranslate('Hello', req, { settings: settings('openrouter') });
+    const h = calls[0]!.init.headers as Record<string, string>;
+    expect(h['X-Title']).toBe('Transello');
+    expect(h['HTTP-Referer']).toBe('https://vibemycode.github.io/transello-site/');
+  });
+
   it('OpenRouter model list exposes price per 1M tokens', async () => {
     replies.push(ok({ data: [{ id: 'a/b', name: 'B', pricing: { prompt: '0.0000001', completion: '0.0000004' } }] }));
     const [m] = await PROVIDERS.openrouter.listModels('');

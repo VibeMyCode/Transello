@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - приватный ИИ-переводчик"
  },
  "extDescription": {
   "message": "Говорите на языке интернета. Текст, выделение, страница в один клик, приватно или через ИИ: GPT, Claude, DeepSeek, OpenRouter."
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "Обратная связь"
+ },
+ "optRate": {
+  "message": "★ Оценить Transello"
  },
  "optSupport": {
   "message": "☕ Поддержать Transello"

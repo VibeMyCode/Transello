@@ -1,5 +1,6 @@
 // Cloud adapters (BYOK): official HTTPS APIs only, called from the service worker / extension pages, never from
 // content scripts (spec §5). Text is untrusted: the prompt forbids following instructions inside it.
+import { LINKS } from './config';
 import { httpError, TError } from './errors';
 import { langName } from './lang';
 import { getSecret } from './secrets';
@@ -158,7 +159,8 @@ export const PROVIDERS: Record<CloudId, Provider> = {
     async complete(key, model, system, user, maxTokens, signal) {
       const d = (await http('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
-        headers: { ...bearer(key), 'X-Title': 'Transello' },
+        // App attribution: OpenRouter lists apps by these headers in its public app rankings.
+        headers: { ...bearer(key), 'X-Title': 'Transello', 'HTTP-Referer': LINKS.site },
         body: json({ model, stream: false, max_tokens: maxTokens, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
         signal,
       })) as { choices?: { message?: { content?: string } }[]; error?: { message?: string } };

@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - Privater KI-Übersetzer"
  },
  "extDescription": {
   "message": "Sprechen Sie fließend Internet. Text, Auswahl oder ganze Seite per Klick, privat oder per KI: GPT, Claude, DeepSeek, OpenRouter."
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "Feedback"
+ },
+ "optRate": {
+  "message": "★ Transello bewerten"
  },
  "optSupport": {
   "message": "☕ Transello unterstützen"

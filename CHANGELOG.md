@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+- Store name now says what it is: "Transello - Private AI Translator" (localized in all 12 languages), so it can be found by searching for a translator.
+- Settings → About: "★ Rate Transello" opens the Chrome Web Store reviews page.
+- OpenRouter requests include the site address next to the app name, so Transello can appear in OpenRouter's public app rankings.
+
 ## 1.1.0 - unreleased
 - Settings: privacy facts gathered in Privacy, one key line in the provider panel, "Model (N available)", both shortcuts listed, clearer wording. The popup header keeps its size with long cloud model names (shortened with an ellipsis).
 - Cloud provider settings state plainly where your key and text go (stored only on this device, sent only to that provider, no Transello server), with a link to the exact source file that makes the requests. Settings → About links to the source code.

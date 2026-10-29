@@ -2,7 +2,7 @@
 # Output (public/_locales/*/messages.json) is the committed source of truth for chrome.i18n and src/core/i18n.ts.
 import json, pathlib
 M = {
- "extName": ("Transello", "Transello"),
+ "extName": ("Transello - Private AI Translator", "Transello - приватный ИИ-переводчик"),
  "extDescription": ("Speak fluent internet. Text, selection, whole page in one click, privately or with AI: GPT, Claude, DeepSeek, OpenRouter.", "Говорите на языке интернета. Текст, выделение, страница в один клик, приватно или через ИИ: GPT, Claude, DeepSeek, OpenRouter."),
  "cmdTranslateSelection": ("Translate selection (mini popup)", "Перевести выделение (мини-попап)"),
  "cmdTranslatePage": ("Translate the whole page", "Перевести всю страницу"),
@@ -139,6 +139,7 @@ M = {
  "optAbout": ("About", "О программе"),
  "optVersion": ("Version $1", "Версия $1"),
  "optSource": ("Feedback", "Обратная связь"),
+ "optRate": ("★ Rate Transello", "★ Оценить Transello"),
  "optSupport": ("☕ Support Transello", "☕ Поддержать Transello"),
  "optLicenses": ("Licenses", "Лицензии"),
  "optSourceCode": ("Source code", "Исходный код"),

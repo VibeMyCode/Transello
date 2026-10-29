@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - プライベートAI翻訳"
  },
  "extDescription": {
   "message": "インターネット語がペラペラに。テキスト、選択範囲、ページ全体をワンクリックで。端末内でプライベートに、またはAIで：GPT、Claude、DeepSeek、OpenRouter。"
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "フィードバック"
+ },
+ "optRate": {
+  "message": "★ Transello を評価"
  },
  "optSupport": {
   "message": "☕ Transello を応援する"

@@ -1,6 +1,6 @@
 {
  "extName": {
-  "message": "Transello"
+  "message": "Transello - مترجم ذكاء اصطناعي خاص"
  },
  "extDescription": {
   "message": "تحدّث لغة الإنترنت بطلاقة. نص أو تحديد أو صفحة كاملة بنقرة، بخصوصية أو عبر الذكاء الاصطناعي: GPT وClaude وDeepSeek وOpenRouter."
@@ -409,6 +409,9 @@
  },
  "optSource": {
   "message": "الملاحظات"
+ },
+ "optRate": {
+  "message": "★ قيّم Transello"
  },
  "optSupport": {
   "message": "☕ ادعم Transello"
